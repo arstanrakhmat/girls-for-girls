@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.girls4girls.presentation.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Главный экран"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_mentorshipFragment2"
             app:destination="@id/mentorshipFragment" />
@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/forumsListFragment"
         android:name="com.example.girls4girls.presentation.forumsList.ForumsListFragment"
-        android:label="fragment_forums_list"
-        tools:layout="@layout/fragment_forums_list" >
+        android:label="Форумы"
+        tools:layout="@layout/fragment_forums_list">
         <action
             android:id="@+id/action_forumsListFragment_to_forumFragment"
             app:destination="@id/forumFragment" />
@@ -29,8 +29,8 @@
     <fragment
         android:id="@+id/mentorshipFragment"
         android:name="com.example.girls4girls.presentation.mentorship.MentorshipFragment"
-        android:label="fragment_mentorship"
-        tools:layout="@layout/fragment_mentorship" >
+        android:label="Менторская программа"
+        tools:layout="@layout/fragment_mentorship">
         <action
             android:id="@+id/action_mentorshipFragment_to_trainingsListFragment"
             app:destination="@id/trainingsListFragment" />
@@ -38,8 +38,8 @@
     <fragment
         android:id="@+id/trainingsListFragment"
         android:name="com.example.girls4girls.presentation.trainingsList.TrainingsListFragment"
-        android:label="fragment_trainings_list"
-        tools:layout="@layout/fragment_trainings_list" >
+        android:label="Тренинги"
+        tools:layout="@layout/fragment_trainings_list">
         <action
             android:id="@+id/action_trainingsListFragment_to_trainingFragment"
             app:destination="@id/trainingFragment"
@@ -51,23 +51,23 @@
     <fragment
         android:id="@+id/trainingFragment"
         android:name="com.example.girls4girls.presentation.training.TrainingFragment"
-        android:label="fragment_training"
+        android:label="Тренинг"
         tools:layout="@layout/fragment_training" />
     <fragment
         android:id="@+id/forumFragment"
         android:name="com.example.girls4girls.presentation.forum.ForumFragment"
-        android:label="fragment_forum"
+        android:label="Форум"
         tools:layout="@layout/fragment_forum" />
     <fragment
         android:id="@+id/videoblogFragment"
         android:name="com.example.girls4girls.presentation.videoblog.VideoblogFragment"
-        android:label="fragment_videoblog"
+        android:label="Видео"
         tools:layout="@layout/fragment_videoblog" />
     <fragment
         android:id="@+id/videoblogsListFragment"
         android:name="com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment"
-        android:label="fragment_videoblogs_list"
-        tools:layout="@layout/fragment_videoblogs_list" >
+        android:label="Стадиплан"
+        tools:layout="@layout/fragment_videoblogs_list">
         <action
             android:id="@+id/action_videoblogsListFragment_to_videoblogFragment"
             app:destination="@id/videoblogFragment" />

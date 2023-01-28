@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
+import com.example.girls4girls.presentation.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class VideoblogFragment : Fragment() {
@@ -26,6 +27,7 @@ class VideoblogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
     }
 
