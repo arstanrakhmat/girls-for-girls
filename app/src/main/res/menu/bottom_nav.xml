@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/bottom_nav_home"/>
+
+    <item
+        android:id="@+id/mentorshipFragment"
+        android:icon="@drawable/ic_mentorship"
+        android:title="@string/bottom_nav_mentorship"/>
+    <item
+        android:id="@+id/trainingsListFragment"
+        android:icon="@drawable/ic_trainings"
+        android:title="@string/bottom_nav_trainings"/>
+    <item
+        android:id="@+id/videoblogsListFragment"
+        android:icon="@drawable/ic_videoblogs"
+        android:title="@string/bottom_nav_videoblogs"/>
+    <item
+        android:id="@+id/forumsListFragment"
+        android:icon="@drawable/ic_forums"
+        android:title="@string/bottom_nav_forums"/>
+
+</menu>
