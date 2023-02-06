@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             if (nd.id in bottomNavFragments){
                 binding.bottomNav.visibility = View.VISIBLE
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
             } else {
                 binding.bottomNav.visibility = View.GONE
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
             }
         }
 
@@ -47,12 +49,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.fragmentContainer)
         val currentFragment = navController.currentDestination
-        return if (currentFragment != null && bottomNavFragments.contains(currentFragment.id)){
-            actionBar?.setDisplayHomeAsUpEnabled(false)
-            super.onSupportNavigateUp()
-        } else {
-            navController.navigateUp()
-        }
+        return navController.navigateUp()
     }
 
 }
