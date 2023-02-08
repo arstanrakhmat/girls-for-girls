@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/category1"
+        android:title="Категория 1"
+        />
+
+    <item
+        android:id="@+id/category2"
+        android:title="Категория 2"
+        />
+    <item
+        android:id="@+id/category3"
+        android:title="Категория 3"
+        />
+    <item
+        android:id="@+id/category4"
+        android:title="Категория 4"
+        />
+    <item
+        android:id="@+id/category5"
+        android:title="Категория 5"
+        />
+
+</menu>
