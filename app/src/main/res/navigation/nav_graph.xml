@@ -62,7 +62,11 @@
         android:id="@+id/videoblogFragment"
         android:name="com.example.girls4girls.presentation.videoblog.VideoblogFragment"
         android:label="Видео"
-        tools:layout="@layout/fragment_videoblog" />
+        tools:layout="@layout/fragment_videoblog" >
+        <argument
+            android:name="currentVideoBlog"
+            app:argType="com.example.girls4girls.data.VideoBlog" />
+    </fragment>
     <fragment
         android:id="@+id/videoblogsListFragment"
         android:name="com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment"

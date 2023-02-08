@@ -11,11 +11,12 @@ import com.example.girls4girls.databinding.ItemVideoblogBinding
 
 class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(VideoBlogDiffCallback()) {
 
+    var onVideoClickListener: ((VideoBlog) -> Unit)? = null
 
     class VideoBlogViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = ItemVideoblogBinding.bind(item)
         fun bind(videoBlog: VideoBlog) = with(binding){
-            binding.videoTitle.text = videoBlog.title
+            videoTitle.text = videoBlog.title
         }
     }
 
@@ -26,5 +27,12 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
 
     override fun onBindViewHolder(holder: VideoBlogViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            onVideoClickListener?.invoke(getItem(position))
+        }
+    }
+
+    interface OnVideoClickListener{
+        fun onVideoClick(videoBlog: VideoBlog)
     }
 }
