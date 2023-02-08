@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.girls4girls.R
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.ItemVideoblogBinding
+import java.util.*
 
 class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(VideoBlogDiffCallback()) {
+
+    private var unfilteredList = listOf<VideoBlog>()
 
     var onVideoClickListener: ((VideoBlog) -> Unit)? = null
 
@@ -30,6 +33,25 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
         holder.itemView.setOnClickListener {
             onVideoClickListener?.invoke(getItem(position))
         }
+    }
+
+    fun modifyList(list: List<VideoBlog>){
+        unfilteredList = list
+        submitList(list)
+    }
+
+    fun filter(query: CharSequence){
+        val list = mutableListOf<VideoBlog>()
+
+        if (!query.isNullOrEmpty()){
+            list.addAll(unfilteredList.filter {
+                it.title.lowercase(Locale.getDefault()).contains(query.toString().lowercase(Locale.getDefault()))
+            })
+        } else {
+            list.addAll(unfilteredList)
+        }
+
+        submitList(list)
     }
 
     interface OnVideoClickListener{
