@@ -7,5 +7,8 @@ import kotlinx.android.parcel.Parcelize
 data class VideoBlog(
     val id: Long,
     val title: String,
-    val duration: Int
+    val duration: Int,
+    val category: String,
+    val watched: Boolean,
+    val liked: Boolean
 ): Parcelable

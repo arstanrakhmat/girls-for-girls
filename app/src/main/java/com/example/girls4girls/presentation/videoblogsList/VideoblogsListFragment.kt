@@ -12,13 +12,15 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.databinding.FragmentVideoblogsListBinding
 
 class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private lateinit var viewModel: VideoblogsListViewModel
+    private val viewModel: VideoblogsListViewModel by viewModels()
     private lateinit var binding: FragmentVideoblogsListBinding
 
     private lateinit var videoAdapter: VideoAdapter
@@ -41,13 +43,8 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
             showPopUpMenu(view)
         }
 
-        val videos = mutableListOf<VideoBlog>()
 
-        for (i in 1..5){
-            val newVideo = VideoBlog(i.toLong(), "Video #$i", 15)
-            videos.add(newVideo)
-        }
-        videoAdapter.modifyList(videos)
+        videoAdapter.modifyList(viewModel.videoList)
     }
 
     private fun showPopUpMenu(view: View) {
@@ -55,26 +52,46 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         popupMenu.inflate(R.menu.category_popup_menu)
 
-        popupMenu.setOnMenuItemClickListener { item ->
-            when(item.itemId){
-                R.id.category1 -> {videoAdapter.filter("1")
-                    binding.categoryTxt.text = item.title
+        popupMenu.setOnMenuItemClickListener { category ->
+            when(category.itemId){
+                R.id.all -> {
+                    videoAdapter.modifyList(viewModel.videoList)
+                    binding.categoryTxt.text = category.title
                     true
                 }
-                R.id.category2 -> {videoAdapter.filter("2")
-                    binding.categoryTxt.text = item.title
+                R.id.category1 -> {
+                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.category == category.title
+                    })
+                    binding.categoryTxt.text = category.title
                     true
                 }
-                R.id.category3 -> {videoAdapter.filter("3")
-                    binding.categoryTxt.text = item.title
+                R.id.category2 -> {
+                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.category == category.title
+                    })
+                    binding.categoryTxt.text = category.title
                     true
                 }
-                R.id.category4 -> {videoAdapter.filter("4")
-                    binding.categoryTxt.text = item.title
+                R.id.category3 -> {
+                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.category == category.title
+                    })
+                    binding.categoryTxt.text = category.title
                     true
                 }
-                R.id.category5 -> {videoAdapter.filter("5")
-                    binding.categoryTxt.text = item.title
+                R.id.category4 -> {
+                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.category == category.title
+                    })
+                    binding.categoryTxt.text = category.title
+                    true
+                }
+                R.id.category5 -> {
+                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.category == category.title
+                    })
+                    binding.categoryTxt.text = category.title
                     true
                 }
                 else -> false

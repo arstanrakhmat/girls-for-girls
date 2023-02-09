@@ -12,7 +12,7 @@ import java.util.*
 
 class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(VideoBlogDiffCallback()) {
 
-    private var unfilteredList = listOf<VideoBlog>()
+    var unfilteredList = listOf<VideoBlog>()
 
     var onVideoClickListener: ((VideoBlog) -> Unit)? = null
 

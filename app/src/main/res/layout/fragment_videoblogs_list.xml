@@ -13,15 +13,15 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        app:queryHint="Поиск"
-        app:iconifiedByDefault="false"
-        app:queryBackground="@null"
-        android:cropToPadding="true"
         android:background="@drawable/videoblog_card"
+        android:cropToPadding="true"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@null"
+        app:queryHint="Поиск" />
 
     <TextView
         android:id="@+id/category_txt"
@@ -51,16 +51,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/category_txt" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/category_txt"
-        app:layout_constraintTop_toBottomOf="@+id/category_txt" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_videoblogs"
         android:layout_width="0dp"
@@ -70,7 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ImageButton
         android:id="@+id/categoryButton"
@@ -78,8 +68,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
-        android:background="@null"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_categories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_txt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
