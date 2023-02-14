@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.databinding.FragmentVideoblogsListBinding
