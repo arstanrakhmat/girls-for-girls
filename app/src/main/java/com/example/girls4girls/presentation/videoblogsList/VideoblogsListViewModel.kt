@@ -7,10 +7,15 @@ class VideoblogsListViewModel : ViewModel() {
     val videos = mutableListOf<VideoBlog>()
 
     val videoList = listOf<VideoBlog>(
-        VideoBlog(0, "Video 1", 60, "Sex", false, false),
-        VideoBlog(1, "Video 2", 60, "Future", false, false),
-        VideoBlog(2, "Video 3", 60, "Food", false, false),
-        VideoBlog(3, "Video 4", 60, "Education", false, false),
-        VideoBlog(4, "Video 5", 60, "Periods", false, false),
+        VideoBlog(0, "Video 1", 60, "Sex", "Ширин Айтмак", TEXT,192,false, false, LINK),
+        VideoBlog(1, "Video 2", 60, "Future", "Нельсон Вумандела", TEXT,12,false, false, LINK),
+        VideoBlog(2, "Video 3", 60, "Food", "Unknown", TEXT,999,false, false, LINK),
+        VideoBlog(3, "Video 4", 60, "Education","Султан Сарыгулов", TEXT,10000, false, false, LINK),
+        VideoBlog(4, "Video 5", 60, "Periods", "Какой-то чувак", TEXT,0,false, false, LINK),
     )
+
+    companion object{
+        val TEXT = "In up so discovery my middleton eagerness dejection explained. Estimating excellence ye contrasted insensible as. Oh up unsatiable advantages decisively as at interested. Present suppose in esteems in demesne colonel it to. End horrible she landlord screened stanhill. Repeated offended you opinions off dissuade ask packages screened. She alteration everything sympathize impossible his get compliment. Collected few extremity suffering met had sportsman."
+    val LINK = "https://www.youtube.com/watch?v=l-ooCKssPv4"
+    }
 }
