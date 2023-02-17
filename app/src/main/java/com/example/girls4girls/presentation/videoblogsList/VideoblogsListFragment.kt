@@ -36,13 +36,13 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
-        setSearchView()
+        
+        binding.searchView.setOnQueryTextListener(this)
 
         binding.categoryButton.setOnClickListener { view ->
             showPopUpMenu(view)
         }
-
-
+        
         videoAdapter.modifyList(viewModel.videoList)
     }
 
@@ -100,16 +100,17 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         popupMenu.show()
     }
 
-
-    private fun setSearchView() {
-        binding.searchView.setOnQueryTextListener(this)
-    }
-
     private fun setAdapter() {
         videoAdapter = VideoAdapter()
         binding.listVideoblogs.adapter = videoAdapter
-        videoAdapter.onVideoClickListener = {
-            val action = VideoblogsListFragmentDirections.actionVideoblogsListFragmentToVideoblogFragment(it)
+        
+        videoAdapter.onVideoClickListener = {videoBlog ->
+
+            Log.d(TAG, "setAdapter: $videoBlog")
+            
+            val action = VideoblogsListFragmentDirections.
+                            actionVideoblogsListFragmentToVideoblogFragment(videoBlog)
+            
             findNavController().navigate(action)
         }
     }

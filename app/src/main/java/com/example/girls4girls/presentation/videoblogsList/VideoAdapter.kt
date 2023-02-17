@@ -1,5 +1,6 @@
 package com.example.girls4girls.presentation.videoblogsList
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,23 +17,26 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
 
     var onVideoClickListener: ((VideoBlog) -> Unit)? = null
 
-    class VideoBlogViewHolder(item: View): RecyclerView.ViewHolder(item){
+    class VideoBlogViewHolder(item: View, private val onVideoClickListener: ((VideoBlog) -> Unit)?): RecyclerView.ViewHolder(item){
         private val binding = ItemVideoblogBinding.bind(item)
         fun bind(videoBlog: VideoBlog) = with(binding){
             videoTitle.text = videoBlog.title
+            itemView.setOnClickListener {
+                onVideoClickListener?.invoke(videoBlog)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoBlogViewHolder {
         val view = LayoutInflater.from((parent.context)).inflate(R.layout.item_videoblog, parent, false)
-        return VideoBlogViewHolder(view)
+        return VideoBlogViewHolder(view, onVideoClickListener)
     }
 
     override fun onBindViewHolder(holder: VideoBlogViewHolder, position: Int) {
+//        Log.d(VideoblogsListFragment.TAG, "unfilteredList: ${unfilteredList}")
+//        Log.d(VideoblogsListFragment.TAG, "getItem: ${getItem(position)}")
         holder.bind(getItem(position))
-        holder.itemView.setOnClickListener {
-            onVideoClickListener?.invoke(getItem(position))
-        }
+
     }
 
     fun modifyList(list: List<VideoBlog>){
@@ -41,6 +45,7 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
     }
 
     fun filter(query: CharSequence){
+        Log.d(VideoblogsListFragment.TAG, "filter1: ${currentList}")
         val list = mutableListOf<VideoBlog>()
 
         if (!query.isNullOrEmpty()){
@@ -52,9 +57,6 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
         }
 
         submitList(list)
-    }
-
-    interface OnVideoClickListener{
-        fun onVideoClick(videoBlog: VideoBlog)
+        Log.d(VideoblogsListFragment.TAG, "filter2: ${currentList}")
     }
 }
