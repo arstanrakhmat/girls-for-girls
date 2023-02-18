@@ -1,6 +1,7 @@
 package com.example.girls4girls.presentation.videoblog
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -9,8 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.os.IResultReceiver
+import android.util.DisplayMetrics
 import android.util.Log
 import android.util.SparseArray
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +42,8 @@ class VideoblogFragment : Fragment() {
     private val viewModel by viewModels<VideoblogViewModel>()
     private lateinit var binding: FragmentVideoblogBinding
 
+    private lateinit var playerParams: ViewGroup.LayoutParams
+
     private val args by navArgs<VideoblogFragmentArgs>()
 
     override fun onCreateView(
@@ -53,12 +58,32 @@ class VideoblogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        playerParams = binding.player.layoutParams
+
+        if (viewModel.defaultHeight == null){
+            viewModel.defaultHeight = playerParams.height
+        }
+
+        setText()
+
+        initPlayer()
+
+        addFullScreenListener()
+
+    }
+
+    private fun setText() {
         binding.videoTitleTxt.text = args.currentVideoBlog.title
         binding.videoSpeakerTxt.text = args.currentVideoBlog.speaker
         binding.videoViewsTxt.text = args.currentVideoBlog.views.toString()
 
         binding.descriptionTxt.text = args.currentVideoBlog.description
+    }
 
+    private fun initPlayer() {
+
+        // Make player observe lifecycle
         lifecycle.addObserver(binding.player)
 
         val listener = object : AbstractYouTubePlayerListener(){
@@ -80,7 +105,9 @@ class VideoblogFragment : Fragment() {
         val options = IFramePlayerOptions.Builder().controls(0).build()
 
         binding.player.initialize(listener, options)
+    }
 
+    private fun addFullScreenListener() {
         binding.player.addFullScreenListener(fullScreenListener = object:
             YouTubePlayerFullScreenListener{
             override fun onYouTubePlayerEnterFullScreen() {
@@ -94,7 +121,6 @@ class VideoblogFragment : Fragment() {
             }
 
         })
-
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -111,21 +137,50 @@ class VideoblogFragment : Fragment() {
     private fun toggleSystemUi() {
 
         val controller =  WindowInsetsControllerCompat(requireActivity().window, binding.player)
+        val marginParams = playerParams as ViewGroup.MarginLayoutParams
 
         if (viewModel.isFullscreen){
 
+            // Hide system UI
             (activity as AppCompatActivity).supportActionBar?.hide()
             controller.hide(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+            // Set to fullscreen height
+            playerParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+
+            // Remove margins
+            (playerParams as ViewGroup.MarginLayoutParams).marginStart = 0
+            (playerParams as ViewGroup.MarginLayoutParams).marginEnd = 0
+            (playerParams as ViewGroup.MarginLayoutParams).topMargin = 0
+
+            binding.scrollView.visibility = View.GONE
+
+
         } else {
 
-
+            // Show system UI
             (activity as AppCompatActivity).supportActionBar?.show()
             controller.show(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+            // Set to normal height
+            playerParams.height = viewModel.defaultHeight!!
+
+            // Set Margins
+            (playerParams as ViewGroup.MarginLayoutParams).marginStart = toDP(32)
+            (playerParams as ViewGroup.MarginLayoutParams).marginEnd = toDP(32)
+            (playerParams as ViewGroup.MarginLayoutParams).topMargin = toDP(65)
+
+            binding.scrollView.visibility = View.VISIBLE
         }
     }
 
+    fun toDP(pixel: Int): Int{
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+            pixel.toFloat(),
+            context?.resources?.displayMetrics).toInt()
+    }
 
 
     override fun onDestroy() {
