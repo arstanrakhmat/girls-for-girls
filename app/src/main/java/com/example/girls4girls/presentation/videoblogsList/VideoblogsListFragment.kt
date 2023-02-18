@@ -106,8 +106,6 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         
         videoAdapter.onVideoClickListener = {videoBlog ->
 
-            Log.d(TAG, "setAdapter: $videoBlog")
-            
             val action = VideoblogsListFragmentDirections.
                             actionVideoblogsListFragmentToVideoblogFragment(videoBlog)
             

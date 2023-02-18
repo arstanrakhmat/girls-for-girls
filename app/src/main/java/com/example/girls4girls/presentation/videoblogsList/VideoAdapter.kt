@@ -33,10 +33,7 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
     }
 
     override fun onBindViewHolder(holder: VideoBlogViewHolder, position: Int) {
-//        Log.d(VideoblogsListFragment.TAG, "unfilteredList: ${unfilteredList}")
-//        Log.d(VideoblogsListFragment.TAG, "getItem: ${getItem(position)}")
         holder.bind(getItem(position))
-
     }
 
     fun modifyList(list: List<VideoBlog>){
@@ -45,7 +42,6 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
     }
 
     fun filter(query: CharSequence){
-        Log.d(VideoblogsListFragment.TAG, "filter1: ${currentList}")
         val list = mutableListOf<VideoBlog>()
 
         if (!query.isNullOrEmpty()){
@@ -57,6 +53,5 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
         }
 
         submitList(list)
-        Log.d(VideoblogsListFragment.TAG, "filter2: ${currentList}")
     }
 }
