@@ -1,8 +1,11 @@
 package com.example.girls4girls.presentation
 
+import android.content.pm.ActivityInfo
+import android.media.VolumeShaper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
 import androidx.navigation.NavController
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
+//        binding.bottomNav.layoutParams.height = toPixels(R.dimen.bottom_nav_height)
+
         bottomNavFragments = listOf(R.id.homeFragment,
                                         R.id.mentorshipFragment,
                                         R.id.trainingsListFragment,
@@ -46,10 +51,23 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed(){
+        if (resources?.configuration?.orientation == LANDSCAPE_SCREEN_ID){
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.fragmentContainer)
         val currentFragment = navController.currentDestination
         return navController.navigateUp()
+    }
+
+    companion object {
+        val LANDSCAPE_SCREEN_ID = 2
+        val PORTRAIT_SCREEN_ID = 1
     }
 
 }

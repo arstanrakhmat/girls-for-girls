@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class VideoblogViewModel : ViewModel() {
 
-    var isFullscreen = false
+//    var isFullscreen = false
 
     var defaultHeight: Int? = null
 }

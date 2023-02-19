@@ -16,6 +16,7 @@ import android.util.SparseArray
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -44,6 +45,9 @@ class VideoblogFragment : Fragment() {
 
     private lateinit var playerParams: ViewGroup.LayoutParams
 
+    var isFullscreen = false
+    private var backPressedOnce = true
+
     private val args by navArgs<VideoblogFragmentArgs>()
 
     override fun onCreateView(
@@ -61,6 +65,7 @@ class VideoblogFragment : Fragment() {
 
         playerParams = binding.player.layoutParams
 
+
         if (viewModel.defaultHeight == null){
             viewModel.defaultHeight = playerParams.height
         }
@@ -70,6 +75,10 @@ class VideoblogFragment : Fragment() {
         initPlayer()
 
         addFullScreenListener()
+
+        binding.testButton.setOnClickListener {
+            Toast.makeText(requireContext(), "Test is not ready yet", Toast.LENGTH_LONG).show()
+        }
 
     }
 
@@ -89,19 +98,20 @@ class VideoblogFragment : Fragment() {
         val listener = object : AbstractYouTubePlayerListener(){
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
-
                 Log.d(TAG, "Ready")
 
+                // Set another player controller UI
                 val defaultPlayerUiController = DefaultPlayerUiController(binding.player, youTubePlayer)
                 binding.player.setCustomPlayerUi(defaultPlayerUiController.rootView)
 
-                val link = args.currentVideoBlog.link
 
+                val link = args.currentVideoBlog.link
                 val videoID = link.substring(link.indexOf("=")+1)
                 youTubePlayer.loadVideo(videoID,0F)
             }
         }
 
+        // Build-in new controller UI
         val options = IFramePlayerOptions.Builder().controls(0).build()
 
         binding.player.initialize(listener, options)
@@ -126,9 +136,12 @@ class VideoblogFragment : Fragment() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        Log.d(TAG, "onConfigurationChanged: ${viewModel.isFullscreen}")
+        val orientBool = resources.configuration?.orientation
 
-        viewModel.isFullscreen = !viewModel.isFullscreen
+        Log.d(TAG, "onConfigurationChanged: ${orientBool}")
+        Log.d(TAG, "onConfigurationChanged: ${ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED}")
+
+        isFullscreen = !isFullscreen
         toggleSystemUi()
 
     }
@@ -137,9 +150,8 @@ class VideoblogFragment : Fragment() {
     private fun toggleSystemUi() {
 
         val controller =  WindowInsetsControllerCompat(requireActivity().window, binding.player)
-        val marginParams = playerParams as ViewGroup.MarginLayoutParams
 
-        if (viewModel.isFullscreen){
+        if (isFullscreen){
 
             // Hide system UI
             (activity as AppCompatActivity).supportActionBar?.hide()
@@ -176,26 +188,21 @@ class VideoblogFragment : Fragment() {
         }
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "Destroy")
+        binding.player.release()
+        
+    }
+
     fun toDP(pixel: Int): Int{
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
             pixel.toFloat(),
             context?.resources?.displayMetrics).toInt()
     }
 
-
-    override fun onDestroy() {
-
-        if (!viewModel.isFullscreen){
-            super.onDestroy()
-            Log.d(TAG, "Destroy")
-            binding.player.release()
-        }
-        
-    }
-
     companion object {
-        val URI =
-            "https://www.youtube.com/watch?v=gXWXKjR-qII"
         val TAG = "Chura"
     }
 
