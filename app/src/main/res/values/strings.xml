@@ -7,4 +7,76 @@
     <string name="bottom_nav_forums">Форумы</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="trainings_and_forums">Тренинги и Форумы</string>
+    <string name="useful_video_lessons">Полезные видео уроки</string>
+    <string name="happy_to_see_you_again">Рады видеть тебя снова!</string>
+    <string name="phone_number_or_email">Номер телефона\n или \n электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="forgot_the_password">Забыли пароль?</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_in_using_account">Войти с помощью аккаунта</string>
+    <string name="new_user">Новый пользователь?</string>
+    <string name="register">Регистрироваться</string>
+    <string name="getting_started">Познакомимся поближе?</string>
+    <string name="name_and_surname">Фамилия и Имя</string>
+    <string name="region">Регион</string>
+    <string name="email_does_not_exist">Такой почты не существует</string>
+    <string name="login_is_empty">Введите логи или номер телефона</string>
+    <string name="password_is_empty">Введите пароль</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="password_length_incorrect">Длина пароля должна быть неменее 8 символов</string>
+    <string name="fill_out_the_blank">Заполните поле</string>
+    <string name="email">Электронная почта</string>
+    <string name="password_repeat">Повторите пароль</string>
+    <string name="password_does_not_match">Пароли не совпадают</string>
+    <string name="continue_registration">Продолжить</string>
+    <string name="register_though_account">или зарегистрироваться через аккаунт:</string>
+    <string name="already_have_an_account">Уже есть аккаунт?</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="choose_the_region">Выберите регион</string>
+    <string name="choose_the_birthday">Заполните дату рождения</string>
+    <string name="gender">Пол</string>
+    <string name="choose_gender">Выберите пол</string>
+    <string name="finish">Завершить</string>
+    <string name="finish_later">Заполнить позже</string>
+
+    <string-array name="regions">
+        <item>Бишкек</item>
+        <item>Чуй</item>
+        <item>Иссык-Куль</item>
+        <item>Нарын</item>
+        <item>Талас</item>
+        <item>Жалал-Абад</item>
+        <item>Ош</item>
+        <item>Баткен</item>
+    </string-array>
+
+    <string-array name="genders">
+        <item>Женский</item>
+        <item>Мужской</item>
+    </string-array>
+
+    <string name="bishkek">Бишкек</string>
+    <string name="chuy">Чуй</string>
+    <string name="issyk_kol">Иссык-Куль</string>
+    <string name="naryn">Нарын</string>
+    <string name="talas">Талас</string>
+    <string name="zhalal_abad">Жалал-Абад</string>
+    <string name="osh">Ош</string>
+    <string name="batken">Баткен</string>
+    <string name="dash">-</string>
+
+    <string name="temp_phone_number">0707 365151</string>
+    <string name="na_nomer">На номер</string>
+    <string name="was">был</string>
+    <string name="code_has_been_sent">оправлен 6-и значный код</string>
+    <string name="verify_code">Подтвердите код</string>
+    <string name="incorrect_verification_code">Неправильный код. Повторите еще раз</string>
+    <string name="verify">Подтвердить</string>
+    <string name="send_code_again">Отправить код еще раз</string>
+    <string name="incorrect_otp">Неправильный код. Повторите еще раз</string>
+    <string name="welcome">Добро Пожаловать!</string>
+    <string name="go_to_main_page">Перейти на главную страницу</string>
+
 </resources>
