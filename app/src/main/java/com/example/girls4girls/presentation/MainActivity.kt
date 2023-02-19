@@ -61,12 +61,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.fragmentContainer)
-        val currentFragment = navController.currentDestination
         return navController.navigateUp()
     }
 
     companion object {
-        val LANDSCAPE_SCREEN_ID = 2
+        const val LANDSCAPE_SCREEN_ID = 2
         val PORTRAIT_SCREEN_ID = 1
     }
 

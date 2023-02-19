@@ -26,7 +26,9 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
+import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.presentation.MainActivity
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment.Companion.TAG
@@ -36,6 +38,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
 
 class VideoblogFragment : Fragment() {
@@ -46,9 +49,9 @@ class VideoblogFragment : Fragment() {
     private lateinit var playerParams: ViewGroup.LayoutParams
 
     var isFullscreen = false
-    private var backPressedOnce = true
 
     private val args by navArgs<VideoblogFragmentArgs>()
+    private val videoBlog by lazy { args.currentVideoBlog}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,20 +83,43 @@ class VideoblogFragment : Fragment() {
             Toast.makeText(requireContext(), "Test is not ready yet", Toast.LENGTH_LONG).show()
         }
 
+        val isLikedLD = MutableLiveData<Boolean>()
+        isLikedLD.value = videoBlog.isLiked
+
+        binding.likeButton.setOnClickListener {
+
+
+            videoBlog.isLiked = !videoBlog.isLiked
+            isLikedLD.value = videoBlog.isLiked
+
+            Log.d(TAG, "onViewCreated: ${videoBlog.isLiked}")
+
+        }
+
+        isLikedLD.observe(viewLifecycleOwner){isLiked ->
+            if (isLiked){
+                binding.likeButton.setImageResource(R.drawable.ic_heart_filled)
+            } else {
+                binding.likeButton.setImageResource(R.drawable.ic_heart)
+            }
+        }
+
+
     }
 
     private fun setText() {
-        binding.videoTitleTxt.text = args.currentVideoBlog.title
-        binding.videoSpeakerTxt.text = args.currentVideoBlog.speaker
-        binding.videoViewsTxt.text = args.currentVideoBlog.views.toString()
+        binding.videoTitleTxt.text = videoBlog.title
+        binding.videoSpeakerTxt.text = videoBlog.speaker
+        binding.videoViewsTxt.text = videoBlog.views.toString()
 
-        binding.descriptionTxt.text = args.currentVideoBlog.description
+        binding.descriptionTxt.text = videoBlog.description
     }
 
     private fun initPlayer() {
 
         // Make player observe lifecycle
         lifecycle.addObserver(binding.player)
+
 
         val listener = object : AbstractYouTubePlayerListener(){
             override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -105,13 +131,28 @@ class VideoblogFragment : Fragment() {
                 binding.player.setCustomPlayerUi(defaultPlayerUiController.rootView)
 
 
-                val link = args.currentVideoBlog.link
+                val link = videoBlog.link
                 val videoID = link.substring(link.indexOf("=")+1)
                 youTubePlayer.loadVideo(videoID,0F)
             }
+
+            override fun onStateChange(
+                youTubePlayer: YouTubePlayer,
+                state: PlayerConstants.PlayerState
+            ) {
+                super.onStateChange(youTubePlayer, state)
+
+                if (state == PlayerConstants.PlayerState.ENDED){
+                    if (!videoBlog.isWatched){
+                        videoBlog.isWatched = true
+                    }
+                    videoBlog.views += 1
+                    Log.d(TAG, "onStateChange: Video is watched")
+                }
+            }
         }
 
-        // Build-in new controller UI
+        // Disable default controller UI
         val options = IFramePlayerOptions.Builder().controls(0).build()
 
         binding.player.initialize(listener, options)
@@ -136,11 +177,6 @@ class VideoblogFragment : Fragment() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        val orientBool = resources.configuration?.orientation
-
-        Log.d(TAG, "onConfigurationChanged: ${orientBool}")
-        Log.d(TAG, "onConfigurationChanged: ${ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED}")
-
         isFullscreen = !isFullscreen
         toggleSystemUi()
 
@@ -158,7 +194,7 @@ class VideoblogFragment : Fragment() {
             controller.hide(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
-            // Set to fullscreen height
+            // Set video player to fullscreen height
             playerParams.height = ViewGroup.LayoutParams.MATCH_PARENT
 
             // Remove margins
@@ -176,10 +212,10 @@ class VideoblogFragment : Fragment() {
             controller.show(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
-            // Set to normal height
+            // Set video player to normal height
             playerParams.height = viewModel.defaultHeight!!
 
-            // Set Margins
+            // Return margins
             (playerParams as ViewGroup.MarginLayoutParams).marginStart = toDP(32)
             (playerParams as ViewGroup.MarginLayoutParams).marginEnd = toDP(32)
             (playerParams as ViewGroup.MarginLayoutParams).topMargin = toDP(65)
@@ -196,7 +232,7 @@ class VideoblogFragment : Fragment() {
         
     }
 
-    fun toDP(pixel: Int): Int{
+    private fun toDP(pixel: Int): Int{
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
             pixel.toFloat(),
             context?.resources?.displayMetrics).toInt()
