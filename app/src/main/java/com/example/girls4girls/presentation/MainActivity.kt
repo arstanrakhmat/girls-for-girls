@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed(){
         if (resources?.configuration?.orientation == LANDSCAPE_SCREEN_ID){
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         } else {
             super.onBackPressed()
         }
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val LANDSCAPE_SCREEN_ID = 2
-        val PORTRAIT_SCREEN_ID = 1
+        const val PORTRAIT_SCREEN_ID = 1
     }
 
 }

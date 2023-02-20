@@ -168,7 +168,7 @@ class VideoblogFragment : Fragment() {
 
             override fun onYouTubePlayerExitFullScreen() {
 
-                activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             }
 
         })
@@ -177,7 +177,7 @@ class VideoblogFragment : Fragment() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        isFullscreen = !isFullscreen
+//        isFullscreen = !isFullscreen
         toggleSystemUi()
 
     }
@@ -187,7 +187,7 @@ class VideoblogFragment : Fragment() {
 
         val controller =  WindowInsetsControllerCompat(requireActivity().window, binding.player)
 
-        if (isFullscreen){
+        if (resources.configuration?.orientation == MainActivity.LANDSCAPE_SCREEN_ID){
 
             // Hide system UI
             (activity as AppCompatActivity).supportActionBar?.hide()
@@ -205,7 +205,7 @@ class VideoblogFragment : Fragment() {
             binding.scrollView.visibility = View.GONE
 
 
-        } else {
+        } else if (resources.configuration?.orientation == MainActivity.PORTRAIT_SCREEN_ID) {
 
             // Show system UI
             (activity as AppCompatActivity).supportActionBar?.show()
