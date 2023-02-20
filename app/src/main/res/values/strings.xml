@@ -20,6 +20,8 @@
     <string name="register">Регистрироваться</string>
     <string name="getting_started">Познакомимся поближе?</string>
     <string name="name_and_surname">Фамилия и Имя</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
     <string name="region">Регион</string>
     <string name="email_does_not_exist">Такой почты не существует</string>
     <string name="login_is_empty">Введите логи или номер телефона</string>

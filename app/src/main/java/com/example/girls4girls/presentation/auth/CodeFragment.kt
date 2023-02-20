@@ -3,16 +3,24 @@ package com.example.girls4girls.presentation.auth
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentCodeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CodeFragment : Fragment() {
 
     private lateinit var binding: FragmentCodeBinding
+
+    private val args by navArgs<CodeFragmentArgs>()
+    private val authViewModel by viewModel<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +33,27 @@ class CodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupObservers()
         addTextChangeListener()
+        clickListener()
+    }
+
+    private fun setupObservers() {
+        authViewModel.registered.observe(requireActivity()) {
+//            startActivity(Intent(requireContext(), MainActivity::class.java))
+            findNavController().navigate(R.id.action_codeFragment_to_registrationSuccessFragment)
+        }
+
+        authViewModel.errorMessage.observe(requireActivity()) {
+            Log.d("otpError", it)
+            Toast.makeText(requireContext(), "Incorrect otp", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun clickListener() {
+        binding.btnVerify.setOnClickListener {
+            verifyListener()
+        }
     }
 
     private fun addTextChangeListener() {
@@ -35,6 +63,18 @@ class CodeFragment : Fragment() {
         binding.et4.addTextChangedListener(EditTextWatcher(binding.et4))
         binding.et5.addTextChangedListener(EditTextWatcher(binding.et5))
         binding.et6.addTextChangedListener(EditTextWatcher(binding.et6))
+    }
+
+    private fun verifyListener() {
+        val otp =
+            binding.et1.text.toString() +
+                    binding.et2.text.toString() +
+                    binding.et3.text.toString() +
+                    binding.et4.text.toString() +
+                    binding.et5.text.toString() +
+                    binding.et6.text.toString()
+
+        authViewModel.userActivate(args.email, args.phoneNumber, otp)
     }
 
     inner class EditTextWatcher(private val view: View) : TextWatcher {

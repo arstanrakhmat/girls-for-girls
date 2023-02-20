@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.girls4girls.R
+import com.example.girls4girls.data.model.UserAllData
 import com.example.girls4girls.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment() {
@@ -31,7 +31,19 @@ class RegistrationFragment : Fragment() {
     private fun clickListeners() {
         binding.btnContinueRegistration.setOnClickListener {
             if (!areFieldsEmpty()) {
-                findNavController().navigate(R.id.action_registrationFragment_to_registrationPartTwoFragment)
+                val user = UserAllData(
+                    firstName = binding.etName.text.toString(),
+                    lastName = binding.etLastName.text.toString(),
+                    phoneNumber = binding.etPhoneNumber.text.toString(),
+                    email = binding.etEmail.text.toString(),
+                    password = binding.etPassword.text.toString()
+                )
+
+                val action =
+                    RegistrationFragmentDirections.actionRegistrationFragmentToRegistrationPartTwoFragment(
+                        user
+                    )
+                findNavController().navigate(action)
             }
         }
     }

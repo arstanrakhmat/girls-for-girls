@@ -19,7 +19,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/mulish"
             android:gravity="center"
-            android:text="@string/name_and_surname"
+            android:text="@string/name"
             android:textColor="#292D32"
             android:textSize="16sp" />
 
@@ -49,6 +49,53 @@
 
             <TextView
                 android:id="@+id/tv_name_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/mulish"
+                android:text="@string/fill_out_the_blank"
+                android:textAlignment="center"
+                android:textColor="#E21C1C"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/mulish"
+            android:gravity="center"
+            android:text="@string/surname"
+            android:textColor="#292D32"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/last_name_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="35dp"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp"
+            app:boxStrokeColor="#CDB4DB"
+            app:helperTextEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_last_name_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
