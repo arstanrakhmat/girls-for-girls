@@ -19,13 +19,15 @@ class RegistrationFragment : Fragment() {
     ): View {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false)
 
+
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         clickListeners()
+        setupToolbar()
     }
 
     private fun clickListeners() {
@@ -47,6 +49,12 @@ class RegistrationFragment : Fragment() {
             }
         }
     }
+
+    private fun setupToolbar() {
+        binding.toolbar.userAccount.visibility = View.GONE
+        binding.toolbar.back.visibility = View.GONE
+    }
+
 
     private fun areFieldsEmpty(): Boolean {
 

@@ -22,6 +22,7 @@
     <string name="name_and_surname">Фамилия и Имя</string>
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
+    <string name="verification">Верификация</string>
     <string name="region">Регион</string>
     <string name="email_does_not_exist">Такой почты не существует</string>
     <string name="login_is_empty">Введите логи или номер телефона</string>
@@ -80,5 +81,6 @@
     <string name="incorrect_otp">Неправильный код. Повторите еще раз</string>
     <string name="welcome">Добро Пожаловать!</string>
     <string name="go_to_main_page">Перейти на главную страницу</string>
+    <string name="registration">Регистрация</string>
 
 </resources>

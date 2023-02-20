@@ -13,6 +13,10 @@
         android:orientation="vertical"
         tools:context=".presentation.auth.RegistrationPartTwoFragment">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +60,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:inputType="none"
-                android:text="Batken"
                 android:textAlignment="center" />
 
             <TextView

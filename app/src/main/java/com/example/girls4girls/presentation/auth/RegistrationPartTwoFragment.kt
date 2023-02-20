@@ -36,6 +36,7 @@ class RegistrationPartTwoFragment : Fragment() {
         setupObservers()
         clickListener()
         setupRegionMenu()
+        setupToolbar()
         setupGenderMenu()
     }
 
@@ -52,6 +53,11 @@ class RegistrationPartTwoFragment : Fragment() {
                 args.user.phoneNumber
             )
         }
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.userAccount.visibility = View.GONE
+        binding.toolbar.back.visibility = View.GONE
     }
 
     private fun setupObservers() {

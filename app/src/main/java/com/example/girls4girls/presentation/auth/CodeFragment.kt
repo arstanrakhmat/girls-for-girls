@@ -36,6 +36,7 @@ class CodeFragment : Fragment() {
         setupObservers()
         addTextChangeListener()
         clickListener()
+        setupToolbar()
     }
 
     private fun setupObservers() {
@@ -54,6 +55,12 @@ class CodeFragment : Fragment() {
         binding.btnVerify.setOnClickListener {
             verifyListener()
         }
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.userAccount.visibility = View.GONE
+        binding.toolbar.back.visibility = View.GONE
+        binding.toolbar.screenName.text = resources.getString(R.string.verification)
     }
 
     private fun addTextChangeListener() {

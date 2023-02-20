@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context=".presentation.auth.CodeFragment">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
