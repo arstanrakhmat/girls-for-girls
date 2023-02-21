@@ -4,7 +4,9 @@ import android.content.pm.ActivityInfo
 import android.media.VolumeShaper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -28,6 +30,21 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
+
+        bottomNavFragments = listOf(R.id.homeFragment,
+            R.id.mentorshipFragment,
+            R.id.trainingsListFragment,
+            R.id.videoblogsListFragment)
+
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            if (nd.id in bottomNavFragments){
+                binding.bottomNavigationView.visibility = View.VISIBLE
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            } else {
+                binding.bottomNavigationView.visibility = View.GONE
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            }
+        }
 
     }
     override fun onBackPressed(){
