@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home"
-        android:title="@string/bottom_nav_home"/>
+        android:id="@+id/home_navigation"
+        android:icon="@drawable/home_selector"
+        android:title="@string/bottom_nav_home" />
 
     <item
-        android:id="@+id/mentorshipFragment"
-        android:icon="@drawable/ic_mentorship"
-        android:title="@string/bottom_nav_mentorship"/>
+        android:id="@+id/mentorship_navigation"
+        android:icon="@drawable/mentorship_selector"
+        android:title="@string/bottom_nav_mentorship" />
     <item
-        android:id="@+id/trainingsListFragment"
-        android:icon="@drawable/ic_trainings"
-        android:title="@string/bottom_nav_trainings"/>
+        android:id="@+id/videoblog_navigation"
+        android:icon="@drawable/videoblog_selector"
+        android:title="@string/bottom_nav_videoblogs" />
     <item
-        android:id="@+id/videoblogsListFragment"
-        android:icon="@drawable/ic_videoblogs"
-        android:title="@string/bottom_nav_videoblogs"/>
-    <item
-        android:id="@+id/forumsListFragment"
-        android:icon="@drawable/ic_forums"
-        android:title="@string/bottom_nav_forums"/>
+        android:id="@+id/training_navigation"
+        android:icon="@drawable/training_selector"
+        android:title="@string/bottom_nav_trainings" />
 
 </menu>

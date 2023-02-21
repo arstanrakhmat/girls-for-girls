@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/videoblog_navigation"
+    app:startDestination="@id/videoblogsListFragment">
+
+    <fragment
+        android:id="@+id/videoblogsListFragment"
+        android:name="com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment"
+        android:label="fragment_videoblogs_list"
+        tools:layout="@layout/fragment_videoblogs_list">
+        <action
+            android:id="@+id/action_videoblogsListFragment_to_videoblogFragment"
+            app:destination="@id/videoblogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoblogFragment"
+        android:name="com.example.girls4girls.presentation.videoblog.VideoblogFragment"
+        android:label="fragment_videoblog"
+        tools:layout="@layout/fragment_videoblog" >
+        <argument
+            android:name="currentVideoBlog"
+            app:argType="com.example.girls4girls.data.VideoBlog" />
+    </fragment>
+</navigation>

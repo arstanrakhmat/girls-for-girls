@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.girls4girls.presentation.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/codeFragment"
+        android:name="com.example.girls4girls.presentation.auth.CodeFragment"
+        android:label="fragment_code"
+        tools:layout="@layout/fragment_code" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_codeFragment_to_registrationSuccessFragment"
+            app:destination="@id/registrationSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.girls4girls.presentation.auth.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_registrationPartTwoFragment"
+            app:destination="@id/registrationPartTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationPartTwoFragment"
+        android:name="com.example.girls4girls.presentation.auth.RegistrationPartTwoFragment"
+        android:label="fragment_registration_part_two"
+        tools:layout="@layout/fragment_registration_part_two" >
+        <argument
+            android:name="user"
+            app:argType="com.example.girls4girls.data.model.UserAllData" />
+        <action
+            android:id="@+id/action_registrationPartTwoFragment_to_codeFragment"
+            app:destination="@id/codeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationSuccessFragment"
+        android:name="com.example.girls4girls.presentation.auth.RegistrationSuccessFragment"
+        android:label="fragment_registration_success"
+        tools:layout="@layout/fragment_registration_success" />
+</navigation>

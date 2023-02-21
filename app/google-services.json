@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "981340432070",
+    "project_id": "girls4girls-48025",
+    "storage_bucket": "girls4girls-48025.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981340432070:android:e77ed94b37d47cd0ae19c7",
+        "android_client_info": {
+          "package_name": "com.example.girls4girls"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981340432070-4hp1d7ub28en23qh59tldh06umnvo9ac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.girls4girls",
+            "certificate_hash": "ac102461d9212afbe51418857f2776b89cba83e0"
+          }
+        },
+        {
+          "client_id": "981340432070-82t5r8vii87clnel4vk4gp3soktttfgf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1B4k71B8Wv38qLI4NThRUmdlDZNdpMHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981340432070-82t5r8vii87clnel4vk4gp3soktttfgf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.auth.RegistrationSuccessFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="31dp"
+        android:fontFamily="@font/mulish_bold"
+        android:gravity="center"
+        android:text="@string/welcome"
+        android:textColor="#662D91"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="31dp"
+        android:src="@drawable/regist_success_item" />
+
+    <TextView
+        android:id="@+id/btn_move_main_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/mulish_bold"
+        android:text="@string/go_to_main_page"
+        android:textAlignment="center"
+        android:textColor="#292D32"
+        android:textSize="16sp" />
+
+</LinearLayout>
