@@ -142,6 +142,9 @@
                 android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="number"
+                android:gravity="center"
+                android:hint="@string/_0771677010"
                 android:lines="1"
                 android:textAlignment="center" />
 
