@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentWelcomeBinding
+import com.example.girls4girls.presentation.MainActivity
 import com.example.girls4girls.presentation.auth.LoginActivity
 
 class WelcomeFragment : Fragment() {
@@ -44,6 +45,10 @@ class WelcomeFragment : Fragment() {
 
         binding.signInWelcomePage.setOnClickListener {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
+
+        binding.enterAsGuestWelcomePage.setOnClickListener {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
 
     }
