@@ -8,10 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
     <color name="inactive">#C5B5D2</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
         #CDB4DB
     </color>
 
+
+    <color name="mainColor">#CDB4DB</color>
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/all"
+        android:title="Все"
+        />
+    <item
+        android:id="@+id/category1"
+        android:title="Sex"
+        />
+
+    <item
+        android:id="@+id/category2"
+        android:title="Future"
+        />
+    <item
+        android:id="@+id/category3"
+        android:title="Food"
+        />
+    <item
+        android:id="@+id/category4"
+        android:title="Education"
+        />
+    <item
+        android:id="@+id/category5"
+        android:title="Periods"
+        />
+
+</menu>

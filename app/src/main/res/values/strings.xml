@@ -84,4 +84,8 @@
     <string name="registration">Регистрация</string>
     <string name="_0771677010">0771677010</string>
 
+
+    <string name="video_title_tv">Тема видео</string>
+    <string name="like_button">Кнопка нравиться</string>
+
 </resources>
