@@ -5,4 +5,6 @@
     <string name="bottom_nav_trainings">Тренинги</string>
     <string name="bottom_nav_videoblogs">Видео-блоги</string>
     <string name="bottom_nav_forums">Форумы</string>
+    <string name="video_title_tv">Тема видео</string>
+    <string name="like_button">Кнопка нравиться</string>
 </resources>
