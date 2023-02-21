@@ -4,6 +4,8 @@ import android.content.pm.ActivityInfo
 import android.media.VolumeShaper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
@@ -19,6 +21,7 @@ import com.example.girls4girls.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     private lateinit var bottomNavFragments: List<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,37 +29,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.fragmentContainer)
-        binding.bottomNav.setupWithNavController(navController)
-        NavigationUI.setupActionBarWithNavController(this, navController)
-
-//        binding.bottomNav.layoutParams.height = toPixels(R.dimen.bottom_nav_height)
-
-        bottomNavFragments = listOf(R.id.homeFragment,
-                                        R.id.mentorshipFragment,
-                                        R.id.trainingsListFragment,
-                                        R.id.videoblogsListFragment,
-                                        R.id.forumsListFragment)
-
-        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id in bottomNavFragments){
-                binding.bottomNav.visibility = View.VISIBLE
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            } else {
-                binding.bottomNav.visibility = View.GONE
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            }
-        }
-
+        val bottomNavigationView = binding.bottomNavigationView
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
+        navController = navHostFragment.navController
+        bottomNavigationView.setupWithNavController(navController)
 
     }
-
     override fun onBackPressed(){
         if (resources?.configuration?.orientation == LANDSCAPE_SCREEN_ID){
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         } else {
             super.onBackPressed()
         }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

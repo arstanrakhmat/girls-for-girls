@@ -26,9 +26,9 @@ class ForumsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.readForumButton.setOnClickListener {
-            findNavController().navigate(R.id.action_forumsListFragment_to_forumFragment)
-        }
+//        binding.readForumButton.setOnClickListener {
+//            findNavController().navigate(R.id.action_forumsListFragment_to_forumFragment)
+//        }
     }
 
 }
