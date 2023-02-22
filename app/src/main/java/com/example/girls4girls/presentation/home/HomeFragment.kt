@@ -1,27 +1,43 @@
 package com.example.girls4girls.presentation.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.girls4girls.R
+import androidx.fragment.app.viewModels
+import com.example.girls4girls.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel by viewModels<HomeViewModel>()
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setImagePager()
+
+        setEventRecycler()
+
     }
 
+    private fun setImagePager() {
+        binding.mainTeam.adapter = ImagePagerAdapter()
+        binding.mainTeamDotsIndicator.attachTo(binding.mainTeam)
+    }
+
+    private fun setEventRecycler() {
+        val eventAdapter = EventAdapter()
+        binding.eventRecyclerView.adapter = eventAdapter
+    }
 }
