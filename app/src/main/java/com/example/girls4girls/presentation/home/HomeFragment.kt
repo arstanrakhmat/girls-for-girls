@@ -39,6 +39,5 @@ class HomeFragment : Fragment() {
     private fun setEventRecycler() {
         val eventAdapter = EventAdapter()
         binding.eventRecyclerView.adapter = eventAdapter
-        eventAdapter.submitList(viewModel.list)
     }
 }

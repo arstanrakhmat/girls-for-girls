@@ -13,12 +13,21 @@ import com.example.girls4girls.databinding.ItemVideoblogBinding
 import com.example.girls4girls.presentation.videoblogsList.VideoAdapter
 import com.example.girls4girls.presentation.videoblogsList.VideoBlogDiffCallback
 
-class EventAdapter: ListAdapter<Event, EventAdapter.EventViewHolder>(EventDiffCallback()) {
+class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
-    class EventViewHolder(item: View): RecyclerView.ViewHolder(item){
+    private val eventList = listOf(
+        Event("Тренинг", "Права женщин","01/03/23"),
+        Event("Форум", "Лидерские качества","07/04/23"),
+        Event("Тренинг", "История Кыргызстана","23/06/23"),
+        Event("Форум", "Учеба за рубежом","31/12/23"),
+    )
+
+    inner class EventViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = ItemEventBinding.bind(item)
         fun bind(event: Event) = with(binding){
-
+            binding.eventType.text = event.type
+            binding.eventName.text = event.title
+            binding.eventDate.text = event.date
         }
     }
 
@@ -31,6 +40,8 @@ class EventAdapter: ListAdapter<Event, EventAdapter.EventViewHolder>(EventDiffCa
     }
 
     override fun onBindViewHolder(holder: EventAdapter.EventViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(eventList[position])
     }
+
+    override fun getItemCount(): Int = eventList.size
 }
