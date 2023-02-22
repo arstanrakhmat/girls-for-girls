@@ -6,21 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-    <ImageView
+
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/main_team"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/main_team_dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:maxHeight="300dp" />
+
+
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/main_team_dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:dotsColor="@color/inactive"
+        app:dotsCornerRadius="20dp"
+        app:dotsSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_team" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="91dp"
+        android:layout_marginTop="57dp"
         android:fontFamily="@font/mulish_bold"
         android:text="О нас"
         android:textColor="@color/black"
@@ -62,13 +78,13 @@
         android:id="@+id/event_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
         android:layout_marginBottom="43dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:listitem="@layout/item_event"/>
+        tools:listitem="@layout/item_event" />
 </androidx.constraintlayout.widget.ConstraintLayout>
