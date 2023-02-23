@@ -6,7 +6,11 @@ import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun TextInputEditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
+fun TextInputEditText.transformIntoDatePicker(
+    context: Context,
+    format: String,
+    maxDate: Date? = null
+) {
     isFocusableInTouchMode = false
     isClickable = true
     isFocusable = false

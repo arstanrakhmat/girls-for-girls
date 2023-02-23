@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="ClickableView">
         <item name="colorControlHighlight">@android:color/darker_gray</item>
         <item name="android:background">?selectableItemBackgroundBorderless</item>
@@ -9,4 +10,9 @@
         <item name="tint">@android:color/white</item>
         <item name="android:theme">@style/ClickableView</item>
     </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+    </style>
+
 </resources>

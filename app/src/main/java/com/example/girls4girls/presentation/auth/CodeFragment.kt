@@ -40,12 +40,12 @@ class CodeFragment : Fragment() {
 
     private fun setupObservers() {
         authViewModel.registered.observe(requireActivity()) {
-//            startActivity(Intent(requireContext(), MainActivity::class.java))
             findNavController().navigate(R.id.action_codeFragment_to_registrationSuccessFragment)
         }
 
         authViewModel.errorMessage.observe(requireActivity()) {
-            Log.d("otpError", it)
+            binding.tvOtpError.visibility = View.VISIBLE
+            Log.d("auth", it)
             Toast.makeText(requireContext(), "Incorrect otp", Toast.LENGTH_SHORT).show()
         }
     }
@@ -57,18 +57,18 @@ class CodeFragment : Fragment() {
             if (otp.length < 6) {
                 binding.tvOtpError.visibility = View.VISIBLE
             } else {
-                authViewModel.userActivate(args.email, args.phoneNumber, otp)
+                authViewModel.userActivate(args.userResend.email, args.userResend.phoneNumber, otp)
             }
         }
 
         binding.btnSendCodeAgain.setOnClickListener {
             startTimer()
 //            authViewModel.userSignUp(
-//                args.userResendOtp.email,
-//                args.userResendOtp.password,
-//                args.userResendOtp.firstName,
-//                args.userResendOtp.lastName,
-//                args.userResendOtp.phoneNumber
+//                args.userResend.email,
+//                args.userResend.password,
+//                args.userResend.firstName,
+//                args.userResend.lastName,
+//                args.userResend.phoneNumber
 //            )
         }
     }
@@ -78,6 +78,7 @@ class CodeFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 binding.btnSendCodeAgain.text = "Осталось: 00:${millisUntilFinished / 1000}"
                 binding.btnSendCodeAgain.isEnabled = false
+                binding.btnVerify.isEnabled = false
             }
 
             override fun onFinish() {
@@ -93,6 +94,6 @@ class CodeFragment : Fragment() {
     }
 
     private fun setupPhoneNumber() {
-        binding.tv2.text = args.phoneNumber
+        binding.tv2.text = args.userResend.phoneNumber
     }
 }

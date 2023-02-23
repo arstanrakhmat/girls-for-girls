@@ -83,9 +83,14 @@
     <string name="go_to_main_page"><u>Перейти на главную страницу</u></string>
     <string name="registration">Регистрация</string>
     <string name="_0771677010">0771677010</string>
+    <string name="_0771677010_example">Пример: 996771677010</string>
 
+    <string name="incorrect_type_number">Неправильный формат номера. Номер должен начинаться с 996</string>
+    <string name="incorrect_type_email">Почта должна быть с доменом @gmail.com</string>
 
     <string name="video_title_tv">Тема видео</string>
     <string name="like_button">Кнопка нравиться</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
 
 </resources>

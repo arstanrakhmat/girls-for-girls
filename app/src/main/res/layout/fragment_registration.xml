@@ -142,8 +142,8 @@
                 android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="phone"
                 android:gravity="center"
+                android:inputType="phone"
                 android:lines="1"
                 android:textAlignment="center" />
 
@@ -153,11 +153,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/mulish"
-                android:text="@string/fill_out_the_blank"
+                android:text="@string/_0771677010_example"
                 android:textAlignment="center"
-                android:textColor="#E21C1C"
-                android:textSize="12sp"
-                android:visibility="gone" />
+                android:textColor="#6B6B6B"
+                android:textSize="12sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -241,8 +240,8 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword"
                 android:drawableStart="@drawable/password_space"
+                android:inputType="textPassword"
                 android:lines="1"
                 android:maxLength="12"
                 android:textAlignment="center" />
@@ -292,8 +291,8 @@
                 android:id="@+id/et_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword"
                 android:drawableStart="@drawable/password_space"
+                android:inputType="textPassword"
                 android:lines="1"
                 android:maxLength="12"
                 android:textAlignment="center" />
