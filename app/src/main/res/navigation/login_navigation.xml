@@ -54,5 +54,9 @@
         android:id="@+id/registrationSuccessFragment"
         android:name="com.example.girls4girls.presentation.auth.RegistrationSuccessFragment"
         android:label="fragment_registration_success"
-        tools:layout="@layout/fragment_registration_success" />
+        tools:layout="@layout/fragment_registration_success" >
+        <argument
+            android:name="userResend"
+            app:argType="com.example.girls4girls.data.model.UserRegistration" />
+    </fragment>
 </navigation>

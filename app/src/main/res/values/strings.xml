@@ -77,10 +77,10 @@
     <string name="verify_code">Подтвердите код</string>
     <string name="incorrect_verification_code">Неправильный код. Повторите еще раз</string>
     <string name="verify">Подтвердить</string>
-    <string name="send_code_again">Отправить код еще раз</string>
+    <string name="send_code_again"><u>Отправить код еще раз</u></string>
     <string name="incorrect_otp">Неправильный код. Повторите еще раз</string>
     <string name="welcome">Добро Пожаловать!</string>
-    <string name="go_to_main_page">Перейти на главную страницу</string>
+    <string name="go_to_main_page"><u>Перейти на главную страницу</u></string>
     <string name="registration">Регистрация</string>
     <string name="_0771677010">0771677010</string>
 

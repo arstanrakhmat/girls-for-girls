@@ -22,4 +22,16 @@ class AuthRepository(private val api: Api) {
             user.email, user.phoneNumber, user.password
         )
     }
+
+    suspend fun userLoginEmail(user: UserLoginEmail): Response<UserLoginResponse> {
+        return api.userLoginEmail(
+            user.email, user.password
+        )
+    }
+
+    suspend fun userLoginPhoneNumber(user: UserLoginPhoneNumber): Response<UserLoginResponse> {
+        return api.userLoginPhoneNumber(
+            user.phoneNumber, user.password
+        )
+    }
 }
