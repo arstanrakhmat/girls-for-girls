@@ -17,7 +17,7 @@
     <string name="sign_in">Войти</string>
     <string name="sign_in_using_account">Войти с помощью аккаунта</string>
     <string name="new_user">Новый пользователь?</string>
-    <string name="register">Регистрироваться</string>
+    <string name="register">Зарегистрируйся</string>
     <string name="getting_started">Познакомимся поближе?</string>
     <string name="name_and_surname">Фамилия и Имя</string>
     <string name="name">Имя</string>
@@ -25,10 +25,10 @@
     <string name="verification">Верификация</string>
     <string name="region">Регион</string>
     <string name="email_does_not_exist">Такой почты не существует</string>
-    <string name="login_is_empty">Введите логи или номер телефона</string>
+    <string name="login_is_empty">Введите логин или номер телефона</string>
     <string name="password_is_empty">Введите пароль</string>
     <string name="phone_number">Номер телефона</string>
-    <string name="password_length_incorrect">Длина пароля должна быть неменее 8 символов</string>
+    <string name="password_length_incorrect">Длина пароля должна быть не менее 8 символов</string>
     <string name="fill_out_the_blank">Заполните поле</string>
     <string name="email">Электронная почта</string>
     <string name="password_repeat">Повторите пароль</string>
@@ -73,19 +73,25 @@
     <string name="temp_phone_number">0707 365151</string>
     <string name="na_nomer">На номер</string>
     <string name="was">был</string>
-    <string name="code_has_been_sent">оправлен 6-и значный код</string>
+    <string name="code_has_been_sent">оправлен 6-значный код</string>
     <string name="verify_code">Подтвердите код</string>
     <string name="incorrect_verification_code">Неправильный код. Повторите еще раз</string>
     <string name="verify">Подтвердить</string>
-    <string name="send_code_again">Отправить код еще раз</string>
+    <string name="send_code_again"><u>Отправить код еще раз</u></string>
     <string name="incorrect_otp">Неправильный код. Повторите еще раз</string>
     <string name="welcome">Добро Пожаловать!</string>
-    <string name="go_to_main_page">Перейти на главную страницу</string>
+    <string name="go_to_main_page"><u>Перейти на главную страницу</u></string>
     <string name="registration">Регистрация</string>
     <string name="_0771677010">0771677010</string>
+    <string name="_0771677010_example">Пример: 996771677010</string>
 
+    <string name="incorrect_type_number">Неправильный формат номера. Номер должен начинаться с 996</string>
+    <string name="incorrect_type_email">Почта должна быть с доменом @gmail.com</string>
 
     <string name="video_title_tv">Тема видео</string>
     <string name="like_button">Кнопка нравиться</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="leave_as_guest">Остаться гостем</string>
 
 </resources>

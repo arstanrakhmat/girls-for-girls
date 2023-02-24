@@ -61,15 +61,15 @@ class WelcomeFragment : Fragment() {
     private fun postToList() {
         addToList(
             resources.getString(R.string.bottom_nav_mentorship),
-            R.drawable.photo1_welcome_page
+            R.drawable.welcome_page_111
         )
         addToList(
             resources.getString(R.string.trainings_and_forums),
-            R.drawable.photo2_welcome_page
+            R.drawable.onboarding
         )
         addToList(
             resources.getString(R.string.useful_video_lessons),
-            R.drawable.photo3_welcome_page
+            R.drawable.onboarding2
         )
     }
 

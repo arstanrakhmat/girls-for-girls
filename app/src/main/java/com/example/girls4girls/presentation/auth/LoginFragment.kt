@@ -1,6 +1,9 @@
 package com.example.girls4girls.presentation.auth
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +11,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
+import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentLoginBinding
+import com.example.girls4girls.presentation.MainActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+    private val authViewModel by viewModel<AuthViewModel>()
+    private lateinit var sharedPreferences: CustomPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,26 +33,78 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        sharedPreferences = CustomPreferences(requireContext())
+        setUpObservers()
         clickListeners()
-//        passwordLengthListener(binding.etPassword, binding.signInWelcomePage)
     }
 
     private fun clickListeners() {
         binding.signInWelcomePage.setOnClickListener {
 
             if (!areFieldsEmpty()) {
-                if (!isPhoneNumber(binding.etLoginOrNumber.text.toString())) {
-                    Toast.makeText(requireContext(), "This is email", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), "This is phoneNumber", Toast.LENGTH_SHORT)
-                        .show()
-                }
+                loginValidation(binding.etLoginOrNumber.text.toString())
             }
         }
 
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
+        }
+    }
+
+    private fun setUpObservers() {
+        authViewModel.token.observe(requireActivity()) {
+
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+            sharedPreferences.saveToken(it.access_token)
+            Log.d("authE", it.access_token)
+        }
+
+        authViewModel.errorMessage.observe(requireActivity()) {
+            Log.d("authE", it)
+            Toast.makeText(requireContext(), "Неверный логин или пароль!", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    private fun loginValidation(login: String) {
+        if (isLoginEmail(login)) {
+            if (isGmail(login)) {
+                Toast.makeText(
+                    requireContext(),
+                    "Valid login",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                authViewModel.userLoginEmail(login, binding.etPassword.text.toString())
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Not appropriate email",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        } else if (isPhoneNumber(login)) {
+            if (isKgNumber(login)) {
+                Toast.makeText(
+                    requireContext(),
+                    "Valid number",
+                    Toast.LENGTH_SHORT
+                ).show()
+                authViewModel.userLoginPhoneNumber(login, binding.etPassword.text.toString())
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "996 must have",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Not appropriate data",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -81,32 +141,23 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun isPhoneNumber(characters: String): Boolean {
-        for (character in characters) {
-            if (character in 'a'..'z' || character in 'A'..'Z') {
-                return false
-            }
-        }
-
-        return true
+    private fun isLoginEmail(login: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(login).matches()
     }
 
-//    private fun passwordLengthListener(et: TextInputEditText, button: Button) {
-//        et.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                if (p0.toString().trim().length < 8) {
-//                    button.backgroundTintList =
-//                        ColorStateList.valueOf(Color.RED)
-//
-//                    Toast.makeText(requireContext(), "length", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//            }
-//        })
-//    }
+    private fun isGmail(string: String): Boolean {
+        val pattern = Regex("\\b[A-Za-z0-9._%+-]+@gmail\\.com\\b")
+        return pattern.matches(string)
+    }
+
+    private fun isPhoneNumber(string: String): Boolean {
+        val pattern = Regex("^[\\d\\-\\s().]+$")
+        return pattern.matches(string)
+    }
+
+    private fun isKgNumber(string: String): Boolean {
+        val pattern = Regex("^996\\d{9}$")
+        return pattern.matches(string)
+    }
+
 }
