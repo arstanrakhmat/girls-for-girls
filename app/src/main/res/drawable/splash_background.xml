@@ -3,5 +3,10 @@
 
     <item android:drawable="@drawable/bg_splash_gradient" />
 
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/logo_icon" />
+    </item>
 
 </layer-list>
