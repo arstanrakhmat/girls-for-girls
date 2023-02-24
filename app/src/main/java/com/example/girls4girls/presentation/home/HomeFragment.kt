@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
 
     private fun setImagePager() {
         binding.mainTeam.adapter = ImagePagerAdapter()
-        binding.mainTeamDotsIndicator.attachTo(binding.mainTeam)
     }
 
     private fun setEventRecycler() {
