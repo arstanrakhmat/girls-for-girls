@@ -99,6 +99,7 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:drawableStart="@drawable/password_space"
             android:inputType="textPassword"
             android:lines="1"
             android:maxLength="12"

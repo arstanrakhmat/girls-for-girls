@@ -34,4 +34,18 @@ interface Api {
         @Field("phoneNumber") phoneNumber: String,
         @Field("password") password: String
     ) : Response<UserLoginResponse>
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    suspend fun userLoginEmail(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ) : Response<UserLoginResponse>
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    suspend fun userLoginPhoneNumber(
+        @Field("phoneNumber") phoneNumber: String,
+        @Field("password") password: String
+    ) : Response<UserLoginResponse>
 }

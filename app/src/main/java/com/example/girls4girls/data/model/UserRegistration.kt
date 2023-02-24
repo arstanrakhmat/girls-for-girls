@@ -6,4 +6,4 @@ data class UserRegistration(
     val firstName: String,
     val lastName: String,
     val phoneNumber: String
-)
+) : java.io.Serializable
