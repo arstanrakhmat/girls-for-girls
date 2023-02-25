@@ -18,7 +18,7 @@ class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
     private val eventList = listOf(
         Event("Тренинг", "Права женщин","01/03/23"),
         Event("Форум", "Лидерские качества","07/04/23"),
-        Event("Тренинг", "История Кыргызстана","23/06/23"),
+        Event("Тренинг", "Личностный рост","23/06/23"),
         Event("Форум", "Учеба за рубежом","31/12/23"),
     )
 
