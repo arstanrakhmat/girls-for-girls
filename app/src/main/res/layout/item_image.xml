@@ -11,6 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@drawable/videoblog_card"/>
+        android:src="@drawable/main_team_1"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

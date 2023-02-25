@@ -17,7 +17,7 @@ class ImagePagerAdapter(): RecyclerView.Adapter<ImagePagerAdapter.PhotoViewHolde
     inner class PhotoViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = ItemImageBinding.bind(item)
         fun bind(image: Int){
-            binding.teamImage.setImageResource(image)
+//            binding.teamImage.setImageResource(image)
         }
     }
 

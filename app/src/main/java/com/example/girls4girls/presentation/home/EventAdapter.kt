@@ -25,7 +25,7 @@ class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
     inner class EventViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = ItemEventBinding.bind(item)
         fun bind(event: Event) = with(binding){
-            eventImage.setImageResource(event.image)
+//            eventImage.setImageResource(event.image)
             eventType.text = event.type
             eventName.text = event.title
             eventDate.text = event.date
