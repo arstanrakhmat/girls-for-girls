@@ -6,17 +6,28 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp">
 
-
-    <ImageView
-        android:id="@+id/event_image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/event_image_card"
         android:layout_width="match_parent"
         android:layout_height="108dp"
-        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/test_event" />
+        app:cardCornerRadius="40dp">
+
+        <ImageView
+            android:id="@+id/event_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/event_1" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/event_type"
@@ -27,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_image"
+        app:layout_constraintTop_toBottomOf="@+id/event_image_card"
         tools:text="Тренинг" />
 
     <TextView

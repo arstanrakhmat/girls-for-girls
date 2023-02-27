@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.girls4girls.R
 import com.example.girls4girls.data.Event
 import com.example.girls4girls.data.VideoBlog
@@ -25,7 +26,9 @@ class EventAdapter: RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
     inner class EventViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = ItemEventBinding.bind(item)
         fun bind(event: Event) = with(binding){
-//            eventImage.setImageResource(event.image)
+            Glide.with(binding.root)
+                .load(event.image)
+                .into(binding.eventImage)
             eventType.text = event.type
             eventName.text = event.title
             eventDate.text = event.date

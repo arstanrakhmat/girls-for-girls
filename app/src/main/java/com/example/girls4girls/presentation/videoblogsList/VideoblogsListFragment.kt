@@ -58,30 +58,10 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
                     videoAdapter.modifyList(viewModel.videoList)
                     true
                 }
-                R.id.category1 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    true
-                }
-                R.id.category2 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    true
-                }
-                R.id.category3 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    true
-                }
-                R.id.category4 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    true
-                }
+                R.id.category1,
+                R.id.category2,
+                R.id.category3,
+                R.id.category4,
                 R.id.category5 -> {
                     videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
                         videoBlog.category == category.title
