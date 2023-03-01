@@ -7,11 +7,11 @@ class VideoblogsListViewModel : ViewModel() {
     val videos = mutableListOf<VideoBlog>()
 
     val videoList = listOf<VideoBlog>(
-        VideoBlog(0, "Video 1", 60, "Sex", "Ширин Айтмак", TEXT,192,false, false, LINK),
-        VideoBlog(1, "Video 2", 60, "Future", "Нельсон Вумандела", TEXT,12,false, false, LINK2),
-        VideoBlog(2, "Video 3", 60, "Food", "Unknown", TEXT,999,false, false, LINK),
-        VideoBlog(3, "Video 4", 60, "Education","Султан Сарыгулов", TEXT,10000, false, false, LINK2),
-        VideoBlog(4, "Video 5", 60, "Periods", "Какой-то чувак", TEXT,0,false, false, LINK),
+        VideoBlog(0, "Video 1", 60, "Бизнес", "Ширин Айтмак", TEXT,192,false, false, LINK),
+        VideoBlog(1, "Video 2", 60, "Будущее", "Нельсон Вумандела", TEXT,12,false, false, LINK2),
+        VideoBlog(2, "Video 3", 60, "Еда", "Unknown", TEXT,999,false, false, LINK),
+        VideoBlog(3, "Video 4", 60, "Образование","Султан Сарыгулов", TEXT,10000, false, false, LINK2),
+        VideoBlog(4, "Video 5", 60, "Программирование", "Какой-то чувак", TEXT,0,false, false, LINK),
     )
 
     companion object{

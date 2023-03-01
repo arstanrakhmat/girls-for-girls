@@ -27,6 +27,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
@@ -47,8 +48,6 @@ class VideoblogFragment : Fragment() {
     private lateinit var binding: FragmentVideoblogBinding
 
     private lateinit var playerParams: ViewGroup.LayoutParams
-
-    var isFullscreen = false
 
     private val args by navArgs<VideoblogFragmentArgs>()
     private val videoBlog by lazy { args.currentVideoBlog}
@@ -80,14 +79,14 @@ class VideoblogFragment : Fragment() {
         addFullScreenListener()
 
         binding.testButton.setOnClickListener {
-            Toast.makeText(requireContext(), "Test is not ready yet", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_videoblogFragment_to_quizFragment)
+            binding.player.release()
         }
 
         val isLikedLD = MutableLiveData<Boolean>()
         isLikedLD.value = videoBlog.isLiked
 
         binding.likeButton.setOnClickListener {
-
 
             videoBlog.isLiked = !videoBlog.isLiked
             isLikedLD.value = videoBlog.isLiked
