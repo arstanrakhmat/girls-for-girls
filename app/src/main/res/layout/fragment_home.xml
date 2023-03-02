@@ -10,13 +10,12 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_team"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/main_team_dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:maxHeight="300dp" />
 
 
@@ -25,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
         app:dotsColor="@color/inactive"
         app:dotsCornerRadius="20dp"
         app:dotsSize="12dp"

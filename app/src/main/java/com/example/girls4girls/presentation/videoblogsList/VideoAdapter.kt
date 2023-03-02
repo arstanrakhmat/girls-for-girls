@@ -20,7 +20,15 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
     class VideoBlogViewHolder(item: View, private val onVideoClickListener: ((VideoBlog) -> Unit)?): RecyclerView.ViewHolder(item){
         private val binding = ItemVideoblogBinding.bind(item)
         fun bind(videoBlog: VideoBlog) = with(binding){
+
             videoTitle.text = videoBlog.title
+
+            if (videoBlog.isLiked){
+                likeButton.setImageResource(R.drawable.ic_heart_filled)
+            } else {
+                likeButton.setImageResource(R.drawable.ic_heart)
+            }
+
             itemView.setOnClickListener {
                 onVideoClickListener?.invoke(videoBlog)
             }

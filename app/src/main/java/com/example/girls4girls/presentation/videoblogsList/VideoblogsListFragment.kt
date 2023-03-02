@@ -52,45 +52,26 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         popupMenu.inflate(R.menu.category_popup_menu)
 
         popupMenu.setOnMenuItemClickListener { category ->
+            binding.categoryTxt.text = category.title
             when(category.itemId){
                 R.id.all -> {
                     videoAdapter.modifyList(viewModel.videoList)
-                    binding.categoryTxt.text = category.title
                     true
                 }
-                R.id.category1 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    binding.categoryTxt.text = category.title
-                    true
-                }
-                R.id.category2 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    binding.categoryTxt.text = category.title
-                    true
-                }
-                R.id.category3 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    binding.categoryTxt.text = category.title
-                    true
-                }
-                R.id.category4 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    binding.categoryTxt.text = category.title
-                    true
-                }
+                R.id.category1,
+                R.id.category2,
+                R.id.category3,
+                R.id.category4,
                 R.id.category5 -> {
                     videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
                         videoBlog.category == category.title
                     })
-                    binding.categoryTxt.text = category.title
+                    true
+                }
+                R.id.liked -> {
+                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.isLiked
+                    })
                     true
                 }
                 else -> false
