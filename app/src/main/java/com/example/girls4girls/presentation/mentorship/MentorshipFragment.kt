@@ -6,27 +6,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
+import com.example.girls4girls.databinding.FragmentMentorshipBinding
 
 class MentorshipFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MentorshipFragment()
-    }
-
+    private lateinit var binding: FragmentMentorshipBinding
     private lateinit var viewModel: MentorshipViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_mentorship, container, false)
+        binding = FragmentMentorshipBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MentorshipViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.aboutButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mentorshipFragment_to_aboutMentorshipFragment)
+        }
+
+        binding.mentorsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mentorshipFragment_to_mentorsFragment)
+        }
+
+        binding.graduatesButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mentorshipFragment_to_graduatesFragment)
+        }
     }
 
 }

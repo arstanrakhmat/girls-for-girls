@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Girls4Girls</string>
-    <string name="bottom_nav_home">Главный</string>
-    <string name="bottom_nav_mentorship">Менторская программа</string>
-    <string name="bottom_nav_trainings">Тренинги</string>
-    <string name="bottom_nav_videoblogs">Видео-блоги</string>
+    <string name="bottom_nav_home">Главная</string>
+    <string name="bottom_nav_mentorship">Менторство</string>
+    <string name="bottom_nav_videoblogs">Видео блог</string>
+    <string name="bottom_nav_trainings">Программы</string>
     <string name="bottom_nav_forums">Форумы</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
