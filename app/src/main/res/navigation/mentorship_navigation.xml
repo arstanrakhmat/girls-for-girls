@@ -9,5 +9,30 @@
         android:id="@+id/mentorshipFragment"
         android:name="com.example.girls4girls.presentation.mentorship.MentorshipFragment"
         android:label="fragment_mentorship"
-        tools:layout="@layout/fragment_mentorship" />
+        tools:layout="@layout/fragment_mentorship" >
+        <action
+            android:id="@+id/action_mentorshipFragment_to_aboutMentorshipFragment"
+            app:destination="@id/aboutMentorshipFragment" />
+        <action
+            android:id="@+id/action_mentorshipFragment_to_graduatesFragment"
+            app:destination="@id/graduatesFragment" />
+        <action
+            android:id="@+id/action_mentorshipFragment_to_mentorsFragment"
+            app:destination="@id/mentorsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutMentorshipFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.AboutMentorshipFragment"
+        android:label="fragment_about_mentorship"
+        tools:layout="@layout/fragment_about_mentorship" />
+    <fragment
+        android:id="@+id/graduatesFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.GraduatesFragment"
+        android:label="fragment_graduates"
+        tools:layout="@layout/fragment_graduates" />
+    <fragment
+        android:id="@+id/mentorsFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.MentorsFragment"
+        android:label="fragment_mentors"
+        tools:layout="@layout/fragment_mentors" />
 </navigation>
