@@ -16,6 +16,8 @@
         #CDB4DB
     </color>
 
+    <color name="detailColor">#471280</color>
+
 
     <color name="mainColor">#CDB4DB</color>
 </resources>

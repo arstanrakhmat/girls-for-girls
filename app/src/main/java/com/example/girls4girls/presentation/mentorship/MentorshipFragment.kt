@@ -38,5 +38,4 @@ class MentorshipFragment : Fragment() {
             findNavController().navigate(R.id.action_mentorshipFragment_to_graduatesFragment)
         }
     }
-
 }
