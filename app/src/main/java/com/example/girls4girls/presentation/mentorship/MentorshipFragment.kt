@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentMentorshipBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MentorshipFragment : Fragment() {
 
@@ -26,16 +27,13 @@ class MentorshipFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.aboutButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mentorshipFragment_to_aboutMentorshipFragment)
-        }
-
-        binding.mentorsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mentorshipFragment_to_mentorsFragment)
-        }
-
-        binding.graduatesButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mentorshipFragment_to_graduatesFragment)
-        }
+        binding.mentorshipViewPager.adapter = ViewPagerAdapter(requireActivity())
+        TabLayoutMediator(binding.mentorshipTabLayout, binding.mentorshipViewPager){tab, pos ->
+            tab.text = when(pos){
+                0 -> "О программе"
+                1 -> "Менторы"
+                else -> "Выпускники"
+            }
+        }.attach()
     }
 }

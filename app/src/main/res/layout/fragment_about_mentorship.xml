@@ -1,14 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="center"
+    android:layout_marginTop="69dp"
     tools:context=".presentation.mentorship.AboutMentorshipFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="О программе"
-        android:textSize="60sp" />
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/main_about_image_card"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="54dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="40dp"
+            android:elevation="0dp">
+
+            <ImageView
+            android:id="@+id/main_about_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/mentor_aikanysh_sydykova_min" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/program_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Менторская программа"
+            android:textFontWeight="600"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_about_image_card" />
+
+        <TextView
+            android:id="@+id/next_program_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Следующий поток"
+            android:textFontWeight="700"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/program_description_txt" />
+
+        <TextView
+            android:id="@+id/program_description_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="18dp"
+            android:text="Открываем новые возможности к становлению лучшей версией себя!Открываем новые возможности к становлению лучшей версией себя!"
+            android:textAlignment="center"
+            android:textColor="#292D32"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/program_title_txt" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/next_stream_image"
+            android:layout_width="250dp"
+            android:layout_height="168dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/next_program_txt"
+            app:cardCornerRadius="40dp"
+            android:elevation="0dp">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="168dp"
+            android:src="@drawable/team_lying_image_min"
+             />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/stream_beginning_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Начало потока:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/next_stream_image"
+            app:layout_constraintTop_toBottomOf="@+id/next_stream_image" />
+
+        <TextView
+            android:id="@+id/stream_beginning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00/00/00"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/next_stream_image"
+            app:layout_constraintTop_toTopOf="@+id/stream_beginning_txt" />
+
+        <TextView
+            android:id="@+id/stream_beginning2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00/00/00"
+            android:textColor="#E21C1C"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/next_stream_image"
+            app:layout_constraintTop_toTopOf="@+id/stream_apply_deadline_txt" />
+
+        <TextView
+            android:id="@+id/stream_apply_deadline_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Заявка открыта до:"
+            android:textColor="#E21C1C"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/next_stream_image"
+            app:layout_constraintTop_toBottomOf="@+id/stream_beginning_txt" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/custom_button_white"
+            android:text="Подать заявку"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stream_apply_deadline_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
