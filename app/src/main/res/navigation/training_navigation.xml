@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/trainingsListFragment"
         android:name="com.example.girls4girls.presentation.trainingsList.TrainingsListFragment"
-        android:label="fragment_trainings_list"
-        tools:layout="@layout/fragment_trainings_list" >
+        android:label="@string/bottom_nav_trainings"
+        tools:layout="@layout/fragment_trainings_list">
         <action
             android:id="@+id/action_trainingsListFragment_to_trainingFragment"
             app:destination="@id/trainingFragment" />

@@ -93,5 +93,7 @@
     <string name="male">Мужской</string>
     <string name="female">Женский</string>
     <string name="leave_as_guest">Остаться гостем</string>
+    <string name="user">User</string>
+    <string name="my_profile">Мой профиль</string>
 
 </resources>
