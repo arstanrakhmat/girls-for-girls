@@ -28,12 +28,9 @@ class MentorshipFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.mentorshipViewPager.adapter = ViewPagerAdapter(requireActivity())
+        val fragmentList = listOf("О программе","Менторы", "Выпускники")
         TabLayoutMediator(binding.mentorshipTabLayout, binding.mentorshipViewPager){tab, pos ->
-            tab.text = when(pos){
-                0 -> "О программе"
-                1 -> "Менторы"
-                else -> "Выпускники"
-            }
+            tab.text = fragmentList[pos]
         }.attach()
     }
 }
