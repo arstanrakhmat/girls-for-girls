@@ -9,6 +9,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="trainings_and_forums">Тренинги и Форумы</string>
+    <string name="trainings">Тренинги</string>
+    <string name="forums">Форумы</string>
     <string name="useful_video_lessons">Полезные видео уроки</string>
     <string name="happy_to_see_you_again">Рады видеть тебя снова!</string>
     <string name="phone_number_or_email">Номер телефона\n или \n электронная почта</string>
