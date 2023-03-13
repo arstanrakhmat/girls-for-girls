@@ -3,8 +3,10 @@ package com.example.girls4girls.presentation.mentorship
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.girls4girls.presentation.mentorship.graduate.GraduatesFragment
+import com.example.girls4girls.presentation.mentorship.mentor.MentorsFragment
 
-class ViewPagerAdapter(fragment: FragmentActivity): FragmentStateAdapter(fragment) {
+class MentorshipViewPagerAdapter(fragment: FragmentActivity): FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 3
 

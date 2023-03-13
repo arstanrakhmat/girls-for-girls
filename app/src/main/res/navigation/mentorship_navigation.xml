@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mentorshipFragment_to_mentorsFragment"
             app:destination="@id/mentorsFragment" />
+        <action
+            android:id="@+id/action_mentorshipFragment_to_mentorFragment"
+            app:destination="@id/mentorFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutMentorshipFragment"
@@ -27,12 +30,21 @@
         tools:layout="@layout/fragment_about_mentorship" />
     <fragment
         android:id="@+id/graduatesFragment"
-        android:name="com.example.girls4girls.presentation.mentorship.GraduatesFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.graduate.GraduatesFragment"
         android:label="fragment_graduates"
         tools:layout="@layout/fragment_graduates" />
     <fragment
         android:id="@+id/mentorsFragment"
-        android:name="com.example.girls4girls.presentation.mentorship.MentorsFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.mentor.MentorsFragment"
         android:label="fragment_mentors"
         tools:layout="@layout/fragment_mentors" />
+    <fragment
+        android:id="@+id/mentorFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.mentor.MentorFragment"
+        android:label="fragment_mentor"
+        tools:layout="@layout/fragment_mentor" >
+        <argument
+            android:name="mentor"
+            app:argType="com.example.girls4girls.data.Mentor" />
+    </fragment>
 </navigation>

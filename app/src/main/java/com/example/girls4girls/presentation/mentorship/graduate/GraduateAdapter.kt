@@ -1,4 +1,4 @@
-package com.example.girls4girls.presentation.mentorship
+package com.example.girls4girls.presentation.mentorship.graduate
 
 import android.view.LayoutInflater
 import android.view.View

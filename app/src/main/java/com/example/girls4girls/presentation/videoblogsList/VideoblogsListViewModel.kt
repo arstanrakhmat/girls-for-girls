@@ -4,14 +4,19 @@ import androidx.lifecycle.ViewModel
 import com.example.girls4girls.data.VideoBlog
 
 class VideoblogsListViewModel : ViewModel() {
-    val videos = mutableListOf<VideoBlog>()
+
+    val video1 = VideoBlog(0, "Video 1", "21/12/22", "Бизнес", "Ширин Айтмак", TEXT,192,false, false, LINK)
+    val video2 = VideoBlog(1, "Video 2", "01/10/22", "Будущее", "Нельсон Вумандела", TEXT,12,false, false, LINK2)
+    val video3 = VideoBlog(2, "Video 3", "01/07/22", "Еда", "Unknown", TEXT,999,false, false, LINK)
+    val video4 = VideoBlog(3, "Video 4", "08/06/22", "Образование","Султан Сарыгулов", TEXT,10000, false, false, LINK2)
+    val video5 = VideoBlog(4, "Video 5", "02/12/21", "Программирование", "Какой-то чувак", TEXT,0,false, false, LINK)
 
     val videoList = listOf<VideoBlog>(
-        VideoBlog(0, "Video 1", 60, "Бизнес", "Ширин Айтмак", TEXT,192,false, false, LINK),
-        VideoBlog(1, "Video 2", 60, "Будущее", "Нельсон Вумандела", TEXT,12,false, false, LINK2),
-        VideoBlog(2, "Video 3", 60, "Еда", "Unknown", TEXT,999,false, false, LINK),
-        VideoBlog(3, "Video 4", 60, "Образование","Султан Сарыгулов", TEXT,10000, false, false, LINK2),
-        VideoBlog(4, "Video 5", 60, "Программирование", "Какой-то чувак", TEXT,0,false, false, LINK)
+        video1,
+        video2,
+        video3,
+        video4,
+        video5
     )
 
     companion object{

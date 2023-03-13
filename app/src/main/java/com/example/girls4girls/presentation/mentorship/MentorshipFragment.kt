@@ -1,13 +1,10 @@
 package com.example.girls4girls.presentation.mentorship
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentMentorshipBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -27,7 +24,7 @@ class MentorshipFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mentorshipViewPager.adapter = ViewPagerAdapter(requireActivity())
+        binding.mentorshipViewPager.adapter = MentorshipViewPagerAdapter(requireActivity())
         val fragmentList = listOf("О программе","Менторы", "Выпускники")
         TabLayoutMediator(binding.mentorshipTabLayout, binding.mentorshipViewPager){tab, pos ->
             tab.text = fragmentList[pos]

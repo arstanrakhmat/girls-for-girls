@@ -9,7 +9,7 @@ import kotlinx.parcelize.RawValue
 data class VideoBlog(
     val id: Long,
     val title: String,
-    val duration: Int,
+    val date: String,
     val category: String,
     val speaker: String,
     val description: String,
