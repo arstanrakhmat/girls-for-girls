@@ -8,5 +8,6 @@
     <include app:graph="@navigation/mentorship_navigation" />
     <include app:graph="@navigation/videoblog_navigation" />
     <include app:graph="@navigation/training_navigation" />
+    <include app:graph="@navigation/user_navigation" />
 
 </navigation>

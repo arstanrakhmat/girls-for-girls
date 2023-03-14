@@ -8,15 +8,40 @@
     <fragment
         android:id="@+id/trainingsListFragment"
         android:name="com.example.girls4girls.presentation.trainingsList.TrainingsListFragment"
-        android:label="fragment_trainings_list"
+        android:label="@string/bottom_nav_trainings"
         tools:layout="@layout/fragment_trainings_list" >
         <action
-            android:id="@+id/action_trainingsListFragment_to_trainingFragment"
-            app:destination="@id/trainingFragment" />
+            android:id="@+id/action_trainingsListFragment_to_pastTrainingsListFragment"
+            app:destination="@id/pastTrainingsListFragment" />
+        <action
+            android:id="@+id/action_trainingsListFragment_to_trainingArticleFragment"
+            app:destination="@id/trainingArticleFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainingFragment"
         android:name="com.example.girls4girls.presentation.training.TrainingFragment"
         android:label="fragment_training"
         tools:layout="@layout/fragment_training" />
+    <fragment
+        android:id="@+id/forumFragment2"
+        android:name="com.example.girls4girls.presentation.forum.ForumFragment"
+        android:label="fragment_forum"
+        tools:layout="@layout/fragment_forum" />
+    <fragment
+        android:id="@+id/pastTrainingsListFragment"
+        android:name="com.example.girls4girls.presentation.trainingsList.PastTrainingsListFragment"
+        android:label="fragment_past_trainings_list"
+        tools:layout="@layout/fragment_past_trainings_list" >
+        <action
+            android:id="@+id/action_pastTrainingsListFragment_to_trainingArticleFragment"
+            app:destination="@id/trainingArticleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingArticleFragment"
+        android:name="com.example.girls4girls.presentation.training.TrainingArticleFragment"
+        android:label="TrainingArticleFragment" >
+        <argument
+            android:name="training"
+            app:argType="com.example.girls4girls.data.repository.Training" />
+    </fragment>
 </navigation>
