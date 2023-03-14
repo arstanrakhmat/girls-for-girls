@@ -9,6 +9,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="trainings_and_forums">Тренинги и Форумы</string>
+    <string name="trainings">Тренинги</string>
+    <string name="forums">Форумы</string>
     <string name="useful_video_lessons">Полезные видео уроки</string>
     <string name="happy_to_see_you_again">Рады видеть тебя снова!</string>
     <string name="phone_number_or_email">Номер телефона\n или \n электронная почта</string>
@@ -88,10 +90,33 @@
     <string name="incorrect_type_number">Неправильный формат номера. Номер должен начинаться с 996</string>
     <string name="incorrect_type_email">Почта должна быть с доменом @gmail.com</string>
 
+    <string name="upcoming_trainings">Предстоящие тренинги</string>
+    <string name="past_trainings">Прошедшие тренинги</string>
+    <string name="women_rights">Права женщин</string>
+
     <string name="video_title_tv">Тема видео</string>
     <string name="like_button">Кнопка нравиться</string>
     <string name="male">Мужской</string>
     <string name="female">Женский</string>
     <string name="leave_as_guest">Остаться гостем</string>
+    <string name="user">User</string>
+    <string name="my_profile">Мой профиль</string>
+    <string name="title">Title</string>
+    <string name="date_example">Date: 1st March 2023 year</string>
+    <string name="time_example">Time: 17:00</string>
+    <string name="location_example">Location: Bishkek</string>
+    <string name="deadline_example">Дедлайн: 4 февраля 2023 года</string>
+    <string name="training_text">Программа индивидуального\n наставничества поможет вам поставить\n личные и профессиональные цели\n достичь их</string>
+    <string name="post_trainings_all_list">Все</string>
+    <string name="apply">Подать заявку</string>
+    <string name="about_training">О тренинге</string>
+    <string name="lectors">Лекторы</string>
+
+    <string name="training_description">
+        Открываем новые возможности к становлению лучшей версией себя\n
+        Открываем новые возможности к становлению лучшей версией себя!\n
+        Открываем новые возможности к становлению лучшей версией себя!\n
+        Открываем новые возможности к становлению лучшей версией себя!</string>
+
 
 </resources>

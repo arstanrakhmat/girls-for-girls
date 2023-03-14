@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/mentorshipFragment"
         android:name="com.example.girls4girls.presentation.mentorship.MentorshipFragment"
-        android:label="fragment_mentorship"
-        tools:layout="@layout/fragment_mentorship" >
+        android:label="@string/bottom_nav_mentorship"
+        tools:layout="@layout/fragment_mentorship">
         <action
             android:id="@+id/action_mentorshipFragment_to_aboutMentorshipFragment"
             app:destination="@id/aboutMentorshipFragment" />

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/videoblogsListFragment"
         android:name="com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment"
-        android:label="fragment_videoblogs_list"
+        android:label="@string/bottom_nav_videoblogs"
         tools:layout="@layout/fragment_videoblogs_list">
         <action
             android:id="@+id/action_videoblogsListFragment_to_videoblogFragment"
