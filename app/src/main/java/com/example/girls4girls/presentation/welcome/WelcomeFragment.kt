@@ -45,10 +45,12 @@ class WelcomeFragment : Fragment() {
 
         binding.signInWelcomePage.setOnClickListener {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
         }
 
         binding.enterAsGuestWelcomePage.setOnClickListener {
             startActivity(Intent(requireContext(), MainActivity::class.java))
+            activity?.finish()
         }
 
     }
