@@ -49,7 +49,7 @@ class VideoblogFragment : Fragment() {
 
     private lateinit var playerParams: ViewGroup.LayoutParams
 
-    private val args by navArgs<VideoblogFragmentArgs>()
+    private val args: VideoblogFragmentArgs by navArgs()
     private val videoBlog by lazy { args.currentVideoBlog}
 
     override fun onCreateView(
