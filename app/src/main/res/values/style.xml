@@ -23,5 +23,11 @@
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
     </style>
+    <style name="ToolbarStyle">
+        <item name="fontFamily">@font/mulish</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 
 </resources>
