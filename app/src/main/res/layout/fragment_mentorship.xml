@@ -6,80 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".presentation.mentorship.MentorshipFragment">
 
-    <Button
-        android:id="@+id/about_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/custom_button_white"
-        android:fontFamily="@font/mulish"
-        android:paddingStart="24dp"
-        android:text="О программе"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mentorship_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:tabTextAppearance="@style/MyCustomTextAppearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/mentors_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/custom_button_white"
-        android:fontFamily="@font/mulish"
-        android:paddingStart="24dp"
-        android:text="Менторы"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/mentorship_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_button" />
+        app:layout_constraintTop_toBottomOf="@+id/mentorship_tab_layout">
 
-    <Button
-        android:id="@+id/graduates_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/custom_button_white"
-        android:fontFamily="@font/mulish"
-        android:paddingStart="24dp"
-        android:text="Выпускники"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mentors_button" />
-
-    <Button
-        android:id="@+id/survey_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/custom_button_white"
-        android:fontFamily="@font/mulish"
-        android:paddingStart="24dp"
-        android:text="Анкета"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graduates_button" />
-
+    </androidx.viewpager2.widget.ViewPager2>
 </androidx.constraintlayout.widget.ConstraintLayout>
