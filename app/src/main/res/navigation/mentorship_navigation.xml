@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutMentorshipFragment"
-        android:name="com.example.girls4girls.presentation.mentorship.AboutMentorshipFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.about.AboutMentorshipFragment"
         android:label="fragment_about_mentorship"
         tools:layout="@layout/fragment_about_mentorship" />
     <fragment
@@ -35,16 +35,28 @@
         tools:layout="@layout/fragment_graduates" />
     <fragment
         android:id="@+id/mentorsFragment"
-        android:name="com.example.girls4girls.presentation.mentorship.mentor.MentorsFragment"
+        android:name="com.example.girls4girls.presentation.mentorship.mentor.MentorsListFragment"
         android:label="fragment_mentors"
         tools:layout="@layout/fragment_mentors" />
     <fragment
         android:id="@+id/mentorFragment"
         android:name="com.example.girls4girls.presentation.mentorship.mentor.MentorFragment"
-        android:label="fragment_mentor"
-        tools:layout="@layout/fragment_mentor" >
+        android:label="Ментор"
+        tools:layout="@layout/fragment_mentor">
         <argument
             android:name="mentor"
             app:argType="com.example.girls4girls.data.Mentor" />
+        <action
+            android:id="@+id/action_mentorFragment_to_videoblogFragment2"
+            app:destination="@id/videoblogFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoblogFragment2"
+        android:name="com.example.girls4girls.presentation.videoblog.VideoblogFragment"
+        android:label="Видео"
+        tools:layout="@layout/fragment_videoblog">
+        <argument
+            android:name="currentVideoBlog"
+            app:argType="com.example.girls4girls.data.VideoBlog" />
     </fragment>
 </navigation>

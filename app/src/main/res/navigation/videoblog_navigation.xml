@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/videoblogsListFragment"
         android:name="com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment"
-        android:label="@string/bottom_nav_videoblogs"
+        android:label="Видеоблог"
         tools:layout="@layout/fragment_videoblogs_list">
         <action
             android:id="@+id/action_videoblogsListFragment_to_videoblogFragment"
@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/videoblogFragment"
         android:name="com.example.girls4girls.presentation.videoblog.VideoblogFragment"
-        android:label="fragment_videoblog"
-        tools:layout="@layout/fragment_videoblog" >
+        android:label="Видео"
+        tools:layout="@layout/fragment_videoblog">
         <argument
             android:name="currentVideoBlog"
             app:argType="com.example.girls4girls.data.VideoBlog" />
@@ -29,6 +29,6 @@
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.example.girls4girls.presentation.quiz.QuizFragment"
-        android:label="fragment_quiz"
+        android:label="Тест"
         tools:layout="@layout/fragment_quiz" />
 </navigation>

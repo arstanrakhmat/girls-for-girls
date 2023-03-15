@@ -11,7 +11,7 @@ import com.example.girls4girls.databinding.FragmentMentorsBinding
 import com.example.girls4girls.presentation.mentorship.MentorshipFragmentDirections
 import com.example.girls4girls.presentation.mentorship.MentorshipViewModel
 
-class MentorsFragment : Fragment() {
+class MentorsListFragment : Fragment() {
 
     private val viewModel by viewModels<MentorshipViewModel>()
 
