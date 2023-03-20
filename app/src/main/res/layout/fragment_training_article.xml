@@ -182,7 +182,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:targetApi="28" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

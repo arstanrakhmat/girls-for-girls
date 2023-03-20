@@ -1,4 +1,4 @@
-package com.example.girls4girls.presentation.account
+package com.example.girls4girls.presentation.training
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,19 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
-import com.example.girls4girls.databinding.FragmentUserBinding
+import com.example.girls4girls.databinding.FragmentTrainingApplyRequirementsBinding
 
-class UserFragment : Fragment() {
+class TrainingApplyRequirementsFragment : Fragment() {
 
-    private lateinit var binding: FragmentUserBinding
+    private lateinit var binding: FragmentTrainingApplyRequirementsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentUserBinding.inflate(layoutInflater, container, false)
+        binding = FragmentTrainingApplyRequirementsBinding.inflate(inflater, container, false)
 
+        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -30,9 +31,8 @@ class UserFragment : Fragment() {
     }
 
     private fun clickListeners() {
-
-        binding.llModifyAccount.setOnClickListener {
-            findNavController().navigate(R.id.action_userFragment_to_myInfoFragment)
+        binding.applyBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_trainingApplyRequirementsFragment_to_trainingApplyFirstPageFragment)
         }
     }
 

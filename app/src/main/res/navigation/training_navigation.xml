@@ -43,5 +43,37 @@
         <argument
             android:name="training"
             app:argType="com.example.girls4girls.data.repository.Training" />
+        <action
+            android:id="@+id/action_trainingArticleFragment_to_trainingApplyRequirementsFragment"
+            app:destination="@id/trainingApplyRequirementsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingApplyRequirementsFragment"
+        android:name="com.example.girls4girls.presentation.training.TrainingApplyRequirementsFragment"
+        android:label="fragment_training_apply_requirements"
+        tools:layout="@layout/fragment_training_apply_requirements" >
+        <action
+            android:id="@+id/action_trainingApplyRequirementsFragment_to_trainingApplyFirstPageFragment"
+            app:destination="@id/trainingApplyFirstPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingApplySecondPageFragment"
+        android:name="com.example.girls4girls.presentation.training.TrainingApplySecondPageFragment"
+        android:label="fragment_training_apply_second_page"
+        tools:layout="@layout/fragment_training_apply_second_page" >
+        <action
+            android:id="@+id/action_trainingApplySecondPageFragment_to_trainingsListFragment"
+            app:destination="@id/trainingsListFragment"
+            app:popUpTo="@id/trainingsListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingApplyFirstPageFragment"
+        android:name="com.example.girls4girls.presentation.training.TrainingApplyFirstPageFragment"
+        android:label="fragment_training_apply_first_page"
+        tools:layout="@layout/fragment_training_apply_first_page" >
+        <action
+            android:id="@+id/action_trainingApplyFirstPageFragment_to_trainingApplySecondPageFragment"
+            app:destination="@id/trainingApplySecondPageFragment" />
     </fragment>
 </navigation>
