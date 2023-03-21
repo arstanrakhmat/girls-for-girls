@@ -16,6 +16,7 @@ import androidx.fragment.app.viewModels
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.databinding.FragmentVideoblogsListBinding
+import com.google.android.material.tabs.TabLayout
 
 class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -44,6 +45,28 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         
         videoAdapter.modifyList(viewModel.videoList)
+
+        binding.videosTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position){
+                    0 -> videoAdapter.modifyList(viewModel.videoList)
+                    1 -> videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.isLiked
+                    })
+                    2 -> videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
+                        videoBlog.isWatched
+                    })
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+        })
+
     }
 
     private fun showPopUpMenu(view: View) {
@@ -52,7 +75,6 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         popupMenu.inflate(R.menu.category_popup_menu)
 
         popupMenu.setOnMenuItemClickListener { category ->
-            binding.categoryTxt.text = category.title
             when(category.itemId){
                 R.id.all -> {
                     videoAdapter.modifyList(viewModel.videoList)
