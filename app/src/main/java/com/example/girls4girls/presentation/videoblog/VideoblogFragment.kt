@@ -116,6 +116,12 @@ class VideoblogFragment : Fragment() {
 
         binding.descriptionTxt.text = videoBlog.description
         binding.videoSpeakerName.text = videoBlog.speaker
+
+//        binding.speakerCard.setOnClickListener {
+//            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.)
+//            findNavController().navigate()
+//        }
+
     }
 
     private fun initPlayer() {

@@ -7,88 +7,94 @@
     tools:context=".presentation.quiz.QuizFragment">
 
 
-    <TextView
-        android:id="@+id/question_number"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/quiz_illustration"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:text="Задания Х"
-        android:textColor="@color/black"
-        android:textSize="32sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_illustration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/question_text"
+        android:id="@+id/quiz_title_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="50dp"
-        android:text="Может быть тут будет какой-нибудь вопрос?"
-        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        android:text="Тест:"
+        android:textColor="#403A64"
+        android:textFontWeight="600"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/quiz_illustration"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_illustration" />
+
+    <TextView
+        android:id="@+id/quiz_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Саморазвитие"
+        android:textColor="#403A64"
+        android:textFontWeight="600"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/quiz_title_txt"
+        app:layout_constraintTop_toTopOf="@+id/quiz_title_txt" />
+
+    <TextView
+        android:id="@+id/quiz_questions_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="XX"
+        android:textColor="#9960C3"
+        android:textFontWeight="700"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_number" />
+        app:layout_constraintStart_toStartOf="@+id/quiz_title_txt"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_title_txt" />
 
-    <RadioGroup
-        android:id="@+id/radioButtonGroup"
+    <TextView
+        android:id="@+id/quiz_questions_number_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/question_text"
-        app:layout_constraintTop_toBottomOf="@+id/question_text">
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="вопросов"
+        android:textColor="#9960C3"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/quiz_questions_number"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_title_txt" />
 
-        <RadioButton
-            android:id="@+id/answer1button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/mainColor"
-            android:checked="true"
-
-            android:text="1"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/answer2button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/mainColor"
-            android:text="2"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/answer3button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/mainColor"
-            android:text="3"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/answer4button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/mainColor"
-            android:text="4"
-            android:textSize="16sp" />
-
-    </RadioGroup>
+    <TextView
+        android:id="@+id/quiz_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="В тесте вас ожидают вопросы по теме просмотренного видеоролика. Чтобы получить Достижение, необходимо набрать от 70% правильных ответов. Не беспокойтесь, тест всегда можно пройти еще раз! :)"
+        android:textColor="#403A64"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/quiz_questions_number"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_questions_number" />
 
     <Button
-        android:id="@+id/next_button"
-        android:layout_width="235dp"
+        android:id="@+id/quiz_start_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Начать"
         android:background="@drawable/custom_button_white"
-        android:text="Следующее"
+        android:textSize="16sp"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#662D91"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_description" />
 </androidx.constraintlayout.widget.ConstraintLayout>

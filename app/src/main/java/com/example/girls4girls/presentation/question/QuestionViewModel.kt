@@ -1,13 +1,9 @@
-package com.example.girls4girls.presentation.quiz
+package com.example.girls4girls.presentation.question
 
 import androidx.lifecycle.ViewModel
+import com.example.girls4girls.data.Question
 
-class QuizViewModel: ViewModel() {
-
-    data class Question(
-        val text: String,
-        val answers: List<String>
-    )
+class QuestionViewModel: ViewModel() {
 
     val questions = listOf(
         Question("9+10", listOf("21", "1", "2", "3")),

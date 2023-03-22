@@ -22,6 +22,10 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
         fun bind(videoBlog: VideoBlog) = with(binding){
 
             videoTitle.text = videoBlog.title
+            videoDuration.text = videoBlog.duration
+            videoSpeaker.text = videoBlog.speaker
+            videoViews.text = videoBlog.views.toString()
+            videoDate.text = videoBlog.date
 
             if (videoBlog.isLiked){
                 likeButton.setImageResource(R.drawable.ic_heart_filled)

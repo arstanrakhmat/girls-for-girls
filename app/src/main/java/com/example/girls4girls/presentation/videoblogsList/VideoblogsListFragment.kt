@@ -76,10 +76,6 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         popupMenu.setOnMenuItemClickListener { category ->
             when(category.itemId){
-                R.id.all -> {
-                    videoAdapter.modifyList(viewModel.videoList)
-                    true
-                }
                 R.id.category1,
                 R.id.category2,
                 R.id.category3,
@@ -87,12 +83,6 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
                 R.id.category5 -> {
                     videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
                         videoBlog.category == category.title
-                    })
-                    true
-                }
-                R.id.liked -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.isLiked
                     })
                     true
                 }

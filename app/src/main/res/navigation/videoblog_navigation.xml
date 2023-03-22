@@ -25,10 +25,31 @@
         <action
             android:id="@+id/action_videoblogFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
+        <action
+            android:id="@+id/action_videoblogFragment_to_mentorFragment2"
+            app:destination="@id/mentorFragment2" />
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.example.girls4girls.presentation.quiz.QuizFragment"
         android:label="Тест"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mentorFragment2"
+        android:name="com.example.girls4girls.presentation.mentorship.mentor.MentorFragment"
+        android:label="Ментор"
+        tools:layout="@layout/fragment_mentor">
+        <argument
+            android:name="mentor"
+            app:argType="com.example.girls4girls.data.Mentor" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.example.girls4girls.presentation.question.QuestionFragment"
+        android:label="Тест"
+        tools:layout="@layout/fragment_question" />
 </navigation>
