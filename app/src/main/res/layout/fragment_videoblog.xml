@@ -20,7 +20,6 @@
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -36,11 +35,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="14dp"
                 android:text="Title"
                 android:textColor="#662D91"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/likeButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,7 +78,7 @@
                 android:text="900"
                 android:textColor="#AFAAD0"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/views_icon"
                 app:layout_constraintTop_toBottomOf="@+id/video_title_txt" />
 
             <TextView
@@ -128,8 +128,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Описание"
-                android:textFontWeight="600"
                 android:textColor="#403A64"
+                android:textFontWeight="600"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/speaker_card"
                 app:layout_constraintTop_toBottomOf="@+id/speaker_card" />
@@ -186,7 +186,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/views_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -194,6 +194,15 @@
                 app:layout_constraintBottom_toBottomOf="@+id/video_views_txt"
                 app:layout_constraintStart_toStartOf="@+id/video_title_txt"
                 app:layout_constraintTop_toBottomOf="@+id/video_title_txt" />
+
+            <ImageView
+                android:id="@+id/videoLikeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="21dp"
+                android:src="@drawable/ic_heart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/video_title_txt" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

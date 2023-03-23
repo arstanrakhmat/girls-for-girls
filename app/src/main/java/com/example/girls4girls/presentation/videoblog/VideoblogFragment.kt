@@ -89,22 +89,22 @@ class VideoblogFragment : Fragment() {
         val isLikedLD = MutableLiveData<Boolean>()
         isLikedLD.value = videoBlog.isLiked
 
-//        binding.likeButton.setOnClickListener {
-//
-//            videoBlog.isLiked = !videoBlog.isLiked
-//            isLikedLD.value = videoBlog.isLiked
-//
-//            Log.d(TAG, "onViewCreated: ${videoBlog.isLiked}")
-//
-//        }
+        binding.videoLikeButton.setOnClickListener {
 
-//        isLikedLD.observe(viewLifecycleOwner){isLiked ->
-//            if (isLiked){
-//                binding.likeButton.setImageResource(R.drawable.ic_heart_filled)
-//            } else {
-//                binding.likeButton.setImageResource(R.drawable.ic_heart)
-//            }
-//        }
+            videoBlog.isLiked = !videoBlog.isLiked
+            isLikedLD.value = videoBlog.isLiked
+
+            Log.d(TAG, "onViewCreated: ${videoBlog.isLiked}")
+
+        }
+
+        isLikedLD.observe(viewLifecycleOwner){isLiked ->
+            if (isLiked){
+                binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
+            } else {
+                binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
+            }
+        }
 
 
     }
