@@ -1,10 +1,13 @@
 package com.example.girls4girls.data.api
 
+import com.example.girls4girls.data.model.User
 import com.example.girls4girls.data.model.UserLoginResponse
 import com.example.girls4girls.data.model.UserRegistrationResponse
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface Api {
@@ -25,7 +28,7 @@ interface Api {
         @Field("email") email: String,
         @Field("phoneNumber") phoneNumber: String,
         @Field("code") code: String
-    ) : Response<UserRegistrationResponse>
+    ): Response<UserRegistrationResponse>
 
     @FormUrlEncoded
     @POST("auth/login")
@@ -33,19 +36,24 @@ interface Api {
         @Field("email") email: String,
         @Field("phoneNumber") phoneNumber: String,
         @Field("password") password: String
-    ) : Response<UserLoginResponse>
+    ): Response<UserLoginResponse>
 
     @FormUrlEncoded
     @POST("auth/login")
     suspend fun userLoginEmail(
         @Field("email") email: String,
         @Field("password") password: String
-    ) : Response<UserLoginResponse>
+    ): Response<UserLoginResponse>
 
     @FormUrlEncoded
     @POST("auth/login")
     suspend fun userLoginPhoneNumber(
         @Field("phoneNumber") phoneNumber: String,
         @Field("password") password: String
-    ) : Response<UserLoginResponse>
+    ): Response<UserLoginResponse>
+
+    @GET("auth/profile")
+    suspend fun getUser(
+        @Header("Authorization") token: String?
+    ): Response<User>
 }

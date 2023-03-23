@@ -1,26 +1,35 @@
 package com.example.girls4girls.presentation.account
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.girls4girls.R
+import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentMyInfoBinding
 import com.example.girls4girls.utils.transformIntoDatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentMyInfoBinding
+    private val customPreferences by inject<CustomPreferences>()
+    private val userViewModel by viewModel<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMyInfoBinding.inflate(layoutInflater, container, false)
+        userViewModel.getUser("Bearer ${customPreferences.fetchToken()}")
+        Log.d("authE", customPreferences.fetchToken().toString())
 
         return binding.root
     }
@@ -29,6 +38,23 @@ class MyInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         clickListeners()
+        setupObservers()
+    }
+
+    private fun setupObservers() {
+        userViewModel.user.observe(requireActivity()) {
+            with(binding) {
+                etName.setText(it.firstName)
+                etLastName.setText(it.lastName)
+                etGmail.setText(it.email)
+                etPhoneNumber.setText(it.phoneNumber)
+            }
+        }
+
+        userViewModel.errorMessage.observe(requireActivity()) {
+            Log.d("profile", it)
+            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun clickListeners() {

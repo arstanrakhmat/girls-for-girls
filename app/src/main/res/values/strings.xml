@@ -132,7 +132,8 @@
     <string name="go_to_main_page"><u>Перейти на главную страницу</u></string>
     <string name="registration">Регистрация</string>
     <string name="_0771677010">0771677010</string>
-    <string name="_0771677010_example">Пример: 996771677010</string>
+    <string name="_0771677010_example">Пример: 996#########</string>
+    <string name="hello_registered_user">Привет, ${it.firstName}!</string>
 
     <string name="incorrect_type_number">Неправильный формат номера. Номер должен начинаться с 996</string>
     <string name="incorrect_type_email">Почта должна быть с доменом @gmail.com</string>
@@ -179,6 +180,8 @@
     <string name="contact_us">Обратная связь</string>
     <string name="language_change">Язык приложения</string>
     <string name="or">или</string>
+
+    <string name="speaker_info">Ментор, co-founder</string>
 
     <string name="register_from_user">Зарегистрироваться</string>
     <string name="image_descr">image</string>

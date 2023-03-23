@@ -14,6 +14,7 @@ class TrainingArticleFragment : Fragment() {
 
     private lateinit var binding: FragmentTrainingArticleBinding
     private val args: TrainingArticleFragmentArgs by navArgs()
+    private lateinit var speakerAdapter: SpeakerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +30,19 @@ class TrainingArticleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupTrainingArticle()
         clickListeners()
+        setupRecyclerView()
     }
 
     private fun clickListeners() {
         binding.btnApply.setOnClickListener {
             findNavController().navigate(R.id.action_trainingArticleFragment_to_trainingApplyRequirementsFragment)
+        }
+    }
+
+    private fun setupRecyclerView() {
+        speakerAdapter = SpeakerAdapter()
+        binding.rvSpeaker.apply {
+            adapter = speakerAdapter
         }
     }
 
@@ -47,5 +56,6 @@ class TrainingArticleFragment : Fragment() {
         binding.deadline.text = training.deadline
         binding.description.text = training.description
     }
+
 
 }

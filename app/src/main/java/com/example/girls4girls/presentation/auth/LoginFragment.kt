@@ -57,12 +57,14 @@ class LoginFragment : Fragment() {
             startActivity(Intent(requireContext(), MainActivity::class.java))
             sharedPreferences.saveToken(it.access_token)
             Log.d("authE", it.access_token)
+            hideProgressBar()
         }
 
         authViewModel.errorMessage.observe(requireActivity()) {
             Log.d("authE", it)
             Toast.makeText(requireContext(), "Неверный логин или пароль!", Toast.LENGTH_SHORT)
                 .show()
+            hideProgressBar()
         }
     }
 
@@ -76,6 +78,7 @@ class LoginFragment : Fragment() {
                 ).show()
 
                 authViewModel.userLoginEmail(login, binding.etPassword.text.toString())
+                showProgressBar()
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -92,6 +95,7 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
                 authViewModel.userLoginPhoneNumber(login, binding.etPassword.text.toString())
+                showProgressBar()
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -158,6 +162,16 @@ class LoginFragment : Fragment() {
     private fun isKgNumber(string: String): Boolean {
         val pattern = Regex("^996\\d{9}$")
         return pattern.matches(string)
+    }
+
+    private fun showProgressBar() {
+        binding.signInWelcomePage.visibility = View.GONE
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.signInWelcomePage.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.GONE
     }
 
 }

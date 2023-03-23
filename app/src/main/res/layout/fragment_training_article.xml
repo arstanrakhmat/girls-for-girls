@@ -26,6 +26,7 @@
                     android:id="@+id/img"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
+                    android:contentDescription="@string/speaker_info"
                     android:scaleType="centerCrop"
                     android:src="@drawable/event_1"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -153,9 +154,13 @@
                     tools:targetApi="28" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSpeaker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_speaker"
+                    tools:itemCount="3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/aboutLectors" />
