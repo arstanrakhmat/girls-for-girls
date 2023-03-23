@@ -23,7 +23,7 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
 
             videoTitle.text = videoBlog.title
             videoDuration.text = videoBlog.duration
-            videoSpeaker.text = videoBlog.speaker
+            videoSpeaker.text = videoBlog.speaker.name
             videoViews.text = videoBlog.views.toString()
             videoDate.text = videoBlog.date
 

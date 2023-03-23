@@ -1,4 +1,4 @@
-package com.example.girls4girls.application
+package com.example.girls4girls.koin.application
 
 import android.app.Application
 import com.example.girls4girls.koin.retrofitModule

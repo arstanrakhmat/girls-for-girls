@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentQuestionBinding
 import com.example.girls4girls.databinding.FragmentQuizBinding
@@ -20,13 +21,12 @@ class QuestionFragment : Fragment() {
     private val viewmodel by viewModels<QuestionViewModel>()
     private var questionNumber = 0
     private lateinit var shuffledAnswers: MutableList<String>
-    private val correctAnswers = 0
+    private var correctAnswers = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentQuestionBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -37,10 +37,26 @@ class QuestionFragment : Fragment() {
 
         setQuestion()
 
+        binding.prevButton.setOnClickListener {
+
+            questionNumber -= 1
+            correctAnswers -= 1
+            Log.d(VideoblogsListFragment.TAG, "questionNumber: ${questionNumber}")
+            Log.d(VideoblogsListFragment.TAG, "questions.size: ${viewmodel.questions.size}")
+
+
+
+            setQuestion()
+
+
+        }
+
         binding.nextButton.setOnClickListener {
-            val checkId = binding.radioButtonGroup.checkedRadioButtonId
+
 
             // Remember the chosen button
+            val checkId = binding.radioButtonGroup.checkedRadioButtonId
+
             var answerIndex = 0
             when (checkId){
                 R.id.answer2button -> answerIndex = 1
@@ -48,28 +64,53 @@ class QuestionFragment : Fragment() {
                 R.id.answer4button -> answerIndex = 3
             }
 
-
             if (viewmodel.questions[questionNumber].answers[0] != shuffledAnswers[answerIndex]){
                 Toast.makeText(requireContext(), "Wrong answer", Toast.LENGTH_SHORT).show()
+            } else {
+                correctAnswers += 1
+            }
+
+
+
+            if (questionNumber + 1 == viewmodel.questions.size){
+                Toast.makeText(requireContext(),
+                    "Congratulations!! You made $correctAnswers out of ${viewmodel.questions.size}",
+                    Toast.LENGTH_SHORT).show()
+                val action = QuestionFragmentDirections.actionQuestionFragmentToResultFragment(
+                    correctAnswers,
+                    viewmodel.questions.size
+                )
+                findNavController().navigate(action)
+
                 return@setOnClickListener
             }
+            questionNumber += 1
 
             Log.d(VideoblogsListFragment.TAG, "questionNumber: ${questionNumber}")
             Log.d(VideoblogsListFragment.TAG, "questions.size: ${viewmodel.questions.size}")
 
-            if (questionNumber + 1 == viewmodel.questions.size){
-                Toast.makeText(requireContext(), "Congratulations!!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            questionNumber += 1
             setQuestion()
+
+
 
         }
     }
 
     private fun setQuestion() {
-        binding.questionNumber.text = "Задание ${questionNumber + 1}"
+
+        if (questionNumber == 0){
+            binding.prevButton.visibility = View.INVISIBLE
+        } else {
+            binding.prevButton.visibility = View.VISIBLE
+        }
+
+        if (questionNumber == viewmodel.questions.size - 1){
+            binding.nextButton.text = "Завершить"
+        } else {
+            binding.nextButton.text = "Далее"
+        }
+
+        binding.questionNumber.text = "${questionNumber + 1}."
 
         shuffledAnswers = viewmodel.questions[questionNumber].answers.toMutableList()
         shuffledAnswers.shuffle()

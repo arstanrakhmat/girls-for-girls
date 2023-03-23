@@ -122,4 +122,10 @@
 
     <string name="sydykova_aikanysh_name">Сыдыкова Айканыш</string>
     <string name="sydykova_aikanysh_info">Айканыш - амбициозная девушка, которая научит вас любви к себе, дисциплине и уверенности\n\nВыпускница программ FLEX ‘13 и Global Village ‘22\n\nПрограммный координатор в Американских Советах по международному образовании\n\nПроектный менеджер в Neobis\n\nСо-основательница Girls for Girls</string>
+
+    <string name="your_score">Вы набрали %1$d из %2$d\nправильных ответов</string>
+    <string name="good_result">Ура!</string>
+    <string name="good_result_description">Отличный результат! Вы получили достижение “Отличник” за отлично пройденный тест по видеолекции.</string>
+    <string name="review_answers">Проверить мои ответы</string>
+    <string name="check_achievements">Посмотреть мои достижения</string>
 </resources>

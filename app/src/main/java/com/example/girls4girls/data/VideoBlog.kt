@@ -11,7 +11,7 @@ data class VideoBlog(
     val title: String,
     val date: String,
     val category: String,
-    val speaker: String,
+    val speaker: Mentor,
     val description: String,
     var views: Long,
     var duration: String,

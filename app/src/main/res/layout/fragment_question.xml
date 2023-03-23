@@ -13,23 +13,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
-        android:text="Задания Х"
-        android:textColor="@color/black"
-        android:textSize="32sp"
+        android:text="X."
+        android:textFontWeight="700"
+        android:textColor="#9960C3"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/question_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="5dp"
         android:text="Может быть тут будет какой-нибудь вопрос?"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_number" />
+        android:textFontWeight="700"
+        android:textColor="#9960C3"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/question_number"
+        app:layout_constraintTop_toTopOf="@+id/question_number" />
 
     <RadioGroup
         android:id="@+id/radioButtonGroup"
@@ -38,7 +40,7 @@
         android:layout_marginTop="32dp"
         android:animateLayoutChanges="true"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/question_text"
+        app:layout_constraintStart_toStartOf="@+id/question_number"
         app:layout_constraintTop_toBottomOf="@+id/question_text">
 
         <RadioButton
@@ -78,17 +80,31 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/next_button"
-        android:layout_width="235dp"
+        android:id="@+id/prev_button"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/custom_button_white"
-        android:text="Следующее"
+        android:text="Назад"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/custom_button_white"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
