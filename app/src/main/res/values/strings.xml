@@ -142,6 +142,12 @@
     <string name="past_trainings">Прошедшие тренинги</string>
     <string name="women_rights">Права женщин</string>
 
+    <string name="title_apply">Подача заявки</string>
+
+    <string name="upcoming_forums">Предстоящие форумы</string>
+    <string name="past_forums">Прошедшие форумы</string>
+
+
     <string name="video_title_tv">Тема видео</string>
     <string name="like_button">Кнопка нравиться</string>
     <string name="male">Мужской</string>
@@ -214,6 +220,8 @@
     </string>
     <string name="answer_yes">Да</string>
     <string name="answer_no">Нет</string>
+    <string name="training_title">Тренинг</string>
+    <string name="forum_title">Форум</string>
 
 
 </resources>
