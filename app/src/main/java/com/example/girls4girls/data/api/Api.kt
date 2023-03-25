@@ -27,7 +27,7 @@ interface Api {
         @Field("email") email: String,
         @Field("phoneNumber") phoneNumber: String,
         @Field("code") code: String
-    ): Response<UserRegistrationResponse>
+    ): Response<UserActivateResponse>
 
     @FormUrlEncoded
     @POST("auth/login")

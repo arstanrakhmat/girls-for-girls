@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
     val registered = MutableLiveData<UserRegistrationResponse>()
+    val activated = MutableLiveData<UserActivateResponse>()
     val errorMessage = MutableLiveData<String>()
     val token = MutableLiveData<UserLoginResponse>()
 
@@ -82,7 +83,7 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
             )
 
             if (response.isSuccessful) {
-                registered.postValue(response.body())
+                activated.postValue(response.body())
             } else {
                 errorMessage.postValue(response.errorBody().toString())
             }

@@ -1,5 +1,6 @@
 package com.example.girls4girls.presentation.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentUserBinding
+import com.example.girls4girls.presentation.auth.LoginActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -57,6 +59,10 @@ class UserFragment : Fragment() {
         binding.llModifyAccount.setOnClickListener {
             findNavController().navigate(R.id.action_userFragment_to_myInfoFragment)
         }
-    }
 
+        binding.btnLogOut.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
+        }
+    }
 }
