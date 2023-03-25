@@ -30,7 +30,9 @@ class ResultFragment : Fragment() {
 
 
         binding.scoreTxt.text = resources.getString(R.string.your_score,
-                                                    args.correctAnswers,
-                                                    args.questionsNumber)
+                                                    args.answers.filter {ans ->
+                                                        ans == true
+                                                    }.size,
+                                                    args.answers.size)
     }
 }

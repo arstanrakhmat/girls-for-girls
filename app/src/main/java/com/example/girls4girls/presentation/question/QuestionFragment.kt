@@ -21,7 +21,7 @@ class QuestionFragment : Fragment() {
     private val viewmodel by viewModels<QuestionViewModel>()
     private var questionNumber = 0
     private lateinit var shuffledAnswers: MutableList<String>
-    private val answers: List<Boolean> = mutableListOf()
+    private val answers: MutableList<Boolean> = mutableListOf()
     private var correctAnswers = 0
 
     override fun onCreateView(
@@ -41,7 +41,7 @@ class QuestionFragment : Fragment() {
         binding.prevButton.setOnClickListener {
 
             questionNumber -= 1
-            correctAnswers -= 1
+            answers.dropLast(1)
             Log.d(VideoblogsListFragment.TAG, "questionNumber: ${questionNumber}")
             Log.d(VideoblogsListFragment.TAG, "questions.size: ${viewmodel.questions.size}")
 
@@ -64,20 +64,19 @@ class QuestionFragment : Fragment() {
             }
 
             if (viewmodel.questions[questionNumber].answers[0] != shuffledAnswers[answerIndex]){
-                Toast.makeText(requireContext(), "Wrong answer", Toast.LENGTH_SHORT).show()
+                answers.add(false)
             } else {
-                correctAnswers += 1
+                answers.add(true)
             }
 
 
 
             if (questionNumber + 1 == viewmodel.questions.size){
-                Toast.makeText(requireContext(),
-                    "Congratulations!! You made $correctAnswers out of ${viewmodel.questions.size}",
-                    Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(),
+//                    "Congratulations!! You made $correctAnswers out of ${viewmodel.questions.size}",
+//                    Toast.LENGTH_SHORT).show()
                 val action = QuestionFragmentDirections.actionQuestionFragmentToResultFragment(
-                    correctAnswers,
-                    viewmodel.questions.size
+                    answers.toBooleanArray()
                 )
                 findNavController().navigate(action)
 
