@@ -38,6 +38,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="14dp"
                 android:text="Title"
+                android:textFontWeight="700"
                 android:textColor="#662D91"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/videoLikeButton"
@@ -109,15 +110,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/video_description_title"
                 tools:text="Видео представляет собой инструкцию по саморазвитию для молодых девушек. В нем содержатся советы по укреплению самооценки, развитию коммуникативных представляет собой инструкцию по саморазвитию для молодых девушек. " />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/test_button"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/videoblog_card"
+                android:background="@drawable/custom_button_white"
                 android:text="Пройти тест"
+                android:textFontWeight="600"
                 android:textAllCaps="false"
-                android:textSize="12sp"
+                android:paddingStart="21dp"
+                android:paddingEnd="21dp"
+                android:textColor="#662D91"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/video_category_txt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/video_views_txt" />

@@ -10,19 +10,26 @@ import com.example.girls4girls.databinding.ItemGraduateBinding
 class GraduateAdapter: RecyclerView.Adapter<GraduateAdapter.GraduateViewHolder>() {
 
     data class Graduate(
-        val id: Long,
         val name: String,
         val city: String,
         val age: Int,
         val review: String
     )
 
-    val graduatesList = listOf(1,2,3,4,5)
+    val graduatesList = listOf(
+        Graduate("Салтанат Алиева", "Бишкек", 16, "Я получила от программы больше, чем ожидала!"),
+        Graduate("Миргуль Андерасян", "Ош", 18, "Мне очень понравились менторши."),
+        Graduate("Алия Ботонова", "Баткен", 15, "Спасибо Girls4Girls, я много чего узнала."),
+
+    )
 
     inner class GraduateViewHolder(item: View): RecyclerView.ViewHolder(item){
         val binding = ItemGraduateBinding.bind(item)
-        fun bind(item: Int){
-            binding.graduateName.text = item.toString()
+        fun bind(graduate: Graduate){
+            binding.graduateName.text = graduate.name
+            binding.graduateAge.text = "${graduate.age} лет,"
+            binding.graduateCity.text = graduate.city
+            binding.graduateReview.text = graduate.review
         }
 
     }

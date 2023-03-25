@@ -65,7 +65,10 @@
         android:label="Тест"
         tools:layout="@layout/fragment_result" >
         <argument
-            android:name="answers"
-            app:argType="boolean[]" />
+            android:name="correctAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="questionsNumber"
+            app:argType="integer" />
     </fragment>
 </navigation>

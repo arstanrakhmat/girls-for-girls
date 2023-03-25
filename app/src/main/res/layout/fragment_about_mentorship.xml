@@ -143,16 +143,18 @@
             app:layout_constraintStart_toStartOf="@+id/next_stream_image"
             app:layout_constraintTop_toBottomOf="@+id/stream_beginning_txt" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/applyButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="28dp"
             android:background="@drawable/custom_button_white"
             android:text="Подать заявку"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="#662D91"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
