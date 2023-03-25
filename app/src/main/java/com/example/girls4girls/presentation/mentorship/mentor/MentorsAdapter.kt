@@ -13,7 +13,15 @@ import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewMod
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.LINK
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.LINK2
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.LINK3
-import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.TEXT
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.NAME1
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.NAME2
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.NAME3
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.NAME4
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.NAME5
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.TEXT1
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.TEXT2
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.TEXT3
+import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel.Companion.TEXT4
 
 class MentorsAdapter(): RecyclerView.Adapter<MentorsAdapter.MentorsViewHolder>() {
 
@@ -24,11 +32,11 @@ class MentorsAdapter(): RecyclerView.Adapter<MentorsAdapter.MentorsViewHolder>()
     val mentor3 = Mentor("Нурайым Нургазиева", R.drawable.mentor_nuraiym_nurgazieva)
     val mentor4 = Mentor("Салкынай Эмильбекова", R.drawable.mentor_salkynai_emilbekova)
 
-    val video1 = VideoBlog(0, "Video 1", "21/12/22", "Бизнес", mentor1, TEXT,192,"12:18",true, false, LINK)
-    val video2 = VideoBlog(1, "Video 2", "01/10/22", "Будущее", mentor2, TEXT,12,"15:30",false, true, LINK2)
-    val video3 = VideoBlog(2, "Video 3", "01/07/22", "Еда", mentor3, TEXT,999,"31:16",false, true, LINK3)
-    val video4 = VideoBlog(3, "Video 4", "08/06/22", "Образование",mentor1, TEXT,10000, "15:00",true, false, LINK2)
-    val video5 = VideoBlog(4, "Video 5", "02/12/21", "Программирование", mentor4, TEXT,0,"43:11",false, true, LINK)
+    val video1 = VideoBlog(0, NAME1, "21/12/22", "Бизнес", mentor1, TEXT1,192,true, false, LINK)
+    val video2 = VideoBlog(1, NAME2, "01/10/22", "Будущее", mentor2, TEXT2,12,false, true, LINK2)
+    val video3 = VideoBlog(2, NAME3, "01/07/22", "Еда", mentor3, TEXT3,999,false, true, LINK3)
+    val video4 = VideoBlog(3, NAME4, "08/06/22", "Образование",mentor1, TEXT4,10000, true, false, LINK2)
+    val video5 = VideoBlog(4, NAME5, "02/12/21", "Программирование", mentor4, TEXT2,0,false, true, LINK)
 
     private val mentorsList = listOf(
         Mentor("Айканыш Сыдыкова", R.drawable.mentor_aikanysh_sydykova, listOf(video1, video3)),

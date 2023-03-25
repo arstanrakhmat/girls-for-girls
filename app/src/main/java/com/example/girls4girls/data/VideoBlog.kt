@@ -14,7 +14,6 @@ data class VideoBlog(
     val speaker: Mentor,
     val description: String,
     var views: Long,
-    var duration: String,
     var isWatched: Boolean,
     var isLiked: Boolean,
     val link: String

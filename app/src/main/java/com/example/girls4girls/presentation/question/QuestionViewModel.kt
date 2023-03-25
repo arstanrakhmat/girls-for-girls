@@ -6,8 +6,20 @@ import com.example.girls4girls.data.Question
 class QuestionViewModel: ViewModel() {
 
     val questions = listOf(
-        Question("9+10", listOf("21", "1", "2", "3")),
-        Question("2+2", listOf("22", "1", "2", "3")),
-        Question("250 / 2", listOf("125", "1", "3", "21"))
+        Question("Girls4Girls - это в первую очередь...",
+            listOf("Образовательная программа",
+                "Группа ВК",
+                "Музыкальный коллектив",
+                "Государственый проект")),
+        Question("Когда был основан Girls4Girls?",
+            listOf("2021",
+                "2022",
+                "2020",
+                "2019")),
+        Question("С каких областей начался Girls4Girls?",
+            listOf("Джалал-Абад и Ош",
+                "Чуй и Ош",
+                "Баткен и Ош",
+                "Чуй и Ысык-Көл"))
     )
 }
