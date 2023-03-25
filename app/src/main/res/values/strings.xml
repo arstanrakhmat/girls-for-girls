@@ -126,6 +126,8 @@
     <string name="your_score">Вы набрали %1$d из %2$d\nправильных ответов</string>
     <string name="good_result">Ура!</string>
     <string name="good_result_description">Отличный результат! Вы получили достижение “Отличник” за отлично пройденный тест по видеолекции.</string>
+    <string name="bad_result">О нет!</string>
+    <string name="bad_result_description">Ужасный результат! Вы получили достижение “Двоечник” за ужасно пройденный тест по видеолекции.</string>
     <string name="review_answers">Проверить мои ответы</string>
     <string name="check_achievements">Посмотреть мои достижения</string>
 </resources>

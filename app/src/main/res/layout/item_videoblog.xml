@@ -30,10 +30,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/like_button"
+        app:tint="#9960C3"
         app:layout_constraintEnd_toEndOf="@+id/video_image_card"
         app:layout_constraintTop_toTopOf="@+id/video_title"
-        app:srcCompat="@drawable/ic_heart"
-        app:tint="@color/purple_500" />
+        app:srcCompat="@drawable/ic_heart_filled" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/video_duration_card"

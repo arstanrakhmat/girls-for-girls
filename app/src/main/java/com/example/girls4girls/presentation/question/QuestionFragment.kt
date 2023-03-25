@@ -21,6 +21,7 @@ class QuestionFragment : Fragment() {
     private val viewmodel by viewModels<QuestionViewModel>()
     private var questionNumber = 0
     private lateinit var shuffledAnswers: MutableList<String>
+    private val answers: List<Boolean> = mutableListOf()
     private var correctAnswers = 0
 
     override fun onCreateView(
@@ -47,8 +48,6 @@ class QuestionFragment : Fragment() {
 
 
             setQuestion()
-
-
         }
 
         binding.nextButton.setOnClickListener {
