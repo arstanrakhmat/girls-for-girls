@@ -1,6 +1,5 @@
 package com.example.girls4girls.presentation.auth
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -11,60 +10,61 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
-import com.example.girls4girls.data.CustomPreferences
-import com.example.girls4girls.databinding.FragmentLoginBinding
-import com.example.girls4girls.presentation.MainActivity
+import com.example.girls4girls.databinding.FragmentResetPasswordBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class ResetPasswordFragment : Fragment() {
 
-    private lateinit var binding: FragmentLoginBinding
-    private val authViewModel by viewModel<AuthViewModel>()
-    private lateinit var sharedPreferences: CustomPreferences
+    private lateinit var binding: FragmentResetPasswordBinding
+    private val resetViewModel by viewModel<ResetPasswordViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = CustomPreferences(requireContext())
-        setUpObservers()
+        setupToolbar()
+        setupObservers()
         clickListeners()
+        binding.toolbar.back.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun clickListeners() {
-        binding.signInWelcomePage.setOnClickListener {
-
+        binding.btnReset.setOnClickListener {
             if (!areFieldsEmpty()) {
                 loginValidation(binding.etLoginOrNumber.text.toString())
             }
         }
-
-        binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
-        }
-
-        binding.btnForgotPassword.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
-        }
     }
 
-    private fun setUpObservers() {
-        authViewModel.token.observe(requireActivity()) {
+    private fun setupObservers() {
+        resetViewModel.success.observe(requireActivity()) {
+            Toast.makeText(
+                requireContext(),
+                "Code was sent",
+                Toast.LENGTH_SHORT
+            ).show()
 
-            startActivity(Intent(requireContext(), MainActivity::class.java))
-            sharedPreferences.saveToken(it.access_token)
-            Log.d("authE", it.access_token)
             hideProgressBar()
+
+            val action =
+                ResetPasswordFragmentDirections.actionResetPasswordFragmentToResetPasswordCodeFragment(
+                    binding.etLoginOrNumber.text.toString()
+                )
+
+            findNavController().navigate(action)
         }
 
-        authViewModel.errorMessage.observe(requireActivity()) {
+        resetViewModel.errorMessage.observe(requireActivity()) {
             Log.d("authE", it)
             Toast.makeText(requireContext(), "Неверный логин или пароль!", Toast.LENGTH_SHORT)
                 .show()
@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                authViewModel.userLoginEmail(login, binding.etPassword.text.toString())
+                resetViewModel.resetPasswordEmail(binding.etLoginOrNumber.text.toString())
                 showProgressBar()
             } else {
                 Toast.makeText(
@@ -95,11 +95,9 @@ class LoginFragment : Fragment() {
             if (isKgNumber(login)) {
                 Toast.makeText(
                     requireContext(),
-                    "Valid number",
+                    "Resseting password with phone number will be done later",
                     Toast.LENGTH_SHORT
                 ).show()
-                authViewModel.userLoginPhoneNumber(login, binding.etPassword.text.toString())
-                showProgressBar()
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -117,12 +115,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun areFieldsEmpty(): Boolean {
-
         val login = binding.etLoginOrNumber.text.toString()
-        val password = binding.etPassword.text.toString()
-
         val tvLogin = binding.tvEmailDoesNotExist
-        val tvPassword = binding.tvPasswordIsEmpty
 
         if (login.isEmpty()) {
             tvLogin.text = resources.getString(R.string.login_is_empty)
@@ -132,21 +126,7 @@ class LoginFragment : Fragment() {
             tvLogin.visibility = View.GONE
         }
 
-        if (password.isEmpty()) {
-            tvPassword.visibility = View.VISIBLE
-            return true
-        } else {
-            tvLogin.visibility = View.GONE
-        }
-
-        if (password.length < 8) {
-            tvPassword.text = resources.getString(R.string.password_length_incorrect)
-            tvPassword.visibility = View.VISIBLE
-            return true
-        }
-
         return false
-
     }
 
     private fun isLoginEmail(login: String): Boolean {
@@ -168,13 +148,17 @@ class LoginFragment : Fragment() {
         return pattern.matches(string)
     }
 
+    private fun setupToolbar() {
+        binding.toolbar.back.visibility = View.GONE
+        binding.toolbar.userAccount.visibility = View.GONE
+        binding.toolbar.screenName.text = resources.getString(R.string.reset_password_toolbar)
+    }
+
     private fun showProgressBar() {
-        binding.signInWelcomePage.visibility = View.GONE
         binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun hideProgressBar() {
-        binding.signInWelcomePage.visibility = View.VISIBLE
         binding.progressBar.visibility = View.GONE
     }
 

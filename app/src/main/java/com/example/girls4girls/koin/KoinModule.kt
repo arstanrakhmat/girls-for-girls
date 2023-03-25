@@ -3,9 +3,11 @@ package com.example.girls4girls.koin
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.api.Api
 import com.example.girls4girls.data.repository.AuthRepository
+import com.example.girls4girls.data.repository.ResetPasswordRepository
 import com.example.girls4girls.data.repository.UserRepository
 import com.example.girls4girls.presentation.account.UserViewModel
 import com.example.girls4girls.presentation.auth.AuthViewModel
+import com.example.girls4girls.presentation.auth.ResetPasswordViewModel
 import com.example.girls4girls.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,11 +25,13 @@ val retrofitModule = module {
     single { CustomPreferences(androidApplication()) }
     factory { AuthRepository(api = get()) }
     factory { UserRepository(api = get()) }
+    factory { ResetPasswordRepository(api = get()) }
 }
 
 val viewModules = module {
     viewModel { AuthViewModel(repository = get()) }
     viewModel { UserViewModel(repository = get()) }
+    viewModel { ResetPasswordViewModel(repository = get()) }
 }
 
 fun getApiInstance(retrofit: Retrofit): Api {

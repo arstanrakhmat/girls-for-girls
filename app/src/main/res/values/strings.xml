@@ -13,10 +13,16 @@
     <string name="forums">Форумы</string>
     <string name="useful_video_lessons">Полезные видео уроки</string>
     <string name="happy_to_see_you_again">Рады видеть тебя снова!</string>
+    <string name="i_forgot_password">Забыли пароль?</string>
+    <string name="input_confirmation_code">Введите код подтверждения</string>
+    <string name="reset_password_toolbar">Сброс пароля</string>
+    <string name="create_new_password">Новый пароль</string>
+    <string name="reset_password_instructions">Введите эл. почту или номер телефона, чтобы получить код для сброса пароля</string>
     <string name="phone_number_or_email">Номер телефона\n или \n электронная почта</string>
     <string name="password">Пароль</string>
     <string name="forgot_the_password">Забыли пароль?</string>
     <string name="sign_in">Войти</string>
+    <string name="reset_button">Сбросить</string>
     <string name="sign_in_using_account">Войти с помощью аккаунта</string>
     <string name="new_user">Новый пользователь?</string>
     <string name="register">Зарегистрируйся</string>
@@ -46,6 +52,7 @@
     <string name="password_repeat">Повторите пароль</string>
     <string name="password_does_not_match">Пароли не совпадают</string>
     <string name="continue_registration">Продолжить</string>
+    <string name="confirm">Подтвердить</string>
     <string name="register_though_account">или зарегистрироваться через аккаунт:</string>
     <string name="already_have_an_account">Уже есть аккаунт?</string>
     <string name="birthday">Дата рождения</string>
