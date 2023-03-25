@@ -1,4 +1,4 @@
-package com.example.girls4girls.presentation.mentorship
+package com.example.girls4girls.presentation.mentorship.about
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

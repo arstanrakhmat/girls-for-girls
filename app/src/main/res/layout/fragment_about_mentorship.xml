@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:textAlignment="center"
     android:layout_marginTop="69dp"
-    tools:context=".presentation.mentorship.AboutMentorshipFragment">
+    tools:context=".presentation.mentorship.about.AboutMentorshipFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

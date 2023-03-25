@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.question.QuestionFragment">
+
+    <TextView
+        android:id="@+id/question_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:text="X."
+        android:textFontWeight="700"
+        android:textColor="#9960C3"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Может быть тут будет какой-нибудь вопрос?"
+        android:textFontWeight="700"
+        android:textColor="#9960C3"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/question_number"
+        app:layout_constraintTop_toTopOf="@+id/question_number" />
+
+    <RadioGroup
+        android:id="@+id/radioButtonGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/question_number"
+        app:layout_constraintTop_toBottomOf="@+id/question_text">
+
+        <RadioButton
+            android:id="@+id/answer1button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/mainColor"
+            android:checked="true"
+
+            android:text="1"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/answer2button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/mainColor"
+            android:text="2"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/answer3button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/mainColor"
+            android:text="3"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/answer4button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/mainColor"
+            android:text="4"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/prev_button"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/custom_button_white"
+        android:text="Назад"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/custom_button_white"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

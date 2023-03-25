@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.girls4girls.R
+import com.example.girls4girls.data.Mentor
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.ItemMentorVideoBinding
 
 class MentorVideoAdapter: ListAdapter<VideoBlog, MentorVideoAdapter.MentorVideoViewholder>(MentorVideoDiffUtil()) {
+
+    var onVideoClickListener: ((VideoBlog) -> Unit)? = null
 
     class MentorVideoDiffUtil: DiffUtil.ItemCallback<VideoBlog>(){
         override fun areItemsTheSame(oldItem: VideoBlog, newItem: VideoBlog): Boolean {
@@ -29,6 +32,10 @@ class MentorVideoAdapter: ListAdapter<VideoBlog, MentorVideoAdapter.MentorVideoV
             mentorVideoTitle.text = video.title
             mentorVideoDate.text = video.date
             mentorVideoViews.text = video.views.toString()
+
+            mentorVideoItem.setOnClickListener {
+                onVideoClickListener?.invoke(video)
+            }
         }
     }
 

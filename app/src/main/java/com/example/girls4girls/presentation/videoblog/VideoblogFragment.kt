@@ -29,6 +29,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.presentation.MainActivity
@@ -83,10 +84,12 @@ class VideoblogFragment : Fragment() {
             binding.player.release()
         }
 
+        (activity as MainActivity).supportActionBar
+
         val isLikedLD = MutableLiveData<Boolean>()
         isLikedLD.value = videoBlog.isLiked
 
-        binding.likeButton.setOnClickListener {
+        binding.videoLikeButton.setOnClickListener {
 
             videoBlog.isLiked = !videoBlog.isLiked
             isLikedLD.value = videoBlog.isLiked
@@ -97,9 +100,9 @@ class VideoblogFragment : Fragment() {
 
         isLikedLD.observe(viewLifecycleOwner){isLiked ->
             if (isLiked){
-                binding.likeButton.setImageResource(R.drawable.ic_heart_filled)
+                binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
             } else {
-                binding.likeButton.setImageResource(R.drawable.ic_heart)
+                binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
             }
         }
 
@@ -108,10 +111,23 @@ class VideoblogFragment : Fragment() {
 
     private fun setText() {
         binding.videoTitleTxt.text = videoBlog.title
-        binding.videoSpeakerTxt.text = videoBlog.speaker
+
         binding.videoViewsTxt.text = videoBlog.views.toString()
+        binding.videoDateTxt.text = videoBlog.date
+        binding.videoCategory.text = videoBlog.category
 
         binding.descriptionTxt.text = videoBlog.description
+        Glide
+            .with(binding.root)
+            .load(videoBlog.speaker.image)
+            .into(binding.videoSpeakerImage)
+        binding.videoSpeakerName.text = videoBlog.speaker.name
+
+        binding.speakerCard.setOnClickListener {
+            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.speaker)
+            findNavController().navigate(action)
+        }
+
     }
 
     private fun initPlayer() {
@@ -196,11 +212,6 @@ class VideoblogFragment : Fragment() {
             // Set video player to fullscreen height
             playerParams.height = ViewGroup.LayoutParams.MATCH_PARENT
 
-            // Remove margins
-            (playerParams as ViewGroup.MarginLayoutParams).marginStart = 0
-            (playerParams as ViewGroup.MarginLayoutParams).marginEnd = 0
-            (playerParams as ViewGroup.MarginLayoutParams).topMargin = 0
-
             binding.scrollView.visibility = View.GONE
 
 
@@ -213,11 +224,6 @@ class VideoblogFragment : Fragment() {
 
             // Set video player to normal height
             playerParams.height = viewModel.defaultHeight!!
-
-            // Return margins
-            (playerParams as ViewGroup.MarginLayoutParams).marginStart = toDP(32)
-            (playerParams as ViewGroup.MarginLayoutParams).marginEnd = toDP(32)
-            (playerParams as ViewGroup.MarginLayoutParams).topMargin = toDP(65)
 
             binding.scrollView.visibility = View.VISIBLE
         }
