@@ -17,8 +17,13 @@ class UpcomingTrainingAdapter : RecyclerView.Adapter<UpcomingTrainingAdapter.Vie
 
     private val trainingList = listOf(
         Training(
-            "Учеба или выйти замуж", "23.05.2023", "Исанова 3", "17:00", "26.04.2023", R.drawable.main_team_3,
-            R.string.training_description.toString()
+            "Учеба или выйти замуж",
+            "23.05.2023",
+            "Исанова 3",
+            "17:00",
+            "26.04.2023",
+            R.drawable.main_team_3,
+            "Открываем новые возможности к становлению лучшей версией себя"
         )
     )
 

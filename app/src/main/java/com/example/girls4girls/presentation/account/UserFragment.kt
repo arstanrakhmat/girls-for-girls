@@ -35,12 +35,15 @@ class UserFragment : Fragment() {
         setupObservers()
     }
 
-
     private fun setupObservers() {
         userViewModel.user.observe(requireActivity()) {
             with(binding) {
 //                userName.text = resources.getString(R.string.hello_registered_user)
                 userName.text = "Привет, ${it.firstName}!"
+                binding.btnLogOut.visibility = View.VISIBLE
+                binding.signInFromUser.visibility = View.GONE
+                binding.tvOr.visibility = View.GONE
+                binding.registerFromUser.visibility = View.GONE
             }
         }
 

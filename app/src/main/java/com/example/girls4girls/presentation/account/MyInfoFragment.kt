@@ -47,11 +47,18 @@ class MyInfoFragment : Fragment() {
                 etGmail.setText(it.email)
                 etPhoneNumber.setText(it.phoneNumber)
             }
+
+            binding.progressBar.visibility = View.GONE
         }
 
         userViewModel.errorMessage.observe(requireActivity()) {
             Log.d("profile", it)
-            Toast.makeText(requireContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "При загрузке данных произошла ошибка",
+                Toast.LENGTH_SHORT
+            ).show()
+            binding.progressBar.visibility = View.GONE
         }
     }
 

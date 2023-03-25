@@ -190,6 +190,7 @@
     <string name="speaker_info">Ментор, co-founder</string>
 
     <string name="register_from_user">Зарегистрироваться</string>
+    <string name="logout">Выйти из аккаунта</string>
     <string name="image_descr">image</string>
     <string name="change_user_image">Изменить фото</string>
     <string name="personal_data">Личные данные</string>

@@ -21,7 +21,7 @@ class UpcomingForumAdapter : RecyclerView.Adapter<UpcomingForumAdapter.ViewHolde
             "17:00",
             "26.04.2023",
             R.drawable.main_team_2,
-            R.string.training_description.toString()
+            "Открываем новые возможности к становлению лучшей версией себя"
         )
     )
 
