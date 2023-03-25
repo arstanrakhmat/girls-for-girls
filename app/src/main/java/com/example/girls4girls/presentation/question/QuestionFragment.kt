@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentQuestionBinding
 import com.example.girls4girls.databinding.FragmentQuizBinding
+import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment
 
 
@@ -22,7 +23,6 @@ class QuestionFragment : Fragment() {
     private var questionNumber = 0
     private lateinit var shuffledAnswers: MutableList<String>
     private val answers: MutableList<Boolean> = mutableListOf()
-    private var correctAnswers = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +41,7 @@ class QuestionFragment : Fragment() {
         binding.prevButton.setOnClickListener {
 
             questionNumber -= 1
-            answers.dropLast(1)
+            answers.removeLast()
             Log.d(VideoblogsListFragment.TAG, "questionNumber: ${questionNumber}")
             Log.d(VideoblogsListFragment.TAG, "questions.size: ${viewmodel.questions.size}")
 
@@ -76,7 +76,8 @@ class QuestionFragment : Fragment() {
 //                    "Congratulations!! You made $correctAnswers out of ${viewmodel.questions.size}",
 //                    Toast.LENGTH_SHORT).show()
                 val action = QuestionFragmentDirections.actionQuestionFragmentToResultFragment(
-                    answers.toBooleanArray()
+                    answers.filter { it == true }.size,
+                    answers.size
                 )
                 findNavController().navigate(action)
 
@@ -119,5 +120,7 @@ class QuestionFragment : Fragment() {
         binding.answer2button.text = shuffledAnswers[1]
         binding.answer3button.text = shuffledAnswers[2]
         binding.answer4button.text = shuffledAnswers[3]
+
+        Log.d(TAG, "setQuestion: ${answers}")
     }
 }

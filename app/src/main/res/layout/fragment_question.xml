@@ -79,30 +79,31 @@
 
     </RadioGroup>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/prev_button"
         android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/custom_button_white"
+        android:background="@drawable/custom_white_button"
         android:text="Назад"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="#662D91"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next_button"
         android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/custom_button_white"
+        android:background="@drawable/custom_white_button"
+        android:backgroundTint="#F5E3FF"
         android:text="Далее"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="#662D91"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
