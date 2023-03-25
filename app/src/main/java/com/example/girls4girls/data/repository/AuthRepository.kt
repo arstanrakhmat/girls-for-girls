@@ -11,7 +11,7 @@ class AuthRepository(private val api: Api) {
         )
     }
 
-    suspend fun userActivate(user: UserActivate): Response<UserRegistrationResponse> {
+    suspend fun userActivate(user: UserActivate): Response<UserActivateResponse> {
         return api.userActivate(
             user.email, user.phoneNumber, user.code
         )

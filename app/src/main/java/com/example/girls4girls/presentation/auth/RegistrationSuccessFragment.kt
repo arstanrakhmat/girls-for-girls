@@ -32,6 +32,7 @@ class RegistrationSuccessFragment : Fragment() {
     private fun clickListeners() {
         binding.btnMoveMainPage.setOnClickListener {
             startActivity(Intent(requireContext(), MainActivity::class.java))
+            activity?.finish()
         }
     }
 
