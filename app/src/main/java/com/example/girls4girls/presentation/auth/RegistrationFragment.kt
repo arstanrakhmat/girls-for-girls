@@ -44,8 +44,10 @@ class RegistrationFragment : Fragment() {
                     binding.etPassword.text.toString(),
                     binding.etName.text.toString(),
                     binding.etLastName.text.toString(),
-                    binding.etPhoneNumber.text.toString()
+                    "996${binding.etPhoneNumber.text.toString()}"
                 )
+                binding.btnContinueRegistration.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
             } else {
                 Toast.makeText(requireContext(), "!!!", Toast.LENGTH_LONG).show()
             }
@@ -66,7 +68,7 @@ class RegistrationFragment : Fragment() {
                         binding.etPassword.text.toString(),
                         binding.etName.text.toString(),
                         binding.etLastName.text.toString(),
-                        binding.etPhoneNumber.text.toString()
+                        "996${binding.etPhoneNumber.text.toString()}"
                     )
                 )
 
@@ -88,7 +90,7 @@ class RegistrationFragment : Fragment() {
     private fun areFieldsEmpty(): Boolean {
 
         val name = binding.etName.text.toString()
-        val phoneNumber = binding.etPhoneNumber.text.toString()
+        val phoneNumber = "996${binding.etPhoneNumber.text.toString()}"
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
         val repeatPassword = binding.etPasswordRepeat.text.toString()

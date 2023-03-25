@@ -43,6 +43,14 @@ class CodeFragment : Fragment() {
             findNavController().navigate(R.id.action_codeFragment_to_registrationSuccessFragment)
         }
 
+        authViewModel.resendOtp.observe(requireActivity()) {
+            Toast.makeText(
+                requireContext(),
+                "Вам был отправлен новый код потверждения",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         authViewModel.errorMessage.observe(requireActivity()) {
             binding.tvOtpError.visibility = View.VISIBLE
             Log.d("auth", it)
@@ -63,13 +71,13 @@ class CodeFragment : Fragment() {
 
         binding.btnSendCodeAgain.setOnClickListener {
             startTimer()
-//            authViewModel.userSignUp(
-//                args.userResend.email,
-//                args.userResend.password,
-//                args.userResend.firstName,
-//                args.userResend.lastName,
-//                args.userResend.phoneNumber
-//            )
+            authViewModel.resendOtp(
+                args.userResend.email,
+                args.userResend.password,
+                args.userResend.firstName,
+                args.userResend.lastName,
+                args.userResend.phoneNumber
+            )
         }
     }
 
@@ -78,11 +86,11 @@ class CodeFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 binding.btnSendCodeAgain.text = "Осталось: 00:${millisUntilFinished / 1000}"
                 binding.btnSendCodeAgain.isEnabled = false
-                binding.btnVerify.isEnabled = false
             }
 
             override fun onFinish() {
                 binding.btnSendCodeAgain.text = resources.getString(R.string.send_code_again)
+                binding.btnSendCodeAgain.isEnabled = true
             }
         }.start()
     }

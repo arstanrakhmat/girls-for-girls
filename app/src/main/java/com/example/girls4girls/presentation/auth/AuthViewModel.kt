@@ -13,6 +13,8 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
     val errorMessage = MutableLiveData<String>()
     val token = MutableLiveData<UserLoginResponse>()
 
+    val resendOtp = MutableLiveData<UserRegistrationResponse>()
+
     fun userSignUp(
         email: String,
         password: String,
@@ -39,6 +41,32 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
         }
     }
 
+    fun resendOtp(
+        email: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        phoneNumber: String
+    ) {
+        viewModelScope.launch {
+            val response = repository.userSignUp(
+                UserRegistration(
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                )
+            )
+
+            if (response.isSuccessful) {
+                resendOtp.postValue(response.body())
+            } else {
+                errorMessage.postValue(response.errorBody().toString())
+            }
+        }
+    }
+
     fun userActivate(
         email: String,
         phoneNumber: String,
@@ -55,28 +83,6 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
             if (response.isSuccessful) {
                 registered.postValue(response.body())
-            } else {
-                errorMessage.postValue(response.errorBody().toString())
-            }
-        }
-    }
-
-    fun userLogin(
-        email: String,
-        phoneNumber: String,
-        password: String
-    ) {
-        viewModelScope.launch {
-            val response = repository.userLogin(
-                UserLogin(
-                    email,
-                    phoneNumber,
-                    password
-                )
-            )
-
-            if (response.isSuccessful) {
-                token.postValue(response.body())
             } else {
                 errorMessage.postValue(response.errorBody().toString())
             }

@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/myInfoFragment"
         android:name="com.example.girls4girls.presentation.account.MyInfoFragment"
-        android:label="fragment_my_info"
+        android:label="@string/modify_account"
         tools:layout="@layout/fragment_my_info" />
     <fragment
         android:id="@+id/myApplicationsFragment"

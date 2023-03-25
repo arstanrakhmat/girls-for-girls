@@ -14,6 +14,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/btnApply"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -26,6 +27,7 @@
                     android:id="@+id/img"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
+                    android:contentDescription="@string/speaker_info"
                     android:scaleType="centerCrop"
                     android:src="@drawable/event_1"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +134,6 @@
                     android:textColor="#403A64"
                     android:textFontWeight="400"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/aboutTraining"
                     tools:targetApi="28" />
@@ -153,12 +154,16 @@
                     tools:targetApi="28" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSpeaker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/aboutLectors" />
+                    app:layout_constraintTop_toBottomOf="@id/aboutLectors"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_speaker" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -181,7 +186,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:targetApi="28" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

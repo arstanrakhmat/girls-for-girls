@@ -17,15 +17,20 @@ class PastTrainingsListAdapter : RecyclerView.Adapter<PastTrainingsListAdapter.V
 
     private val trainingList = listOf(
         Training(
-            "Title", "23.05.2023", "Bishkek", "17:00", "26.04.2023", R.drawable.main_team_4,
+            "Финансовая грамотность",
+            "23.05.2023",
+            "АУЦА, 4 этаж",
+            "17:00",
+            "26.04.2023",
+            R.drawable.main_team_4,
             R.string.training_description.toString()
         ),
         Training(
-            "Title2", "23.05.2023", "Bishkek", "17:00", "26.04.2023", R.drawable.main_team_3,
+            "Учимся програмировать", "23.05.2023", "Neobis coworking", "17:00", "26.04.2023", R.drawable.main_team_3,
             R.string.training_description.toString()
         ),
         Training(
-            "Title3", "23.05.2023", "Bishkek", "17:00", "26.04.2023", R.drawable.main_team_2,
+            "Жизнь после замужества", "23.05.2023", "Джал 17", "17:00", "26.04.2023", R.drawable.main_team_2,
             R.string.training_description.toString()
         ),
     )

@@ -2,11 +2,12 @@ package com.example.girls4girls.utils
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.widget.EditText
 import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun TextInputEditText.transformIntoDatePicker(
+fun EditText.transformIntoDatePicker(
     context: Context,
     format: String,
     maxDate: Date? = null
