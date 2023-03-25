@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/speakerImage"
+            android:layout_width="match_parent"
+            android:contentDescription="@string/instagram"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aikanysh_sydykova" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/speakerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/mulish_bold"
+        android:text="@string/sydykova_aikanysh_name"
+        android:textColor="#662D91"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="28" />
+
+    <TextView
+        android:id="@+id/speakerInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mulish"
+        android:text="@string/speaker_info"
+        android:textColor="#1C1B1F"
+        android:textFontWeight="400"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/speakerName"
+        tools:targetApi="28" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center_vertical"
+        android:src="@drawable/arrow_more"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:contentDescription="@string/instagram"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

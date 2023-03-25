@@ -1,19 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.forum.ForumFragment">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/ForumText"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Форум 1"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:context=".presentation.forum.ForumFragment">
+
+
+        <TextView
+            android:id="@+id/tvUpcomingTrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/mulish_bold"
+            android:text="@string/upcoming_forums"
+            android:textColor="#403A64"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="28" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUpcomingForums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUpcomingTrain" />
+
+        <ImageView
+            android:id="@+id/ivIllustration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/past_forums"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/training_screen_ilustration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvUpcomingForums" />
+
+        <TextView
+            android:id="@+id/tvAfterIllustration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish"
+            android:text="@string/training_text"
+            android:textAlignment="center"
+            android:textColor="#403A64"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivIllustration"
+            tools:targetApi="28" />
+
+        <TextView
+            android:id="@+id/tvPastTrainings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/mulish_bold"
+            android:text="@string/past_forums"
+            android:textColor="#403A64"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAfterIllustration"
+            tools:targetApi="28" />
+
+        <LinearLayout
+            android:id="@+id/btnShowPastForums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAfterIllustration">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="400"
+                android:fontFamily="@font/mulish"
+                android:text="@string/post_trainings_all_list"
+                android:textColor="#403A64"
+                android:textSize="14sp"
+                tools:targetApi="28" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:contentDescription="@string/past_forums"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_all_past_trainings_list" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPastForums"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="55dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnShowPastForums"
+            tools:listitem="@layout/item_past_training" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

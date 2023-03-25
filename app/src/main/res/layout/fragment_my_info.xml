@@ -1,13 +1,452 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.account.MyInfoFragment">
+    android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/btnUpdateUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.account.MyInfoFragment">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_image_view"
+                android:contentDescription="@string/image_descr"
+                android:src="@drawable/user_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btnChangeUserImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/mulish_bold"
+                android:text="@string/change_user_image"
+                android:textColor="#662D91"
+                android:textFontWeight="700"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_image"
+                tools:targetApi="28" />
+
+            <TextView
+                android:id="@+id/myData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/mulish_bold"
+                android:text="@string/personal_data"
+                android:textColor="#AFA9D0"
+                android:textFontWeight="700"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnChangeUserImage"
+                tools:targetApi="28" />
+
+            <LinearLayout
+                android:id="@+id/llName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myData">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/name"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:fontFamily="@font/mulish"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llName">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/surname"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:fontFamily="@font/mulish"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llLastName">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/gender"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/mulish"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/choose_gender"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llGender">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/birthday"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etBirtday"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/mulish"
+                    android:hint="@string/input_birthday"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llBirthday">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/region"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/mulish"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/choose_region"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/dataForLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/mulish_bold"
+                android:text="@string/data_for_login"
+                android:textColor="#AFA9D0"
+                android:textFontWeight="700"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llRegion"
+                tools:targetApi="28" />
+
+            <LinearLayout
+                android:id="@+id/llPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dataForLogin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/phone_number"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:fontFamily="@font/mulish"
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/choose_region"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llGmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llPhoneNumber">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/email"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <EditText
+                    android:id="@+id/etGmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edit_text_user_edit"
+                    android:fontFamily="@font/mulish"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/choose_region"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="28" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChangerPasswordText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llGmail">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish_bold"
+                    android:text="@string/password"
+                    android:textColor="#662D91"
+                    android:textFontWeight="700"
+                    android:textSize="12sp"
+                    tools:targetApi="28" />
+
+                <LinearLayout
+                    android:id="@+id/llChangerPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="25dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llWatchedVideos">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:contentDescription="@string/image_descr"
+                        android:src="@drawable/change_password_icon" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mulish"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="@string/change_password"
+                        android:textColor="#403A64"
+                        android:textFontWeight="500"
+                        android:textSize="16sp"
+                        tools:targetApi="28" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:contentDescription="@string/image_descr"
+                        android:paddingTop="3dp"
+                        android:src="@drawable/arrow_more" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUpdateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button_white"
+        android:fontFamily="@font/mulish"
+        android:text="@string/update_user"
+        android:textAllCaps="false"
+        android:textColor="#662D91"
+        android:textFontWeight="600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="28" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

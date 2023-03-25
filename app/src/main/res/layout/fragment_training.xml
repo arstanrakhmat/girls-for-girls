@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:contentDescription="@string/past_forums"
             android:src="@drawable/training_screen_ilustration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
+                android:contentDescription="@string/past_forums"
                 android:paddingTop="5dp"
                 android:src="@drawable/ic_all_past_trainings_list" />
         </LinearLayout>

@@ -119,6 +119,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/btnForgotPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -141,6 +142,14 @@
         android:textAllCaps="false"
         android:textColor="#662D91" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:visibility="gone" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -162,12 +171,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:contentDescription="@string/instagram"
             android:src="@drawable/facebook_icon" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:contentDescription="@string/instagram"
             android:src="@drawable/google_icon" />
     </LinearLayout>
 
