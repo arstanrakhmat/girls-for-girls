@@ -75,42 +75,42 @@ class LoginFragment : Fragment() {
     private fun loginValidation(login: String) {
         if (isLoginEmail(login)) {
             if (isGmail(login)) {
-                Toast.makeText(
-                    requireContext(),
-                    "Valid login",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Valid login",
+//                    Toast.LENGTH_SHORT
+//                ).show()
 
                 authViewModel.userLoginEmail(login, binding.etPassword.text.toString())
                 showProgressBar()
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Not appropriate email",
+                    "Неправильно ввели данные",
                     Toast.LENGTH_SHORT
                 ).show()
             }
 
         } else if (isPhoneNumber(login)) {
             if (isKgNumber(login)) {
-                Toast.makeText(
-                    requireContext(),
-                    "Valid number",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Valid number",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 authViewModel.userLoginPhoneNumber(login, binding.etPassword.text.toString())
                 showProgressBar()
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "996 must have",
+                    "Номер должен начинаться с 996",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         } else {
             Toast.makeText(
                 requireContext(),
-                "Not appropriate data",
+                "Неправильно ввели данные",
                 Toast.LENGTH_SHORT
             ).show()
         }
