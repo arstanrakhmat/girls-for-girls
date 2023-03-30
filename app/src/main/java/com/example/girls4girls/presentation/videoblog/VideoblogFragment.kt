@@ -84,8 +84,6 @@ class VideoblogFragment : Fragment() {
             binding.player.release()
         }
 
-        (activity as MainActivity).supportActionBar
-
         val isLikedLD = MutableLiveData<Boolean>()
         isLikedLD.value = videoBlog.isLiked
 
@@ -114,19 +112,19 @@ class VideoblogFragment : Fragment() {
 
         binding.videoViewsTxt.text = videoBlog.views.toString()
         binding.videoDateTxt.text = videoBlog.date
-        binding.videoCategory.text = videoBlog.category
+//        binding.videoCategory.text = videoBlog.category
 
         binding.descriptionTxt.text = videoBlog.description
-        Glide
-            .with(binding.root)
-            .load(videoBlog.speaker.image)
-            .into(binding.videoSpeakerImage)
-        binding.videoSpeakerName.text = videoBlog.speaker.name
-
-        binding.speakerCard.setOnClickListener {
-            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.speaker)
-            findNavController().navigate(action)
-        }
+//        Glide
+//            .with(binding.root)
+//            .load(videoBlog.speaker.image)
+//            .into(binding.videoSpeakerImage)
+//        binding.videoSpeakerName.text = videoBlog.speaker.name
+//
+//        binding.speakerCard.setOnClickListener {
+//            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.speaker)
+//            findNavController().navigate(action)
+//        }
 
     }
 
@@ -147,7 +145,7 @@ class VideoblogFragment : Fragment() {
 
 
                 val link = videoBlog.link
-                val videoID = link.substring(link.indexOf("=")+1)
+                val videoID = link.substring(30)
                 youTubePlayer.loadVideo(videoID,0F)
             }
 

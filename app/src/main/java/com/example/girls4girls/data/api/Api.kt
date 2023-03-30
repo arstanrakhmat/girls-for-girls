@@ -1,5 +1,7 @@
 package com.example.girls4girls.data.api
 
+import com.example.girls4girls.data.VideoBlog
+import com.example.girls4girls.data.VideosList
 import com.example.girls4girls.data.model.*
 import retrofit2.Response
 import retrofit2.http.Field
@@ -75,5 +77,8 @@ interface Api {
         @Header("Authorization") token: String?,
         @Field("newPassword") newPassword: String
     ): Response<Message>
+
+    @GET("video-blog")
+    suspend fun getVideos(): Response<VideosList>
 
 }

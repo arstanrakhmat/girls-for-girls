@@ -22,10 +22,11 @@ import com.example.girls4girls.databinding.FragmentVideoblogsListBinding
 import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private val viewModel: VideoblogsListViewModel by viewModels()
+    private val viewModel by viewModel<VideoblogsListViewModel>()
     private lateinit var binding: FragmentVideoblogsListBinding
 
     private lateinit var videoAdapter: VideoAdapter
@@ -41,98 +42,89 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadVideos()
+
         setAdapter()
         
         binding.searchView.setOnQueryTextListener(this)
 
         binding.categoryButton.setOnClickListener { view ->
-//            showPopUpMenu(view)
-            showBottomSheet()
+//            showBottomSheet()
         }
-        
-        videoAdapter.modifyList(viewModel.videoList)
 
-        binding.videosTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position){
-                    0 -> videoAdapter.modifyList(viewModel.videoList)
-                    1 -> videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.isLiked
-                    })
-                    2 -> videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.isWatched
-                    })
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-
-        })
+//        setTabLayout()
 
     }
 
-    private fun showBottomSheet() {
-        val binding = BottomSheetCategoriesBinding.inflate(LayoutInflater.from(context))
-        val dialog = BottomSheetDialog(requireContext())
-        dialog.setCancelable(false)
-        dialog.setContentView(binding.root)
+    private fun loadVideos() {
 
+        binding.videosListProgressBar.visibility = View.VISIBLE
 
-        val categoryList = listOf(binding.category1,
-            binding.category2,
-            binding.category3,
-            binding.category4,
-            binding.category5)
-
-        binding.categoryAll.setOnClickListener {
-            videoAdapter.modifyList(viewModel.videoList)
-            dialog.dismiss()
+        viewModel.getVideos()
+        viewModel._videosList.observe(requireActivity()){
+            videoAdapter.modifyList(it)
+            binding.videosListProgressBar.visibility = View.GONE
         }
-
-        for (category in categoryList){
-            category.setOnClickListener {
-                videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                    videoBlog.category == category.text
-                })
-                dialog.dismiss()
-            }
-        }
-
-        binding.closeBottomSheetButton.setOnClickListener {
-            dialog.dismiss()
-        }
-
-
-        dialog.show()
     }
 
-    private fun showPopUpMenu(view: View) {
-        val popupMenu = PopupMenu(requireContext(), view)
+//    private fun setTabLayout() {
+//        binding.videosTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                when (tab?.position){
+//                    0 -> videoAdapter.modifyList(viewModel._videosList)
+//                    1 -> videoAdapter.modifyList(viewModel._videosList.filter { videoBlog ->
+//                        videoBlog.isLiked
+//                    })
+//                    2 -> videoAdapter.modifyList(viewModel._videosList.filter { videoBlog ->
+//                        videoBlog.isWatched
+//                    })
+//                }
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//            }
+//
+//        })
+//    }
 
-        popupMenu.inflate(R.menu.category_popup_menu)
+//    private fun showBottomSheet() {
+//        val binding = BottomSheetCategoriesBinding.inflate(LayoutInflater.from(context))
+//        val dialog = BottomSheetDialog(requireContext())
+//        dialog.setCancelable(false)
+//        dialog.setContentView(binding.root)
+//
+//
+//        val categoryList = listOf(binding.category1,
+//            binding.category2,
+//            binding.category3,
+//            binding.category4,
+//            binding.category5)
+//
+//        binding.categoryAll.setOnClickListener {
+//            videoAdapter.modifyList(viewModel._videosList)
+//            dialog.dismiss()
+//        }
+//
+//        for (category in categoryList){
+//            category.setOnClickListener {
+//                videoAdapter.modifyList(viewModel._videosList.filter { videoBlog ->
+//                    videoBlog.category == category.text
+//                })
+//                dialog.dismiss()
+//            }
+//        }
+//
+//        binding.closeBottomSheetButton.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//
+//
+//        dialog.show()
+//    }
 
-        popupMenu.setOnMenuItemClickListener { category ->
-            when(category.itemId){
-                R.id.category1,
-                R.id.category2,
-                R.id.category3,
-                R.id.category4,
-                R.id.category5 -> {
-                    videoAdapter.modifyList(viewModel.videoList.filter { videoBlog ->
-                        videoBlog.category == category.title
-                    })
-                    true
-                }
-                else -> false
-            }
-        }
-
-        popupMenu.show()
-    }
 
     private fun setAdapter() {
         videoAdapter = VideoAdapter()
