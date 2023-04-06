@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Question(
-    val text: String,
-    val answers: List<String>
+data class Answer (
+    val question: Question,
+    val chosenId: Int,
+    val isCorrect: Boolean
 ): Parcelable

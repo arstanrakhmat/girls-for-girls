@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
+import com.example.girls4girls.data.Answer
+import com.example.girls4girls.data.Question
 import com.example.girls4girls.databinding.FragmentQuestionBinding
 import com.example.girls4girls.databinding.FragmentQuizBinding
 import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
@@ -22,7 +24,7 @@ class QuestionFragment : Fragment() {
     private val viewmodel by viewModels<QuestionViewModel>()
     private var questionNumber = 0
     private lateinit var shuffledAnswers: MutableList<String>
-    private val answers: MutableList<Boolean> = mutableListOf()
+    private val answers: MutableList<Answer> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,16 +59,27 @@ class QuestionFragment : Fragment() {
             val checkId = binding.radioButtonGroup.checkedRadioButtonId
 
             var answerIndex = 0
+            var checkNumber = 0
             when (checkId){
-                R.id.answer2button -> answerIndex = 1
-                R.id.answer3button -> answerIndex = 2
-                R.id.answer4button -> answerIndex = 3
+                R.id.answer2button -> { answerIndex = 1; checkNumber = 1 }
+                R.id.answer3button -> {answerIndex = 2; checkNumber = 2}
+                R.id.answer4button -> {answerIndex = 3; checkNumber = 3}
             }
 
+            val question = Question(
+                binding.questionText.text.toString(),
+                listOf(
+                    binding.answer1button.text.toString(),
+                    binding.answer2button.text.toString(),
+                    binding.answer3button.text.toString(),
+                    binding.answer4button.text.toString(),
+                )
+            )
+
             if (viewmodel.questions[questionNumber].answers[0] != shuffledAnswers[answerIndex]){
-                answers.add(false)
+                answers.add(Answer(question, checkNumber, false ))
             } else {
-                answers.add(true)
+                answers.add(Answer(question, checkNumber, true ))
             }
 
 
@@ -76,8 +89,7 @@ class QuestionFragment : Fragment() {
 //                    "Congratulations!! You made $correctAnswers out of ${viewmodel.questions.size}",
 //                    Toast.LENGTH_SHORT).show()
                 val action = QuestionFragmentDirections.actionQuestionFragmentToResultFragment(
-                    answers.filter { it == true }.size,
-                    answers.size
+                    answers.toTypedArray()
                 )
                 findNavController().navigate(action)
 

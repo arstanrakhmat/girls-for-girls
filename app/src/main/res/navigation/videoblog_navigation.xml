@@ -64,11 +64,20 @@
         android:name="com.example.girls4girls.presentation.question.ResultFragment"
         android:label="Тест"
         tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
         <argument
-            android:name="correctAnswers"
-            app:argType="integer" />
+            android:name="answers"
+            app:argType="com.example.girls4girls.data.Answer[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.girls4girls.presentation.question.ReviewFragment"
+        android:label="fragment_review"
+        tools:layout="@layout/fragment_review" >
         <argument
-            android:name="questionsNumber"
-            app:argType="integer" />
+            android:name="answers"
+            app:argType="com.example.girls4girls.data.Answer[]" />
     </fragment>
 </navigation>
