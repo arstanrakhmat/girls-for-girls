@@ -83,6 +83,10 @@ class CodeFragment : Fragment() {
                 args.userResend.phoneNumber
             )
         }
+
+        binding.toolbar.back.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun startTimer() {
@@ -101,7 +105,7 @@ class CodeFragment : Fragment() {
 
     private fun setupToolbar() {
         binding.toolbar.userAccount.visibility = View.GONE
-        binding.toolbar.back.visibility = View.GONE
+//        binding.toolbar.back.visibility = View.GONE
         binding.toolbar.screenName.text = resources.getString(R.string.verification)
     }
 

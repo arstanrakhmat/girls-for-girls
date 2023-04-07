@@ -52,11 +52,15 @@ class RegistrationFragment : Fragment() {
                 Toast.makeText(requireContext(), "!!!", Toast.LENGTH_LONG).show()
             }
         }
+
+        binding.toolbar.back.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupToolbar() {
         binding.toolbar.userAccount.visibility = View.GONE
-        binding.toolbar.back.visibility = View.GONE
+//        binding.toolbar.back.visibility = View.GONE
     }
 
     private fun setupObservers() {
