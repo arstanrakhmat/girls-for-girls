@@ -1,13 +1,12 @@
 package com.example.girls4girls.presentation.videoblogsList
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextMenu
+import android.util.TypedValue
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
@@ -15,11 +14,13 @@ import com.example.girls4girls.R
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
+import com.example.girls4girls.data.Category
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.BottomSheetCategoriesBinding
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.databinding.FragmentVideoblogsListBinding
 import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,6 +31,15 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentVideoblogsListBinding
 
     private lateinit var videoAdapter: VideoAdapter
+    private val categories = listOf(
+        Category("Health"),
+        Category("Здоровье"),
+        Category("Образование"),
+        Category("Кухня")
+    )
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +52,14 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadVideos()
-
         setAdapter()
+
+        loadVideos()
         
         binding.searchView.setOnQueryTextListener(this)
 
         binding.categoryButton.setOnClickListener { view ->
-//            showBottomSheet()
+            showBottomSheet()
         }
 
 //        setTabLayout()
@@ -90,19 +100,28 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 //        })
 //    }
 
-//    private fun showBottomSheet() {
-//        val binding = BottomSheetCategoriesBinding.inflate(LayoutInflater.from(context))
-//        val dialog = BottomSheetDialog(requireContext())
-//        dialog.setCancelable(false)
-//        dialog.setContentView(binding.root)
-//
-//
-//        val categoryList = listOf(binding.category1,
-//            binding.category2,
-//            binding.category3,
-//            binding.category4,
-//            binding.category5)
-//
+    private fun showBottomSheet() {
+        val binding = BottomSheetCategoriesBinding.inflate(LayoutInflater.from(context))
+        val dialog = BottomSheetDialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setContentView(binding.root)
+
+        val categoryAdapter = CategoryAdapter()
+        binding.categoryList.adapter = categoryAdapter
+        categoryAdapter.submitList(categories)
+        categoryAdapter.onCategoryClickListener = {category->
+            viewModel._videosList.observe(requireActivity()){videosList ->
+
+                videoAdapter.modifyList(videosList.filter { videoBlog ->
+                    videoBlog.category.name == category.name
+                })
+            }
+
+
+            dialog.dismiss()
+        }
+
+
 //        binding.categoryAll.setOnClickListener {
 //            videoAdapter.modifyList(viewModel._videosList)
 //            dialog.dismiss()
@@ -116,14 +135,9 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 //                dialog.dismiss()
 //            }
 //        }
-//
-//        binding.closeBottomSheetButton.setOnClickListener {
-//            dialog.dismiss()
-//        }
-//
-//
-//        dialog.show()
-//    }
+
+        dialog.show()
+    }
 
 
     private fun setAdapter() {

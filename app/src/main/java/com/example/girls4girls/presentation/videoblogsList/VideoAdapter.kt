@@ -23,7 +23,7 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
         fun bind(videoBlog: VideoBlog) = with(binding){
 
             videoTitle.text = videoBlog.title
-//            videoSpeaker.text = videoBlog.speaker.name
+            videoSpeaker.text = videoBlog.lecturerName
             videoViews.text = videoBlog.views.toString()
 
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")

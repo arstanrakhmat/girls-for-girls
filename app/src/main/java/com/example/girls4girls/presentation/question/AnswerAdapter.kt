@@ -42,9 +42,6 @@ class AnswerAdapter: ListAdapter<Answer, AnswerAdapter.AnswerViewHolder>(AnswerD
             for (variantId in 0..3){
                 answerVariantsList[variantId].text = answer.question.answers[variantId]
 
-                Log.d(TAG, "variantId: $variantId")
-                Log.d(TAG, "chosenId: ${answer.chosenId}")
-
                 if (variantId == answer.chosenId){
                     val isCorrectColor = if (answer.isCorrect){
                         Color.parseColor("#E6F4EA")

@@ -59,11 +59,10 @@ class QuestionFragment : Fragment() {
             val checkId = binding.radioButtonGroup.checkedRadioButtonId
 
             var answerIndex = 0
-            var checkNumber = 0
             when (checkId){
-                R.id.answer2button -> { answerIndex = 1; checkNumber = 1 }
-                R.id.answer3button -> {answerIndex = 2; checkNumber = 2}
-                R.id.answer4button -> {answerIndex = 3; checkNumber = 3}
+                R.id.answer2button ->  answerIndex = 1
+                R.id.answer3button -> answerIndex = 2
+                R.id.answer4button -> answerIndex = 3
             }
 
             val question = Question(
@@ -77,9 +76,9 @@ class QuestionFragment : Fragment() {
             )
 
             if (viewmodel.questions[questionNumber].answers[0] != shuffledAnswers[answerIndex]){
-                answers.add(Answer(question, checkNumber, false ))
+                answers.add(Answer(question, answerIndex, false ))
             } else {
-                answers.add(Answer(question, checkNumber, true ))
+                answers.add(Answer(question, answerIndex, true ))
             }
 
 

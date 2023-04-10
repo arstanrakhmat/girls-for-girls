@@ -21,10 +21,8 @@ data class VideoBlog(
     var isLiked: Boolean = false,
     @SerializedName("videoUrl")
     val link: String,
-
-
-
-
-
-
+    val lecturerName: String,
+    val lecturerInfo: String,
+    val lecturerImage: Lecturer,
+    val category: Category
 ): Parcelable

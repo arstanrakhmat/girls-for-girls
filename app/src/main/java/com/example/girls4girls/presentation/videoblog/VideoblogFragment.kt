@@ -42,6 +42,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
+import java.text.SimpleDateFormat
+import java.util.*
 
 class VideoblogFragment : Fragment() {
 
@@ -92,9 +94,11 @@ class VideoblogFragment : Fragment() {
             videoBlog.isLiked = !videoBlog.isLiked
             isLikedLD.value = videoBlog.isLiked
 
-            Log.d(TAG, "onViewCreated: ${videoBlog.isLiked}")
+
 
         }
+
+
 
         isLikedLD.observe(viewLifecycleOwner){isLiked ->
             if (isLiked){
@@ -111,15 +115,20 @@ class VideoblogFragment : Fragment() {
         binding.videoTitleTxt.text = videoBlog.title
 
         binding.videoViewsTxt.text = videoBlog.views.toString()
-        binding.videoDateTxt.text = videoBlog.date
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        val outputFormat = SimpleDateFormat("dd MMMM, yyyy", Locale("ky"))
+        val inputDate = inputFormat.parse(videoBlog.date)
+        val outputDate = outputFormat.format(inputDate)
+        binding.videoDateTxt.text = outputDate
 //        binding.videoCategory.text = videoBlog.category
 
         binding.descriptionTxt.text = videoBlog.description
-//        Glide
-//            .with(binding.root)
-//            .load(videoBlog.speaker.image)
-//            .into(binding.videoSpeakerImage)
-//        binding.videoSpeakerName.text = videoBlog.speaker.name
+        Glide
+            .with(binding.root)
+            .load(videoBlog.lecturerImage.url)
+            .into(binding.videoSpeakerImage)
+        binding.videoSpeakerName.text = videoBlog.lecturerName
+        binding.videoSpeakerPosition.text = videoBlog.lecturerInfo
 //
 //        binding.speakerCard.setOnClickListener {
 //            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.speaker)
@@ -145,8 +154,12 @@ class VideoblogFragment : Fragment() {
 
 
                 val link = videoBlog.link
-                val videoID = link.substring(30)
-                youTubePlayer.loadVideo(videoID,0F)
+                val videoID = getYoutubeVideoId(link)
+                if (videoID != null){
+                    youTubePlayer.loadVideo(videoID,0F)
+                }
+                Log.d(TAG, "videoID: ${videoID}")
+
             }
 
             override fun onStateChange(
@@ -235,11 +248,25 @@ class VideoblogFragment : Fragment() {
         
     }
 
-    private fun toDP(pixel: Int): Int{
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-            pixel.toFloat(),
-            context?.resources?.displayMetrics).toInt()
+    fun getYoutubeVideoId(url: String): String? {
+        // Extract video ID from "https://www.youtube.com/watch?v=xxxxxx" format
+        val watchUrlRegex = ".*youtube\\.com\\/watch\\?v=([\\w-]+).*"
+        val watchUrlMatcher = Regex(watchUrlRegex).find(url)
+        if (watchUrlMatcher != null) {
+            return watchUrlMatcher.groupValues[1]
+        }
+
+        // Extract video ID from "https://youtu.be/xxxxxx" format
+        val shortUrlRegex = ".*youtu\\.be\\/([\\w-]+).*"
+        val shortUrlMatcher = Regex(shortUrlRegex).find(url)
+        if (shortUrlMatcher != null) {
+            return shortUrlMatcher.groupValues[1]
+        }
+
+        // URL is not a valid YouTube video URL
+        return null
     }
+
 
     companion object {
         val TAG = "Chura"
