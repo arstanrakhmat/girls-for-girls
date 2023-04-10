@@ -7,33 +7,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.girls4girls.R
-import com.example.girls4girls.data.repository.Training
+import com.example.girls4girls.data.model.Data
 import com.example.girls4girls.databinding.ItemPastTrainingBinding
+import com.example.girls4girls.utils.toFormattedDate
 
 class TrainingAdapter : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemPastTrainingBinding
-
-    private val trainingList = listOf(
-        Training(
-            "Финансовая грамотность",
-            "23.05.2023",
-            "АУЦА, 4 этаж",
-            "17:00",
-            "26.04.2023",
-            R.drawable.main_team_4,
-            R.string.training_description.toString()
-        ),
-        Training(
-            "Учимся програмировать", "23.05.2023", "Neobis coworking", "17:00", "26.04.2023", R.drawable.main_team_3,
-            R.string.training_description.toString()
-        ),
-        Training(
-            "Жизнь после замужества", "23.05.2023", "Джал 17", "17:00", "26.04.2023", R.drawable.main_team_2,
-            R.string.training_description.toString()
-        ),
-    )
 
     /**
      * DiffUtil -> calculates differences between two lists and enables us to only update
@@ -46,17 +26,17 @@ class TrainingAdapter : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private val differCallback = object : DiffUtil.ItemCallback<Training>() {
-        override fun areItemsTheSame(oldItem: Training, newItem: Training): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<Data>() {
+        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
             return oldItem.title == newItem.title
         }
 
-        override fun areContentsTheSame(oldItem: Training, newItem: Training): Boolean {
+        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
             return oldItem == newItem
         }
     }
 
-    private val differ = AsyncListDiffer(this, differCallback)
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemPastTrainingBinding.inflate(
@@ -67,26 +47,26 @@ class TrainingAdapter : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-//        return differ.currentList.size
-        return trainingList.size
+        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val training = trainingList[position]
+        val training = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(training.image).centerCrop().into(binding.ivTrainingImagePt)
+            Glide.with(this).load(training.images[0].url).centerCrop()
+                .into(binding.ivTrainingImagePt)
             binding.tvTrainingTitlePt.text = training.title
-            binding.tvDatePt.text = training.date
-            binding.tvLocationPt.text = training.location
-            setOnClickListener {
-                onItemClickListener?.let { it(training) }
-            }
+            binding.tvDatePt.text = training.eventDate.toFormattedDate()
+            binding.tvLocationPt.text = training.address
+//            setOnClickListener {
+//                onItemClickListener?.let { it(training) }
+//            }
         }
     }
 
-    private var onItemClickListener: ((Training) -> Unit)? = null
+    private var onItemClickListener: ((Data) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Training) -> Unit) {
+    fun setOnItemClickListener(listener: (Data) -> Unit) {
         onItemClickListener = listener
     }
 }

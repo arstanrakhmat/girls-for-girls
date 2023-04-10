@@ -46,12 +46,12 @@
         android:id="@+id/trainingArticleFragment"
         android:name="com.example.girls4girls.presentation.training.TrainingArticleFragment"
         android:label="@string/training_title" >
-        <argument
-            android:name="training"
-            app:argType="com.example.girls4girls.data.repository.Training" />
         <action
             android:id="@+id/action_trainingArticleFragment_to_trainingApplyRequirementsFragment"
             app:destination="@id/trainingApplyRequirementsFragment" />
+        <argument
+            android:name="training"
+            app:argType="com.example.girls4girls.data.model.Data" />
     </fragment>
     <fragment
         android:id="@+id/trainingApplyRequirementsFragment"
