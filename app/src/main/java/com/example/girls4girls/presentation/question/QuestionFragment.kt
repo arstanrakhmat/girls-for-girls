@@ -75,10 +75,10 @@ class QuestionFragment : Fragment() {
                 )
             )
 
-            if (viewmodel.questions[questionNumber].answers[0] != shuffledAnswers[answerIndex]){
-                answers.add(Answer(question, answerIndex, false ))
-            } else {
+            if (viewmodel.questions[questionNumber].answers[0] == shuffledAnswers[answerIndex]){
                 answers.add(Answer(question, answerIndex, true ))
+            } else {
+                answers.add(Answer(question, answerIndex, false ))
             }
 
 

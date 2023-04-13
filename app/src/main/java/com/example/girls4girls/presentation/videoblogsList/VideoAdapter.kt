@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.girls4girls.R
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.ItemVideoblogBinding
+import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,12 +28,12 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
             videoViews.text = videoBlog.views.toString()
 
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            val outputFormat = SimpleDateFormat("dd MMMM, yyyy", Locale("ky"))
+            val outputFormat = SimpleDateFormat("dd/MM/yyyy")
             val inputDate = inputFormat.parse(videoBlog.date)
             val outputDate = outputFormat.format(inputDate)
             videoDate.text = outputDate
 
-            if (videoBlog.isLiked){
+            if (videoBlog.isLiked == true){
                 likeButton.setImageResource(R.drawable.ic_heart_filled)
             } else {
                 likeButton.setImageResource(R.drawable.ic_heart)
@@ -68,6 +69,7 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
         } else {
             list.addAll(unfilteredList)
         }
+        Log.d(TAG, "filter: ${list}")
 
         submitList(list)
     }

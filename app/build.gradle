@@ -96,4 +96,7 @@ dependencies {
 
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
+    // MaterialIntroView
+//    implementation 'com.github.iammert:MaterialIntroView:1.5.2'
+
 }

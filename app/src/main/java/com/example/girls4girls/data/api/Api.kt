@@ -1,15 +1,9 @@
 package com.example.girls4girls.data.api
 
-import com.example.girls4girls.data.VideoBlog
-import com.example.girls4girls.data.VideosList
+import com.example.girls4girls.data.*
 import com.example.girls4girls.data.model.*
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
 
@@ -80,5 +74,26 @@ interface Api {
 
     @GET("video-blog")
     suspend fun getVideos(): Response<VideosList>
+
+    @GET("categories")
+    suspend fun getCategories(): Response<CategoryList>
+
+    @GET("like")
+    suspend fun getLikedVideos(
+        @Header("Authorization") token: String?
+    ): Response<List<VideoBlogResponse>>
+
+    @FormUrlEncoded
+    @POST("like/{blogId}")
+    suspend fun likeVideo(
+        @Header("Authorization") token: String?,
+        @Field("blogId") blogId: Long
+    ): Response<Long>
+
+    @DELETE("like/{blogId}")
+    suspend fun unlikeVideo(
+        @Header("Authorization") token: String?,
+        @Path("blogId") blogId: Long
+    ): Response<Long>
 
 }

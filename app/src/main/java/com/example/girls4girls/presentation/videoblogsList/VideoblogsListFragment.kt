@@ -15,6 +15,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
 import com.example.girls4girls.data.Category
+import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.databinding.BottomSheetCategoriesBinding
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
@@ -23,23 +24,16 @@ import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companio
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val viewModel by viewModel<VideoblogsListViewModel>()
     private lateinit var binding: FragmentVideoblogsListBinding
+    private val sharedPreferences by inject<CustomPreferences>()
 
     private lateinit var videoAdapter: VideoAdapter
-    private val categories = listOf(
-        Category("Health"),
-        Category("Здоровье"),
-        Category("Образование"),
-        Category("Кухня")
-    )
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +56,7 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
             showBottomSheet()
         }
 
-//        setTabLayout()
+        setTabLayout()
 
     }
 
@@ -77,28 +71,33 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
-//    private fun setTabLayout() {
-//        binding.videosTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                when (tab?.position){
-//                    0 -> videoAdapter.modifyList(viewModel._videosList)
-//                    1 -> videoAdapter.modifyList(viewModel._videosList.filter { videoBlog ->
-//                        videoBlog.isLiked
-//                    })
-//                    2 -> videoAdapter.modifyList(viewModel._videosList.filter { videoBlog ->
-//                        videoBlog.isWatched
-//                    })
-//                }
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//            }
-//
-//        })
-//    }
+    private fun setTabLayout() {
+        binding.videosTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val chosenTypeVideosList = when (tab?.position){
+                    0 -> viewModel._videosList
+                    1 -> {
+                        viewModel.getLikedVideos("Bearer ${sharedPreferences.fetchToken()}")
+                        viewModel._likedVideosList
+                    }
+                    else -> {viewModel._videosList}
+                }
+
+                chosenTypeVideosList.observe(requireActivity()){videos ->
+                    videoAdapter.submitList(videos)
+                    Log.d(TAG, "chosenTypeVideosList: ${videos}")
+                }
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+        })
+    }
 
     private fun showBottomSheet() {
         val binding = BottomSheetCategoriesBinding.inflate(LayoutInflater.from(context))
@@ -106,9 +105,15 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         dialog.setCancelable(true)
         dialog.setContentView(binding.root)
 
+        viewModel.getCategories()
+
         val categoryAdapter = CategoryAdapter()
         binding.categoryList.adapter = categoryAdapter
-        categoryAdapter.submitList(categories)
+        viewModel._categories.observe(requireActivity()){categories ->
+            categoryAdapter.submitList(categories)
+            Log.d(TAG, "showBottomSheet: ${categories}")
+        }
+
         categoryAdapter.onCategoryClickListener = {category->
             viewModel._videosList.observe(requireActivity()){videosList ->
 

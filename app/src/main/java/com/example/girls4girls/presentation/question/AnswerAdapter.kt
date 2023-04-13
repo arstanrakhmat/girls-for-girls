@@ -36,6 +36,12 @@ class AnswerAdapter: ListAdapter<Answer, AnswerAdapter.AnswerViewHolder>(AnswerD
                 answerVariant3Card,
                 answerVariant4Card)
 
+            val answerPunktsList = mutableListOf(
+                answerPunkt1,
+                answerPunkt2,
+                answerPunkt3,
+                answerPunkt4)
+
             answerQuestion.text = answer.question.text
 
 
@@ -43,6 +49,7 @@ class AnswerAdapter: ListAdapter<Answer, AnswerAdapter.AnswerViewHolder>(AnswerD
                 answerVariantsList[variantId].text = answer.question.answers[variantId]
 
                 if (variantId == answer.chosenId){
+
                     val isCorrectColor = if (answer.isCorrect){
                         Color.parseColor("#E6F4EA")
                     } else {
@@ -50,10 +57,11 @@ class AnswerAdapter: ListAdapter<Answer, AnswerAdapter.AnswerViewHolder>(AnswerD
                     }
 
                     answerVariantCardsList[variantId].setCardBackgroundColor(isCorrectColor)
+                    answerPunktsList[variantId].setImageResource(R.drawable.ic_punkt_chosen)
                 } else {
-                    // this works
-                    val defaultColor = Color.parseColor("#FFFFFF")
+                    var defaultColor = Color.parseColor("#FFFFFF")
                     answerVariantCardsList[variantId].setCardBackgroundColor(defaultColor)
+                    answerPunktsList[variantId].setImageResource(R.drawable.ic_punkt)
                 }
             }
 

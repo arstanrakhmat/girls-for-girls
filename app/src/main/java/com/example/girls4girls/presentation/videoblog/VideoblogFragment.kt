@@ -31,6 +31,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.girls4girls.R
+import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.presentation.MainActivity
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment.Companion.TAG
@@ -42,18 +43,21 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class VideoblogFragment : Fragment() {
 
-    private val viewModel by viewModels<VideoblogViewModel>()
+    private val viewModel by viewModel<VideoblogViewModel>()
     private lateinit var binding: FragmentVideoblogBinding
 
     private lateinit var playerParams: ViewGroup.LayoutParams
 
     private val args: VideoblogFragmentArgs by navArgs()
     private val videoBlog by lazy { args.currentVideoBlog}
+    private val sharedPreferences by inject<CustomPreferences>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,25 +90,39 @@ class VideoblogFragment : Fragment() {
             binding.player.release()
         }
 
-        val isLikedLD = MutableLiveData<Boolean>()
+        val isLikedLD = MutableLiveData<Boolean?>()
         isLikedLD.value = videoBlog.isLiked
 
         binding.videoLikeButton.setOnClickListener {
 
-            videoBlog.isLiked = !videoBlog.isLiked
+            videoBlog.isLiked = videoBlog.isLiked?.not() ?: true
             isLikedLD.value = videoBlog.isLiked
-
-
+            Log.d(TAG, "videoBlog.isLiked: ${videoBlog.isLiked}")
+            Log.d(TAG, "isLikedLD.value: ${isLikedLD.value.toString()}")
 
         }
 
 
 
         isLikedLD.observe(viewLifecycleOwner){isLiked ->
-            if (isLiked){
+
+            if (isLiked == null){
+                Toast.makeText(requireContext(), "Null", Toast.LENGTH_SHORT).show()
+            } else if (isLiked){
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
-            } else {
+                viewModel.likeVideo(
+                    "Bearer ${sharedPreferences.fetchToken()}",
+                    videoBlog.id
+                )
+                Log.d(TAG, "token:${sharedPreferences.fetchToken()} ")
+            }
+            else {
+                Toast.makeText(requireContext(), "unLiked", Toast.LENGTH_SHORT).show()
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
+//                viewModel.unLikeVideo(
+//                    "Bearer ${sharedPreferences.fetchToken()}",
+//                    videoBlog.id
+//                )
             }
         }
 
@@ -116,11 +134,11 @@ class VideoblogFragment : Fragment() {
 
         binding.videoViewsTxt.text = videoBlog.views.toString()
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val outputFormat = SimpleDateFormat("dd MMMM, yyyy", Locale("ky"))
+        val outputFormat = SimpleDateFormat("dd/MM/yyyy")
         val inputDate = inputFormat.parse(videoBlog.date)
         val outputDate = outputFormat.format(inputDate)
         binding.videoDateTxt.text = outputDate
-//        binding.videoCategory.text = videoBlog.category
+        binding.videoCategory.text = videoBlog.category.name
 
         binding.descriptionTxt.text = videoBlog.description
         Glide

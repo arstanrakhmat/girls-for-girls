@@ -202,13 +202,14 @@
 
             <ImageView
                 android:id="@+id/videoLikeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="21dp"
                 android:src="@drawable/ic_heart"
-                app:tint="#9960C3"
+                app:layout_constraintBottom_toBottomOf="@+id/video_title_txt"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/video_title_txt" />
+                app:layout_constraintTop_toTopOf="@+id/video_title_txt"
+                app:tint="#9960C3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

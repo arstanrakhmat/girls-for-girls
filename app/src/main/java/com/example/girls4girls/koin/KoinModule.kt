@@ -2,13 +2,11 @@ package com.example.girls4girls.koin
 
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.api.Api
-import com.example.girls4girls.data.repository.AuthRepository
-import com.example.girls4girls.data.repository.ResetPasswordRepository
-import com.example.girls4girls.data.repository.UserRepository
-import com.example.girls4girls.data.repository.VideoBlogsRepository
+import com.example.girls4girls.data.repository.*
 import com.example.girls4girls.presentation.account.UserViewModel
 import com.example.girls4girls.presentation.auth.AuthViewModel
 import com.example.girls4girls.presentation.auth.ResetPasswordViewModel
+import com.example.girls4girls.presentation.videoblog.VideoblogViewModel
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel
 import com.example.girls4girls.utils.Constants
 import okhttp3.OkHttpClient
@@ -29,13 +27,15 @@ val retrofitModule = module {
     factory { UserRepository(api = get()) }
     factory { ResetPasswordRepository(api = get()) }
     factory { VideoBlogsRepository(api = get()) }
+    factory { CategoryRepository(api = get()) }
 }
 
 val viewModules = module {
     viewModel { AuthViewModel(repository = get()) }
     viewModel { UserViewModel(repository = get()) }
     viewModel { ResetPasswordViewModel(repository = get()) }
-    viewModel { VideoblogsListViewModel(repository = get()) }
+    viewModel { VideoblogViewModel(videoBlogRepository = get()) }
+    viewModel { VideoblogsListViewModel(videoBlogsRepository = get(), categoryRepository = get()) }
 }
 
 fun getApiInstance(retrofit: Retrofit): Api {
