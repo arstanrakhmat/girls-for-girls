@@ -50,7 +50,12 @@ class VideoblogsListViewModel(
         viewModelScope.launch {
             val response = videoBlogsRepository.getLikedVideos(token)
             if (response.isSuccessful){
-                _likedVideosList.postValue(listOf(response.body()!![0].blog))
+                val likedVideos =  mutableListOf<VideoBlog>()
+
+                response.body()!!.forEach { videoResp ->
+                    likedVideos.add(videoResp.blog)
+                }
+                _likedVideosList.postValue(likedVideos)
                 Log.d(TAG, "getLikedVideos: ${(response.body()!!)}")
             } else {
                 Log.d(TAG, "getLikedVideos: ${response.errorBody()?.string()}")

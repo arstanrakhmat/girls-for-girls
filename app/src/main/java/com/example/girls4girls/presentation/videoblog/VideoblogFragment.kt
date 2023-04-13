@@ -141,10 +141,10 @@ class VideoblogFragment : Fragment() {
         binding.videoCategory.text = videoBlog.category.name
 
         binding.descriptionTxt.text = videoBlog.description
-        Glide
-            .with(binding.root)
-            .load(videoBlog.lecturerImage.url)
-            .into(binding.videoSpeakerImage)
+//        Glide
+//            .with(binding.root)
+//            .load(videoBlog.lecturerImage.url)
+//            .into(binding.videoSpeakerImage)
         binding.videoSpeakerName.text = videoBlog.lecturerName
         binding.videoSpeakerPosition.text = videoBlog.lecturerInfo
 //

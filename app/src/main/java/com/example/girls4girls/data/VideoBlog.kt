@@ -23,6 +23,6 @@ data class VideoBlog(
     val link: String,
     val lecturerName: String,
     val lecturerInfo: String,
-    val lecturerImage: Lecturer,
+//    val lecturerImage: Lecturer = Lecturer("https://i.kym-cdn.com/photos/images/newsfeed/002/299/255/29d.jpeg"),
     val category: Category
 ): Parcelable
