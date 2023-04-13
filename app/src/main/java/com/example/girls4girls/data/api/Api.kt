@@ -58,6 +58,28 @@ interface Api {
     ): Response<User>
 
     @FormUrlEncoded
+    @PATCH("user/profile")
+    suspend fun userUpdate(
+        @Header("token") token: String,
+        @Field("email") email: String,
+        @Field("firstName") firstName: String,
+        @Field("lastName") lastName: String,
+        @Field("phoneNumber") phoneNumber: String,
+        @Field("dateOfBirth") dateOfBirth: String?,
+        @Field("gender") gender: String?,
+        @Field("region") region: String?
+    ): Response<UserRegistrationResponse>
+
+    @FormUrlEncoded
+    @PATCH("user/profile")
+    suspend fun userUpdate2(
+        @Header("Authorization") token: String,
+        @Field("dateOfBirth") dateOfBirth: String?,
+        @Field("gender") gender: String?,
+        @Field("region") region: String?
+    ): Response<UserRegistrationResponse>
+
+    @FormUrlEncoded
     @POST("auth/forgot-password")
     suspend fun resetPasswordEmail(
         @Field("email") email: String
