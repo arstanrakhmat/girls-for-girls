@@ -12,9 +12,9 @@ import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.model.Gender
 import com.example.girls4girls.data.model.Region
-import com.example.girls4girls.data.model.UserUpdate
 import com.example.girls4girls.data.model.UserUpdate2
 import com.example.girls4girls.databinding.FragmentMyInfoBinding
+import com.example.girls4girls.utils.toFormattedDate
 import com.example.girls4girls.utils.transformIntoDatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
@@ -43,18 +43,34 @@ class MyInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.getUser("Bearer ${customPreferences.fetchToken()}")
+        userViewModel.getAllUserInfo("Bearer ${customPreferences.fetchToken()}")
         clickListeners()
         setupObservers()
     }
 
     private fun setupObservers() {
-        userViewModel.user.observe(requireActivity()) {
+        userViewModel.userAllData.observe(requireActivity()) {
             with(binding) {
                 etName.setText(it.firstName)
                 etLastName.setText(it.lastName)
                 etGmail.setText(it.email)
                 etPhoneNumber.setText(it.phoneNumber)
+
+                if (it.dateOfBirth != null) {
+                    etBirtday.setText(it.dateOfBirth.toFormattedDate())
+                }
+
+                if (it.gender != null) {
+                    if (it.gender == Gender.MALE.name) {
+                        etGender.setText(resources.getString(R.string.boy))
+                    } else {
+                        etGender.setText(resources.getString(R.string.girl))
+                    }
+                }
+
+                if (it.region != null) {
+                    setupRegion(it.region)
+                }
             }
 
             binding.progressBar.visibility = View.GONE
@@ -119,6 +135,19 @@ class MyInfoFragment : Fragment() {
         val outputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val date = inputFormat.parse(dateString)
         return outputFormat.format(date)
+    }
+
+    private fun setupRegion(region: String) {
+        when (region) {
+            Region.CHUI.name -> binding.etRegion.setText(resources.getString(R.string.chuy))
+            Region.BISHKEK.name -> binding.etRegion.setText(resources.getString(R.string.bishkek))
+            Region.YSSYK_KUL.name -> binding.etRegion.setText(resources.getString(R.string.issyk_kol))
+            Region.NARYN.name -> binding.etRegion.setText(resources.getString(R.string.naryn))
+            Region.TALAS.name -> binding.etRegion.setText(resources.getString(R.string.talas))
+            Region.JALAL_ABAD.name -> binding.etRegion.setText(resources.getString(R.string.zhalal_abad))
+            Region.OSH.name -> binding.etRegion.setText(resources.getString(R.string.osh))
+            Region.BATKEN.name -> binding.etRegion.setText(resources.getString(R.string.batken))
+        }
     }
 
     private fun genderBottomSheet() {

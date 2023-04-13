@@ -26,7 +26,7 @@ class UserFragment : Fragment() {
     ): View {
 
         binding = FragmentUserBinding.inflate(layoutInflater, container, false)
-        userViewModel.getUser("Bearer ${customPreferences.fetchToken()}")
+        userViewModel.getAllUserInfo("Bearer ${customPreferences.fetchToken()}")
         Log.d("authE", customPreferences.fetchToken().toString())
         return binding.root
     }
@@ -38,7 +38,7 @@ class UserFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        userViewModel.user.observe(requireActivity()) {
+        userViewModel.userAllData.observe(requireActivity()) {
             with(binding) {
 //                userName.text = resources.getString(R.string.hello_registered_user)
                 userName.text = "Привет, ${it.firstName}!"

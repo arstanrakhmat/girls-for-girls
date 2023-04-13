@@ -9,6 +9,10 @@ class UserRepository(private val api: Api) {
         return api.getUser(string)
     }
 
+    suspend fun getAllUserInfo(token: String): Response<UserAllData> {
+        return api.getAllUserInfo(token)
+    }
+
     suspend fun userUpdate(
         token: String,
         userUpdate: UserUpdate

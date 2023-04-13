@@ -57,6 +57,11 @@ interface Api {
         @Header("Authorization") token: String?
     ): Response<User>
 
+    @GET("user/profile")
+    suspend fun getAllUserInfo(
+        @Header("Authorization") token: String?
+    ): Response<UserAllData>
+
     @FormUrlEncoded
     @PATCH("user/profile")
     suspend fun userUpdate(
