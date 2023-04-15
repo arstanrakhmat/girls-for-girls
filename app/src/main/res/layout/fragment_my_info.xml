@@ -29,6 +29,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <ImageView
                 android:id="@+id/user_image"
                 android:layout_width="120dp"
@@ -36,16 +37,20 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circle_image_view"
                 android:contentDescription="@string/image_descr"
-                android:src="@drawable/user_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/main_team_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/btnChangeUserImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/mulish_bold"
                 android:text="@string/change_user_image"
                 android:textColor="#662D91"

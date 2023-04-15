@@ -53,8 +53,10 @@ class TrainingAdapter : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val training = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(training.images[0].url).centerCrop()
-                .into(binding.ivTrainingImagePt)
+            if (training.images!!.isNotEmpty()) {
+                Glide.with(this).load(training.images[0].url).centerCrop()
+                    .into(binding.ivTrainingImagePt)
+            }
             binding.tvTrainingTitlePt.text = training.title
             binding.tvDatePt.text = training.eventDate.toFormattedDate()
             binding.tvLocationPt.text = training.address

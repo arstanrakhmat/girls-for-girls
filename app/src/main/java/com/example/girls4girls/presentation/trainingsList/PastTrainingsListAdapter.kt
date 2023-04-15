@@ -85,7 +85,10 @@ class PastTrainingsListAdapter : RecyclerView.Adapter<PastTrainingsListAdapter.V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val training = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(training.images[0].url).centerCrop().into(binding.ivTrainingImage)
+            if (training.images!!.isNotEmpty()) {
+                Glide.with(this).load(training.images[0].url).centerCrop()
+                    .into(binding.ivTrainingImage)
+            }
             binding.tvTrainingTitle.text = training.title
             binding.tvDate.text = training.eventDate.toFormattedDate()
             binding.tvTime.text = training.time

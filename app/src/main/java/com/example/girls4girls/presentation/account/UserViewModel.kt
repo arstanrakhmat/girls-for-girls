@@ -6,11 +6,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.girls4girls.data.model.*
 import com.example.girls4girls.data.repository.UserRepository
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
 
     val user = MutableLiveData<User>()
     val userAllData = MutableLiveData<UserAllData>()
+    val putPhoto = MutableLiveData<UserAllData>()
     val updatedUser = MutableLiveData<UserRegistrationResponse>()
     val errorMessage = MutableLiveData<String>()
 
@@ -30,6 +33,17 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
             val response = repository.getAllUserInfo(string)
             if (response.isSuccessful) {
                 userAllData.postValue(response.body())
+            } else {
+                errorMessage.postValue(response.errorBody().toString())
+            }
+        }
+    }
+
+    fun postPhoto(token: String, image: MultipartBody.Part) {
+        viewModelScope.launch {
+            val response = repository.postPhoto(token, image)
+            if (response.isSuccessful) {
+                putPhoto.postValue(response.body())
             } else {
                 errorMessage.postValue(response.errorBody().toString())
             }

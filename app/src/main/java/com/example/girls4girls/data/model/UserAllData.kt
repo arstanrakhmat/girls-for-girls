@@ -9,7 +9,7 @@ data class UserAllData(
     val firstName: String,
     val gender: String?,
     val id: Int,
-    val image: Any,
+    val image: Image?,
     val isDeleted: Boolean,
     val jetons: List<Any>,
     val lastName: String,

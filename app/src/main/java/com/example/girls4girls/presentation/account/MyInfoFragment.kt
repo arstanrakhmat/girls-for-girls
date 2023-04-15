@@ -1,13 +1,23 @@
 package com.example.girls4girls.presentation.account
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.model.Gender
@@ -17,12 +27,21 @@ import com.example.girls4girls.databinding.FragmentMyInfoBinding
 import com.example.girls4girls.utils.toFormattedDate
 import com.example.girls4girls.utils.transformIntoDatePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MyInfoFragment : Fragment() {
+
+    companion object {
+        const val IMAGE_REQUEST_CODE = 101
+        const val STORAGE_PERMISSION_CODE = 100
+    }
 
     private lateinit var binding: FragmentMyInfoBinding
     private val customPreferences by inject<CustomPreferences>()
@@ -60,6 +79,10 @@ class MyInfoFragment : Fragment() {
                     etBirtday.setText(it.dateOfBirth.toFormattedDate())
                 }
 
+                if (it.image != null) {
+                    Glide.with(requireActivity()).load(it.image.url).into(binding.userImage)
+                }
+
                 if (it.gender != null) {
                     if (it.gender == Gender.MALE.name) {
                         etGender.setText(resources.getString(R.string.boy))
@@ -82,6 +105,11 @@ class MyInfoFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        userViewModel.putPhoto.observe(requireActivity()) {
+            binding.progressBar.visibility = View.GONE
+            Toast.makeText(requireContext(), "Вы обновили фото", Toast.LENGTH_SHORT).show()
+        }
+
         userViewModel.errorMessage.observe(requireActivity()) {
             Log.d("profile", it)
             Toast.makeText(
@@ -100,6 +128,10 @@ class MyInfoFragment : Fragment() {
 
         binding.etRegion.setOnClickListener {
             regionBottomSheet()
+        }
+
+        binding.btnChangeUserImage.setOnClickListener {
+            pickImageGallery()
         }
 
         binding.etBirtday.setOnClickListener {
@@ -177,6 +209,53 @@ class MyInfoFragment : Fragment() {
 
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
+    }
+
+    private fun pickImageGallery() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                STORAGE_PERMISSION_CODE
+            )
+        } else {
+            // Permission is granted, launch the gallery picker
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, IMAGE_REQUEST_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+            val path: Uri? = data?.data
+            binding.userImage.setImageURI(path)
+            Log.d("profile", getRealPathFromURI(requireContext(), path!!))
+            val file = File(getRealPathFromURI(requireContext(), path))
+            val requestFile: RequestBody =
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+            val image = MultipartBody.Part.createFormData("image", file.name, requestFile)
+            userViewModel.postPhoto("Bearer ${customPreferences.fetchToken()}", image)
+        }
+    }
+
+    private fun getRealPathFromURI(context: Context, uri: Uri): String {
+        var result: String? = null
+        val cursor = context.contentResolver.query(uri, null, null, null, null)
+        cursor?.let {
+            if (it.moveToFirst()) {
+                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                result = cursor.getString(columnIndex)
+            }
+            cursor.close()
+        }
+        return result ?: ""
     }
 
     private fun regionBottomSheet() {

@@ -7,13 +7,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.girls4girls.R
 import com.example.girls4girls.data.model.Data
-import com.example.girls4girls.data.repository.Training
 import com.example.girls4girls.databinding.ItemUpcomingTrainingBinding
 import com.example.girls4girls.utils.toFormattedDate
-import java.text.SimpleDateFormat
-import java.util.*
 
 class UpcomingTrainingAdapter : RecyclerView.Adapter<UpcomingTrainingAdapter.ViewHolder>() {
 
@@ -57,7 +53,9 @@ class UpcomingTrainingAdapter : RecyclerView.Adapter<UpcomingTrainingAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val training = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(training.images[0].url).into(binding.ivTrainingImage)
+            if (training.images!!.isNotEmpty()) {
+                Glide.with(this).load(training.images[0].url).into(binding.ivTrainingImage)
+            }
             binding.tvTrainingTitle.text = training.title
             binding.tvDate.text = training.eventDate.toFormattedDate()
             binding.tvLocation.text = training.address

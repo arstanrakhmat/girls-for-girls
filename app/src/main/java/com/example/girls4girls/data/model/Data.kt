@@ -7,7 +7,7 @@ data class Data(
     val description: String,
     val eventDate: String,
     val id: Int,
-    val images: List<Image>,
+    val images: List<Image>?,
     val location: String?,
     val time: String?,
     val title: String,

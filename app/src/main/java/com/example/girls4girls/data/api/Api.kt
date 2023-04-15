@@ -1,14 +1,9 @@
 package com.example.girls4girls.data.api
 
 import com.example.girls4girls.data.model.*
+import okhttp3.MultipartBody
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.PATCH
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface Api {
 
@@ -90,6 +85,13 @@ interface Api {
         @Field("email") email: String
     ): Response<Message>
 
+    @Multipart
+    @POST("user")
+    suspend fun postPhoto(
+        @Header("Authorization") token: String,
+        @Part image: MultipartBody.Part
+    ): Response<UserAllData>
+
     @FormUrlEncoded
     @POST("auth/forgot-password/confirm")
     suspend fun resetPasswordEmailConfirm(
@@ -103,6 +105,9 @@ interface Api {
         @Header("Authorization") token: String?,
         @Field("newPassword") newPassword: String
     ): Response<Message>
+
+    @GET("training/{id}")
+    suspend fun getTrainingById(@Path("id") id: Int): Response<TrainingById>
 
     @GET("training/future/trainings")
     suspend fun getUpcomingTrainings(
