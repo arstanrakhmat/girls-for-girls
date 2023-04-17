@@ -8,9 +8,6 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.provider.MediaStore
-import android.support.v4.os.IResultReceiver
-import android.util.DisplayMetrics
 import android.util.Log
 import android.util.SparseArray
 import android.util.TypedValue
@@ -32,21 +29,18 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
+import com.example.girls4girls.data.model.User
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.presentation.MainActivity
-import com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment.Companion.TAG
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
-import java.util.*
 
 class VideoblogFragment : Fragment() {
 
@@ -58,6 +52,7 @@ class VideoblogFragment : Fragment() {
     private val args: VideoblogFragmentArgs by navArgs()
     private val videoBlog by lazy { args.currentVideoBlog}
     private val sharedPreferences by inject<CustomPreferences>()
+    private var user: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,12 +60,12 @@ class VideoblogFragment : Fragment() {
     ): View? {
         binding = FragmentVideoblogBinding.inflate(inflater, container, false)
 
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         playerParams = binding.player.layoutParams
 
@@ -110,11 +105,11 @@ class VideoblogFragment : Fragment() {
                 Toast.makeText(requireContext(), "Null", Toast.LENGTH_SHORT).show()
             } else if (isLiked){
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
-                viewModel.likeVideo(
+                viewModel.toggleVideoLike(
                     "Bearer ${sharedPreferences.fetchToken()}",
                     videoBlog.id
                 )
-                Log.d(TAG, "token:${sharedPreferences.fetchToken()} ")
+                Log.d(TAG, "videoBlog.id: ${videoBlog.id} ")
             }
             else {
                 Toast.makeText(requireContext(), "unLiked", Toast.LENGTH_SHORT).show()

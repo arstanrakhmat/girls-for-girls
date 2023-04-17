@@ -96,6 +96,9 @@ dependencies {
 
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
+    // Gson (To convert raw JSON to pretty JSON)
+    implementation 'com.google.code.gson:gson:2.8.9'
+
     // MaterialIntroView
 //    implementation 'com.github.iammert:MaterialIntroView:1.5.2'
 

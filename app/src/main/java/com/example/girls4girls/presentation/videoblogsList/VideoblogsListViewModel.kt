@@ -12,7 +12,9 @@ import com.example.girls4girls.data.VideoBlogResponse
 import com.example.girls4girls.data.repository.CategoryRepository
 import com.example.girls4girls.data.repository.VideoBlogsRepository
 import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
+import com.example.girls4girls.utils.Constants.TOKEN
 import kotlinx.coroutines.launch
+import okhttp3.Request
 
 class VideoblogsListViewModel(
     private val videoBlogsRepository: VideoBlogsRepository,
@@ -26,6 +28,7 @@ class VideoblogsListViewModel(
     fun getVideos(){
         viewModelScope.launch {
             val response = videoBlogsRepository.getVideoBlogs()
+            Log.d(TAG, "getVideos: ${response.toString()}")
             if (response.isSuccessful){
                 _videosList.postValue(response.body()!!.videosList)
             } else {
@@ -49,11 +52,23 @@ class VideoblogsListViewModel(
     fun getLikedVideos(token: String?){
         viewModelScope.launch {
             val response = videoBlogsRepository.getLikedVideos(token)
-            if (response.isSuccessful){
-                val likedVideos =  mutableListOf<VideoBlog>()
+            var request = Request.Builder()
+                .url("https://girls4girls.herokuapp.com/api/like")
+                .build()
 
-                response.body()!!.forEach { videoResp ->
-                    likedVideos.add(videoResp.blog)
+            request = request.newBuilder()
+                .header("Authorization", TOKEN)
+                .build()
+
+            Log.d(TAG, "getLikedVideos: ${request}")
+            if (response.isSuccessful){
+
+                val likedVideos = mutableListOf<VideoBlog>()
+
+                response.body()?.forEach {
+                    if (it.blog != null){
+                        likedVideos.add(it.blog)
+                    }
                 }
                 _likedVideosList.postValue(likedVideos)
                 Log.d(TAG, "getLikedVideos: ${(response.body()!!)}")
@@ -62,6 +77,5 @@ class VideoblogsListViewModel(
             }
         }
     }
-
 
 }

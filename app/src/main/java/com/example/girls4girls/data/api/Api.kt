@@ -87,7 +87,7 @@ interface Api {
     @POST("like/{blogId}")
     suspend fun likeVideo(
         @Header("Authorization") token: String?,
-        @Field("blogId") blogId: Long
+        @Field("blogId") blogId: Long,
     ): Response<Long>
 
     @DELETE("like/{blogId}")
@@ -95,5 +95,13 @@ interface Api {
         @Header("Authorization") token: String?,
         @Path("blogId") blogId: Long
     ): Response<Long>
+
+//    @FormUrlEncoded
+    @PUT("like/toggle")
+    suspend fun toggleLikeVideo(
+        @Header("Authorization") token: String?,
+        @Query("blogId") blogId: BlogId,
+    ): Response<BlogId>
+
 
 }
