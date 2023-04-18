@@ -87,7 +87,7 @@ class QuestionFragment : Fragment() {
 //                Toast.makeText(requireContext(),
 //                    "Congratulations!! You made $correctAnswers out of ${viewmodel.questions.size}",
 //                    Toast.LENGTH_SHORT).show()
-                val action = QuestionFragmentDirections.actionQuestionFragmentToResultFragment(
+                val action = QuestionFragmentDirections.actionQuestionFragmentToReviewFragment(
                     answers.toTypedArray()
                 )
                 findNavController().navigate(action)

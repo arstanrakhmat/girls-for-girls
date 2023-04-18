@@ -33,7 +33,7 @@ class VideoAdapter: ListAdapter<VideoBlog, VideoAdapter.VideoBlogViewHolder>(Vid
             val outputDate = outputFormat.format(inputDate)
             videoDate.text = outputDate
 
-            if (videoBlog.isLiked == true){
+            if (videoBlog.isLiked){
                 likeButton.setImageResource(R.drawable.ic_heart_filled)
             } else {
                 likeButton.setImageResource(R.drawable.ic_heart)

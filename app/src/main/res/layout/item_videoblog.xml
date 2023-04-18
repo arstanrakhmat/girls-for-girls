@@ -27,8 +27,8 @@
 
     <ImageView
         android:id="@+id/likeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:contentDescription="@string/like_button"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/video_image_card"
@@ -110,8 +110,10 @@
         android:layout_width="3dp"
         android:layout_height="3dp"
         android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/video_views"
         app:layout_constraintEnd_toStartOf="@+id/video_date"
-        tools:layout_editor_absoluteY="279dp" />
+        app:layout_constraintStart_toEndOf="@+id/video_views"
+        app:layout_constraintTop_toTopOf="@+id/video_views" />
 
     <ImageView
         android:id="@+id/imageView2"

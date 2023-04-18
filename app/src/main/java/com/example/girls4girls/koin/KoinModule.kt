@@ -9,6 +9,7 @@ import com.example.girls4girls.presentation.auth.ResetPasswordViewModel
 import com.example.girls4girls.presentation.videoblog.VideoblogViewModel
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel
 import com.example.girls4girls.utils.Constants
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -43,9 +44,13 @@ fun getApiInstance(retrofit: Retrofit): Api {
 }
 
 fun getRetrofitInstance(okHttpClient: OkHttpClient): Retrofit {
+    val gson = GsonBuilder()
+        .setLenient()
+        .create()
+
     return Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .client(okHttpClient)
         .build()
 }

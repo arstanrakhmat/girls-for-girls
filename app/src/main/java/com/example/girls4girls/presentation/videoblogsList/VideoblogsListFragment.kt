@@ -14,6 +14,10 @@ import com.example.girls4girls.R
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
+import co.mobiwise.materialintro.shape.Focus
+import co.mobiwise.materialintro.shape.FocusGravity
+import co.mobiwise.materialintro.shape.ShapeType
+import co.mobiwise.materialintro.view.MaterialIntroView
 import com.example.girls4girls.data.Category
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.VideoBlog
@@ -40,11 +44,16 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentVideoblogsListBinding.inflate(inflater, container, false)
+
+        setIntroViews()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         setAdapter()
 
@@ -58,6 +67,51 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         setTabLayout()
 
+    }
+
+
+    private fun setIntroViews() {
+        val intro3 = MaterialIntroView.Builder(requireActivity())
+            .enableDotAnimation(true)
+            .enableIcon(false)
+            .setFocusGravity(FocusGravity.CENTER)
+            .setFocusType(Focus.MINIMUM)
+            .setDelayMillis(100)
+            .enableFadeAnimation(true)
+            .performClick(true)
+            .setInfoText("Список видео")
+            .setShape(ShapeType.CIRCLE)
+            .setTarget(binding.listVideoblogs)
+            .setUsageId("intro33333") //THIS SHOULD BE UNIQUE ID
+
+        val intro2 = MaterialIntroView.Builder(requireActivity())
+            .enableDotAnimation(true)
+            .enableIcon(false)
+            .setFocusGravity(FocusGravity.CENTER)
+            .setFocusType(Focus.MINIMUM)
+            .setDelayMillis(100)
+            .enableFadeAnimation(true)
+            .performClick(true)
+            .setInfoText("Сортировка по категориям")
+            .setShape(ShapeType.CIRCLE)
+            .setTarget(binding.categoryButton)
+            .setUsageId("intro22222") //THIS SHOULD BE UNIQUE ID
+            .setListener{ s -> intro3.show()}
+
+        MaterialIntroView.Builder(requireActivity())
+            .enableDotAnimation(true)
+            .enableIcon(false)
+            .setFocusGravity(FocusGravity.CENTER)
+            .setFocusType(Focus.MINIMUM)
+            .setDelayMillis(500)
+            .enableFadeAnimation(true)
+            .performClick(true)
+            .setInfoText("Вы можете искать нужные вам видео")
+            .setShape(ShapeType.CIRCLE)
+            .setTarget(binding.searchView)
+            .setUsageId("intro11111") //THIS SHOULD BE UNIQUE ID
+            .setListener{ s -> intro2.show()}
+            .show()
     }
 
     private fun loadVideos() {
@@ -125,21 +179,6 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             dialog.dismiss()
         }
-
-
-//        binding.categoryAll.setOnClickListener {
-//            videoAdapter.modifyList(viewModel._videosList)
-//            dialog.dismiss()
-//        }
-//
-//        for (category in categoryList){
-//            category.setOnClickListener {
-//                videoAdapter.modifyList(viewModel._videosList.filter { videoBlog ->
-//                    videoBlog.category == category.text
-//                })
-//                dialog.dismiss()
-//            }
-//        }
 
         dialog.show()
     }

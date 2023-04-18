@@ -52,7 +52,7 @@ class VideoblogFragment : Fragment() {
     private val args: VideoblogFragmentArgs by navArgs()
     private val videoBlog by lazy { args.currentVideoBlog}
     private val sharedPreferences by inject<CustomPreferences>()
-    private var user: User? = null
+    private val isLikedLD by lazy { MutableLiveData(videoBlog.isLiked)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,10 +66,10 @@ class VideoblogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        // Get the width and height of the plyer
         playerParams = binding.player.layoutParams
 
-
+        // Set the vertical height
         if (viewModel.defaultHeight == null){
             viewModel.defaultHeight = playerParams.height
         }
@@ -85,43 +85,31 @@ class VideoblogFragment : Fragment() {
             binding.player.release()
         }
 
-        val isLikedLD = MutableLiveData<Boolean?>()
+        binding.videoLikeButton.setOnClickListener {
+            toggleLike()
+        }
+
+    }
+
+    private fun toggleLike() {
+
+        videoBlog.isLiked = !videoBlog.isLiked
         isLikedLD.value = videoBlog.isLiked
 
-        binding.videoLikeButton.setOnClickListener {
+        viewModel.toggleVideoLike(
+            "Bearer ${sharedPreferences.fetchToken()}",
+            videoBlog.id
+        )
 
-            videoBlog.isLiked = videoBlog.isLiked?.not() ?: true
-            isLikedLD.value = videoBlog.isLiked
-            Log.d(TAG, "videoBlog.isLiked: ${videoBlog.isLiked}")
-            Log.d(TAG, "isLikedLD.value: ${isLikedLD.value.toString()}")
-
-        }
-
-
-
+        // Change like icon
         isLikedLD.observe(viewLifecycleOwner){isLiked ->
 
-            if (isLiked == null){
-                Toast.makeText(requireContext(), "Null", Toast.LENGTH_SHORT).show()
-            } else if (isLiked){
+            if (isLiked){
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
-                viewModel.toggleVideoLike(
-                    "Bearer ${sharedPreferences.fetchToken()}",
-                    videoBlog.id
-                )
-                Log.d(TAG, "videoBlog.id: ${videoBlog.id} ")
-            }
-            else {
-                Toast.makeText(requireContext(), "unLiked", Toast.LENGTH_SHORT).show()
+            } else {
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
-//                viewModel.unLikeVideo(
-//                    "Bearer ${sharedPreferences.fetchToken()}",
-//                    videoBlog.id
-//                )
             }
         }
-
-
     }
 
     private fun setText() {

@@ -18,7 +18,7 @@ data class VideoBlog(
     @SerializedName("postViewCount")
     var views: Long = 0,
     var isWatched: Boolean = false,
-    var isLiked: Boolean? = null,
+    var isLiked: Boolean = false,
     @SerializedName("videoUrl")
     val link: String,
     val lecturerName: String,

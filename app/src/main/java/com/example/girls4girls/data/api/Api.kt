@@ -100,8 +100,8 @@ interface Api {
     @PUT("like/toggle")
     suspend fun toggleLikeVideo(
         @Header("Authorization") token: String?,
-        @Query("blogId") blogId: BlogId,
-    ): Response<BlogId>
+        @Query("blogId") blogId: Int,
+    ): Response<VideoBlogResponse>
 
 
 }

@@ -22,40 +22,11 @@ class VideoblogViewModel(
     fun toggleVideoLike(token: String?, id: Long){
         viewModelScope.launch {
             val response = videoBlogRepository.toggleLikeVideo(token, id)
-            val gson = GsonBuilder().setPrettyPrinting().create()
-            val prettyJson = gson.toJson(
-                JsonParser.parseString(
-                    response.body().toString() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
-                )
-            )
-
-            if (!response.isSuccessful){
-                Log.d(TAG, "likeVideo error: ${response.errorBody()?.string() ?: "Unknown"}")
-                Log.d(TAG, "prettyJson: ${ prettyJson}")
-            }
-        }
-    }
-
-    fun likeVideo(token: String?, id: Long){
-        viewModelScope.launch {
-            val response = videoBlogRepository.likeVideo(token, id)
 
             if (response.isSuccessful){
-                Log.d(TAG, "videoBlog.id: ${id} ")
+                Log.d(TAG, "Success")
             } else {
-                Log.d(TAG, "body(): ${response.code()}")
                 Log.d(TAG, "likeVideo error: ${response.errorBody()?.string() ?: "Unknown"}")
-            }
-        }
-    }
-
-    fun unLikeVideo(token: String?, id: Long){
-        viewModelScope.launch {
-            val response = videoBlogRepository.unLikeVideo(token, id)
-            if (response.isSuccessful){
-//                _likedVideosList.postValue(response.body()!!)
-            } else {
-                Log.d(VideoblogFragment.TAG, "getVideos: ${response.errorBody().toString()}")
             }
         }
     }
