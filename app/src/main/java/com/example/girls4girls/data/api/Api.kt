@@ -139,4 +139,17 @@ interface Api {
         orderField: String = "id"
     ): Response<TrainingResponse>
 
+    @POST("questionnaire/response")
+    suspend fun questionnaireApply2(
+        @Header("Authorization") token: String?,
+        @Body answers: QuestionnaireFillOut
+    ): Response<QuestionnaireApplyResponse>
+
+    @POST("training/apply")
+    suspend fun trainingApply(
+        @Header("Authorization") token: String?,
+        @Query("trainingId") trainingId: Int,
+        @Query("questionnaireResponseId") questionnaireResponseId: Int
+    ): Response<TrainingApplyResponse>
+
 }

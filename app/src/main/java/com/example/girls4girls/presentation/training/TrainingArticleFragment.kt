@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentTrainingArticleBinding
 import com.example.girls4girls.utils.toFormattedDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,17 +41,6 @@ class TrainingArticleFragment : Fragment() {
         setupObservers()
     }
 
-//    private fun setupTrainingArticle() {
-//        val training = args.training
-//        Glide.with(this).load(training.images[0].url).into(binding.img)
-//        binding.title.text = training.title
-//        binding.date.text = training.eventDate.toFormattedDate()
-//        binding.time.text = training.time
-//        binding.location.text = training.location
-//        binding.deadline.text = training.deadlineDate.toFormattedDate()
-//        binding.description.text = training.description
-//    }
-
     private fun setupObservers() {
         trainingViewModel.trainingById.observe(requireActivity()) {
             if (it.images != null) {
@@ -66,18 +54,25 @@ class TrainingArticleFragment : Fragment() {
                 deadline.text = it.deadlineDate.toFormattedDate()
                 description.text = it.description
             }
+            hideProgressBar()
         }
 
         trainingViewModel.error.observe(requireActivity()) {
             Toast.makeText(activity, "An error occurred: $it", Toast.LENGTH_LONG)
                 .show()
             Log.d("training", it.toString())
+            hideProgressBar()
         }
     }
 
     private fun clickListeners() {
         binding.btnApply.setOnClickListener {
-            findNavController().navigate(R.id.action_trainingArticleFragment_to_trainingApplyRequirementsFragment)
+            val action =
+                TrainingArticleFragmentDirections.actionTrainingArticleFragmentToTrainingApplyFirstPageFragment(
+                    args.training.id
+                )
+
+            findNavController().navigate(action)
         }
     }
 
@@ -88,5 +83,8 @@ class TrainingArticleFragment : Fragment() {
         }
     }
 
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
 
 }

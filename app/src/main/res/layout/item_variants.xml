@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mulish_semibold"
+        android:text="@string/surname"
+        android:textColor="#662D91"
+        android:textFontWeight="600"
+        android:textSize="16sp"
+        tools:targetApi="28" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <RadioButton
+            android:id="@+id/btnVar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_button_background"
+            android:fontFamily="@font/mulish_medium"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/answer_yes"
+            android:textColor="#403A64"
+            android:textFontWeight="500"
+            android:textSize="16sp"
+            android:theme="@style/Theme.Girls4Girls"
+            tools:targetApi="28" />
+
+        <RadioButton
+            android:id="@+id/btnVar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_button_background"
+            android:fontFamily="@font/mulish_medium"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/answer_no"
+            android:textColor="#403A64"
+            android:textFontWeight="500"
+            android:textSize="16sp"
+            tools:targetApi="28" />
+    </RadioGroup>
+
+</LinearLayout>

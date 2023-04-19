@@ -31,13 +31,14 @@ class TrainingFragment : Fragment() {
         initUpcomingTrainings()
         setupRecyclerView()
         clickListeners()
-        trainingViewModel.getUpcomingTrainings(1, 3, "ASC", "id")
+        trainingViewModel.getUpcomingTrainings(1, 6, "ASC", "id")
         trainingViewModel.getPastTrainings(1, 3, "ASC", "id")
     }
 
     private fun initUpcomingTrainings() {
         trainingViewModel.upcomingTraining.observe(requireActivity()) {
             upcomingTrainingAdapter.differ.submitList(it.data)
+            binding.progressBar.visibility = View.GONE
         }
 
         trainingViewModel.pastTraining.observe(requireActivity()) {
