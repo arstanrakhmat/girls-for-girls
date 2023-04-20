@@ -9,7 +9,7 @@
         android:id="@+id/trainingsListFragment"
         android:name="com.example.girls4girls.presentation.trainingsList.TrainingsListFragment"
         android:label="@string/bottom_nav_trainings"
-        tools:layout="@layout/fragment_trainings_list" >
+        tools:layout="@layout/fragment_trainings_list">
         <action
             android:id="@+id/action_trainingsListFragment_to_pastTrainingsListFragment"
             app:destination="@id/pastTrainingsListFragment" />
@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_trainingsListFragment_to_forumArticleFragment"
             app:destination="@id/forumArticleFragment" />
+        <action
+            android:id="@+id/action_trainingsListFragment_to_pastTrainingArticleFragment"
+            app:destination="@id/pastTrainingArticleFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainingFragment"
@@ -37,15 +40,15 @@
         android:id="@+id/pastTrainingsListFragment"
         android:name="com.example.girls4girls.presentation.trainingsList.PastTrainingsListFragment"
         android:label="@string/past_trainings"
-        tools:layout="@layout/fragment_past_trainings_list" >
+        tools:layout="@layout/fragment_past_trainings_list">
         <action
-            android:id="@+id/action_pastTrainingsListFragment_to_trainingArticleFragment"
-            app:destination="@id/trainingArticleFragment" />
+            android:id="@+id/action_pastTrainingsListFragment_to_pastTrainingArticleFragment"
+            app:destination="@id/pastTrainingArticleFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainingArticleFragment"
         android:name="com.example.girls4girls.presentation.training.TrainingArticleFragment"
-        android:label="@string/training_title" >
+        android:label="@string/training_title">
         <argument
             android:name="training"
             app:argType="com.example.girls4girls.data.model.Data" />
@@ -57,7 +60,7 @@
         android:id="@+id/trainingApplyFirstPageFragment"
         android:name="com.example.girls4girls.presentation.training.TrainingApplyFirstPageFragment"
         android:label="@string/title_apply"
-        tools:layout="@layout/fragment_training_apply_first_page" >
+        tools:layout="@layout/fragment_training_apply_first_page">
         <argument
             android:name="trainingId"
             app:argType="integer" />
@@ -71,7 +74,7 @@
         android:id="@+id/pastForumsListFragment"
         android:name="com.example.girls4girls.presentation.forum.PastForumsListFragment"
         android:label="@string/past_forums"
-        tools:layout="@layout/fragment_past_forums_list" >
+        tools:layout="@layout/fragment_past_forums_list">
         <action
             android:id="@+id/action_pastForumsListFragment_to_trainingArticleFragment"
             app:destination="@id/trainingArticleFragment" />
@@ -82,9 +85,18 @@
     <fragment
         android:id="@+id/forumArticleFragment"
         android:name="com.example.girls4girls.presentation.forum.ForumArticleFragment"
-        android:label="@string/forum_title" >
+        android:label="@string/forum_title">
         <argument
             android:name="forum"
             app:argType="com.example.girls4girls.data.model.Forum" />
+    </fragment>
+    <fragment
+        android:id="@+id/pastTrainingArticleFragment"
+        android:name="com.example.girls4girls.presentation.training.PastTrainingArticleFragment"
+        android:label="@string/past_trainings"
+        tools:layout="@layout/fragment_past_training_article">
+        <argument
+            android:name="training"
+            app:argType="com.example.girls4girls.data.model.Data" />
     </fragment>
 </navigation>

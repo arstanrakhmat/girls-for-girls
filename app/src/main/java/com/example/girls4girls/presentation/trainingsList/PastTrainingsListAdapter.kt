@@ -7,45 +7,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.girls4girls.R
 import com.example.girls4girls.data.model.Data
-import com.example.girls4girls.data.repository.Training
 import com.example.girls4girls.databinding.ItemPastTrainingsListVerticalBinding
 import com.example.girls4girls.utils.toFormattedDate
 
 class PastTrainingsListAdapter : RecyclerView.Adapter<PastTrainingsListAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemPastTrainingsListVerticalBinding
-
-    private val trainingList = listOf(
-        Training(
-            "Финансовая грамотность",
-            "23.05.2023",
-            "АУЦА, 4 этаж",
-            "17:00",
-            "26.04.2023",
-            R.drawable.main_team_4,
-            R.string.training_description.toString()
-        ),
-        Training(
-            "Учимся програмировать",
-            "23.05.2023",
-            "Neobis coworking",
-            "17:00",
-            "26.04.2023",
-            R.drawable.main_team_3,
-            R.string.training_description.toString()
-        ),
-        Training(
-            "Жизнь после замужества",
-            "23.05.2023",
-            "Джал 17",
-            "17:00",
-            "26.04.2023",
-            R.drawable.main_team_2,
-            R.string.training_description.toString()
-        ),
-    )
 
     /**
      * DiffUtil -> calculates differences between two lists and enables us to only update
@@ -93,9 +61,9 @@ class PastTrainingsListAdapter : RecyclerView.Adapter<PastTrainingsListAdapter.V
             binding.tvDate.text = training.eventDate.toFormattedDate()
             binding.tvTime.text = training.time
             binding.tvLocation.text = training.address
-//            setOnClickListener {
-//                onItemClickListener?.let { it(training) }
-//            }
+            setOnClickListener {
+                onItemClickListener?.let { it(training) }
+            }
         }
     }
 

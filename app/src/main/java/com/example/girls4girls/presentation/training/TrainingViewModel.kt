@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 class TrainingViewModel(private val repository: TrainingRepository) : ViewModel() {
 
     val upcomingTraining = MutableLiveData<TrainingResponse>()
-
     val pastTraining = MutableLiveData<TrainingResponse>()
+
     val trainingById = MutableLiveData<TrainingById>()
 
     val questionnaireApplySuccess = MutableLiveData<QuestionnaireApplyResponse>()

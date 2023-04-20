@@ -60,9 +60,9 @@ class TrainingAdapter : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
             binding.tvTrainingTitlePt.text = training.title
             binding.tvDatePt.text = training.eventDate.toFormattedDate()
             binding.tvLocationPt.text = training.address
-//            setOnClickListener {
-//                onItemClickListener?.let { it(training) }
-//            }
+            setOnClickListener {
+                onItemClickListener?.let { it(training) }
+            }
         }
     }
 

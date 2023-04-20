@@ -69,16 +69,6 @@ class TrainingFragment : Fragment() {
             findNavController().navigate(R.id.action_trainingsListFragment_to_pastTrainingsListFragment)
         }
 
-//        trainingAdapter.setOnItemClickListener {
-//            val bundle = Bundle().apply {
-//                putSerializable("training", it)
-//            }
-//            findNavController().navigate(
-//                R.id.action_trainingsListFragment_to_trainingArticleFragment,
-//                bundle
-//            )
-//        }
-
         upcomingTrainingAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("training", it)
@@ -88,6 +78,18 @@ class TrainingFragment : Fragment() {
                 bundle
             )
         }
+
+        trainingAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("training", it)
+            }
+
+            findNavController().navigate(
+                R.id.action_trainingsListFragment_to_pastTrainingArticleFragment,
+                bundle
+            )
+        }
+
     }
 
 }

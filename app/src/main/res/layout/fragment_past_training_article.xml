@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@id/btnApply"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -30,7 +30,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:context=".presentation.training.TrainingArticleFragment">
+                tools:context=".presentation.training.PastTrainingArticleFragment">
 
                 <ImageView
                     android:id="@+id/img"
@@ -170,33 +170,14 @@
                     android:textColor="#403A64"
                     android:textFontWeight="400"
                     android:textSize="16sp"
+                    android:text="@string/some_mentorship_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/aboutTraining"
                     tools:targetApi="28" />
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnApply"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_button_white"
-            android:fontFamily="@font/mulish"
-            android:text="@string/apply"
-            android:textAllCaps="false"
-            android:textColor="#662D91"
-            android:textFontWeight="600"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:targetApi="28" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

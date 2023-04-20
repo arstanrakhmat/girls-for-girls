@@ -57,15 +57,15 @@ class PastTrainingsListFragment : Fragment() {
     }
 
     private fun clickListeners() {
-//        pastTrainingsListAdapter.setOnItemClickListener {
-//            val bundle = Bundle().apply {
-//                putSerializable("training", it)
-//            }
-//            findNavController().navigate(
-//                R.id.action_pastTrainingsListFragment_to_trainingArticleFragment,
-//                bundle
-//            )
-//        }
+        pastTrainingsListAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("training", it)
+            }
+            findNavController().navigate(
+                R.id.action_pastTrainingsListFragment_to_pastTrainingArticleFragment,
+                bundle
+            )
+        }
     }
 
 }
