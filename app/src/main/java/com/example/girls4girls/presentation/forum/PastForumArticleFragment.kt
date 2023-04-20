@@ -9,16 +9,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.girls4girls.databinding.FragmentForumArticleBinding
+import com.example.girls4girls.databinding.FragmentPastForumArticleBinding
 import com.example.girls4girls.presentation.training.SpeakerAdapter
 import com.example.girls4girls.utils.toFormattedDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ForumArticleFragment : Fragment() {
+class PastForumArticleFragment : Fragment() {
 
-    private lateinit var binding: FragmentForumArticleBinding
+    private lateinit var binding: FragmentPastForumArticleBinding
+    private val args: PastForumArticleFragmentArgs by navArgs()
     private lateinit var speakerAdapter: SpeakerAdapter
-    private val args: ForumArticleFragmentArgs by navArgs()
     private val forumViewModel by viewModel<ForumViewModel>()
 
     override fun onCreateView(
@@ -26,16 +26,17 @@ class ForumArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentForumArticleBinding.inflate(inflater, container, false)
+        binding = FragmentPastForumArticleBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
         setupObservers()
         forumViewModel.getForumById(args.forum.id)
+        setupRecyclerView()
+
     }
 
     private fun setupObservers() {
@@ -72,5 +73,6 @@ class ForumArticleFragment : Fragment() {
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.GONE
     }
+
 
 }

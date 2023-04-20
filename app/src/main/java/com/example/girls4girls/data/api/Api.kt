@@ -109,6 +109,9 @@ interface Api {
     @GET("training/{id}")
     suspend fun getTrainingById(@Path("id") id: Int): Response<TrainingById>
 
+    @GET("forum/{id}")
+    suspend fun getForumById(@Path("id") id: Int): Response<TrainingById>
+
     @GET("training/future/trainings")
     suspend fun getUpcomingTrainings(
         @Query("page")
@@ -124,8 +127,38 @@ interface Api {
         orderField: String = "id"
     ): Response<TrainingResponse>
 
+    @GET("forum/future/forums")
+    suspend fun getUpcomingForums(
+        @Query("page")
+        pageNumber: Int = 1,
+
+        @Query("limit")
+        limitNumber: Int = 4,
+
+        @Query("order")
+        order: String = "ASC",
+
+        @Query("orderField")
+        orderField: String = "id"
+    ): Response<TrainingResponse>
+
     @GET("training/past/trainings")
     suspend fun getPastTrainings(
+        @Query("page")
+        pageNumber: Int = 1,
+
+        @Query("limit")
+        limitNumber: Int = 4,
+
+        @Query("order")
+        order: String = "ASC",
+
+        @Query("orderField")
+        orderField: String = "id"
+    ): Response<TrainingResponse>
+
+    @GET("forum/past/forums")
+    suspend fun getPastForums(
         @Query("page")
         pageNumber: Int = 1,
 

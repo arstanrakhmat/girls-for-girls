@@ -2,13 +2,11 @@ package com.example.girls4girls.koin
 
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.data.api.Api
-import com.example.girls4girls.data.repository.AuthRepository
-import com.example.girls4girls.data.repository.ResetPasswordRepository
-import com.example.girls4girls.data.repository.TrainingRepository
-import com.example.girls4girls.data.repository.UserRepository
+import com.example.girls4girls.data.repository.*
 import com.example.girls4girls.presentation.account.UserViewModel
 import com.example.girls4girls.presentation.auth.AuthViewModel
 import com.example.girls4girls.presentation.auth.ResetPasswordViewModel
+import com.example.girls4girls.presentation.forum.ForumViewModel
 import com.example.girls4girls.presentation.training.TrainingViewModel
 import com.example.girls4girls.utils.Constants
 import okhttp3.OkHttpClient
@@ -28,6 +26,7 @@ val retrofitModule = module {
     factory { AuthRepository(api = get()) }
     factory { UserRepository(api = get()) }
     factory { TrainingRepository(api = get()) }
+    factory { ForumRepository(api = get()) }
     factory { ResetPasswordRepository(api = get()) }
 }
 
@@ -36,6 +35,7 @@ val viewModules = module {
     viewModel { UserViewModel(repository = get()) }
     viewModel { ResetPasswordViewModel(repository = get()) }
     viewModel { TrainingViewModel(repository = get()) }
+    viewModel { ForumViewModel(repository = get()) }
 }
 
 fun getApiInstance(retrofit: Retrofit): Api {

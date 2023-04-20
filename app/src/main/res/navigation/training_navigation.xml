@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_trainingsListFragment_to_pastTrainingArticleFragment"
             app:destination="@id/pastTrainingArticleFragment" />
+        <action
+            android:id="@+id/action_trainingsListFragment_to_pastForumArticleFragment"
+            app:destination="@id/pastForumArticleFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainingFragment"
@@ -76,11 +79,8 @@
         android:label="@string/past_forums"
         tools:layout="@layout/fragment_past_forums_list">
         <action
-            android:id="@+id/action_pastForumsListFragment_to_trainingArticleFragment"
-            app:destination="@id/trainingArticleFragment" />
-        <action
-            android:id="@+id/action_pastForumsListFragment_to_forumArticleFragment"
-            app:destination="@id/forumArticleFragment" />
+            android:id="@+id/action_pastForumsListFragment_to_pastForumArticleFragment"
+            app:destination="@id/pastForumArticleFragment" />
     </fragment>
     <fragment
         android:id="@+id/forumArticleFragment"
@@ -88,7 +88,7 @@
         android:label="@string/forum_title">
         <argument
             android:name="forum"
-            app:argType="com.example.girls4girls.data.model.Forum" />
+            app:argType="com.example.girls4girls.data.model.Data" />
     </fragment>
     <fragment
         android:id="@+id/pastTrainingArticleFragment"
@@ -97,6 +97,14 @@
         tools:layout="@layout/fragment_past_training_article">
         <argument
             android:name="training"
+            app:argType="com.example.girls4girls.data.model.Data" />
+    </fragment>
+    <fragment
+        android:id="@+id/pastForumArticleFragment"
+        android:name="com.example.girls4girls.presentation.forum.PastForumArticleFragment"
+        android:label="PastForumArticleFragment" >
+        <argument
+            android:name="forum"
             app:argType="com.example.girls4girls.data.model.Data" />
     </fragment>
 </navigation>
