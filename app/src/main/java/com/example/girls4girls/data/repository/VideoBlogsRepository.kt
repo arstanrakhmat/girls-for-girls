@@ -1,5 +1,6 @@
 package com.example.girls4girls.data.repository
 
+import com.example.girls4girls.data.VideoBlog
 import com.example.girls4girls.data.VideoBlogResponse
 import com.example.girls4girls.data.VideosList
 import com.example.girls4girls.data.api.Api
@@ -24,5 +25,13 @@ class VideoBlogsRepository(private val api: Api) {
 
     suspend fun toggleLikeVideo(token: String?, videoBlogId: Long): Response<VideoBlogResponse>{
         return api.toggleLikeVideo(token, videoBlogId.toInt())
+    }
+
+    suspend fun getWatchedVideos(token: String?): Response<List<VideoBlog>>{
+        return api.getWatchedVideos(token)
+    }
+
+    suspend fun addToWatchedVideos(token: String?, videoBlogId: Long): Response<VideoBlog>{
+        return api.addToWatchedVideo(token, videoBlogId.toInt())
     }
 }

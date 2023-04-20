@@ -6,6 +6,7 @@ import com.example.girls4girls.data.repository.*
 import com.example.girls4girls.presentation.account.UserViewModel
 import com.example.girls4girls.presentation.auth.AuthViewModel
 import com.example.girls4girls.presentation.auth.ResetPasswordViewModel
+import com.example.girls4girls.presentation.home.HomeViewModel
 import com.example.girls4girls.presentation.videoblog.VideoblogViewModel
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel
 import com.example.girls4girls.utils.Constants
@@ -29,6 +30,7 @@ val retrofitModule = module {
     factory { ResetPasswordRepository(api = get()) }
     factory { VideoBlogsRepository(api = get()) }
     factory { CategoryRepository(api = get()) }
+    factory { EventRepository(api = get()) }
 }
 
 val viewModules = module {
@@ -37,6 +39,7 @@ val viewModules = module {
     viewModel { ResetPasswordViewModel(repository = get()) }
     viewModel { VideoblogViewModel(videoBlogRepository = get()) }
     viewModel { VideoblogsListViewModel(videoBlogsRepository = get(), categoryRepository = get()) }
+    viewModel { HomeViewModel(eventRepository= get()) }
 }
 
 fun getApiInstance(retrofit: Retrofit): Api {

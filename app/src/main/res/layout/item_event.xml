@@ -49,6 +49,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:textFontWeight="700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_type"
@@ -58,10 +59,11 @@
         android:id="@+id/event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="01/03/2023"
+        android:layout_marginTop="4dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_name" />
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        tools:text="01/03/2023" />
 </androidx.constraintlayout.widget.ConstraintLayout>

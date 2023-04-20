@@ -103,5 +103,117 @@ interface Api {
         @Query("blogId") blogId: Int,
     ): Response<VideoBlogResponse>
 
+    @GET("video-blog/get/watched")
+    suspend fun getWatchedVideos(
+        @Header("Authorization") token: String?
+    ): Response<List<VideoBlog>>
 
+    @PUT("video-blog/add-to-watched")
+    suspend fun addToWatchedVideo(
+        @Header("Authorization") token: String?,
+        @Query("blogId") blogId: Int,
+    ): Response<VideoBlog>
+
+    @GET("event/upcoming/events")
+    suspend fun getUpcomingEvents(): Response<List<Event>>
+
+//    @GET("https://girls4girls.herokuapp.com/api/quiz/{id}")
+//    suspend fun getQuiz(
+//        @Path ("id") id: Long
+//    ): Response<Quiz>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -30,4 +30,16 @@ class VideoblogViewModel(
             }
         }
     }
+
+    fun addToWatched(token: String?, id: Long){
+        viewModelScope.launch {
+            val response = videoBlogRepository.addToWatchedVideos(token, id)
+
+            if (response.isSuccessful){
+                Log.d(TAG, "Success")
+            } else {
+                Log.d(TAG, "likeVideo error: ${response.errorBody()?.string() ?: "Unknown"}")
+            }
+        }
+    }
 }

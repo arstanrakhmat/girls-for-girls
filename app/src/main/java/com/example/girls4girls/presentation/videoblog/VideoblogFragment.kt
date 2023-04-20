@@ -66,13 +66,15 @@ class VideoblogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Get the width and height of the plyer
+        // Get the width and height of the player
         playerParams = binding.player.layoutParams
 
         // Set the vertical height
         if (viewModel.defaultHeight == null){
             viewModel.defaultHeight = playerParams.height
         }
+
+        addToWatched()
 
         setText()
 
@@ -89,6 +91,27 @@ class VideoblogFragment : Fragment() {
             toggleLike()
         }
 
+        // Change like icon
+        isLikedLD.observe(viewLifecycleOwner){isLiked ->
+
+
+
+            if (isLiked){
+                binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
+            } else {
+                binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
+            }
+
+            Log.d(TAG, "isLikedLD: ${isLiked}")
+        }
+
+    }
+
+    private fun addToWatched() {
+        viewModel.addToWatched(
+            "Bearer ${sharedPreferences.fetchToken()}",
+            videoBlog.id
+        )
     }
 
     private fun toggleLike() {
@@ -100,16 +123,6 @@ class VideoblogFragment : Fragment() {
             "Bearer ${sharedPreferences.fetchToken()}",
             videoBlog.id
         )
-
-        // Change like icon
-        isLikedLD.observe(viewLifecycleOwner){isLiked ->
-
-            if (isLiked){
-                binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
-            } else {
-                binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
-            }
-        }
     }
 
     private fun setText() {
@@ -121,13 +134,13 @@ class VideoblogFragment : Fragment() {
         val inputDate = inputFormat.parse(videoBlog.date)
         val outputDate = outputFormat.format(inputDate)
         binding.videoDateTxt.text = outputDate
-        binding.videoCategory.text = videoBlog.category.name
+        binding.videoCategory.text = videoBlog.category?.name ?: "No Category"
 
         binding.descriptionTxt.text = videoBlog.description
-//        Glide
-//            .with(binding.root)
-//            .load(videoBlog.lecturerImage.url)
-//            .into(binding.videoSpeakerImage)
+        Glide
+            .with(binding.root)
+            .load(videoBlog.lecturerImage?.url ?: ERROR_IMAGE)
+            .into(binding.videoSpeakerImage)
         binding.videoSpeakerName.text = videoBlog.lecturerName
         binding.videoSpeakerPosition.text = videoBlog.lecturerInfo
 //
@@ -204,7 +217,6 @@ class VideoblogFragment : Fragment() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-//        isFullscreen = !isFullscreen
         toggleSystemUi()
 
     }
@@ -271,6 +283,7 @@ class VideoblogFragment : Fragment() {
 
     companion object {
         val TAG = "Chura"
+        val ERROR_IMAGE = "https://developers.google.com/static/maps/documentation/maps-static/images/error-image-generic.png"
     }
 
 }

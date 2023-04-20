@@ -45,7 +45,7 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
     ): View? {
         binding = FragmentVideoblogsListBinding.inflate(inflater, container, false)
 
-        setIntroViews()
+//        setIntroViews()
 
         return binding.root
     }
@@ -119,7 +119,19 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.videosListProgressBar.visibility = View.VISIBLE
 
         viewModel.getVideos()
-        viewModel._videosList.observe(requireActivity()){
+        viewModel._videosList.observe(viewLifecycleOwner){
+            viewModel.getLikedVideos("Bearer ${sharedPreferences.fetchToken()}")
+            for (videoBlog in it) {
+                viewModel._likedVideosList.observe(viewLifecycleOwner){ likedVideos ->
+                    Log.d(TAG, "likedVideos: ${likedVideos}")
+                    val likedVideosIds = likedVideos.map { it.id }.toHashSet()
+                    videoBlog.isLiked = likedVideosIds.contains(videoBlog.id)
+                }
+
+            }
+
+            Log.d(TAG, "Videos: ${it}")
+
             videoAdapter.modifyList(it)
             binding.videosListProgressBar.visibility = View.GONE
         }
@@ -134,10 +146,13 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
                         viewModel.getLikedVideos("Bearer ${sharedPreferences.fetchToken()}")
                         viewModel._likedVideosList
                     }
-                    else -> {viewModel._videosList}
+                    else -> {
+                        viewModel.getWatchedVideos("Bearer ${sharedPreferences.fetchToken()}")
+                        viewModel._watchedVideosList
+                    }
                 }
 
-                chosenTypeVideosList.observe(requireActivity()){videos ->
+                chosenTypeVideosList.observe(viewLifecycleOwner ){videos ->
                     videoAdapter.submitList(videos)
                     Log.d(TAG, "chosenTypeVideosList: ${videos}")
                 }
@@ -163,17 +178,17 @@ class VideoblogsListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         val categoryAdapter = CategoryAdapter()
         binding.categoryList.adapter = categoryAdapter
-        viewModel._categories.observe(requireActivity()){categories ->
+        viewModel._categories.observe(viewLifecycleOwner){categories ->
             categoryAdapter.submitList(categories)
             Log.d(TAG, "showBottomSheet: ${categories}")
         }
 
         categoryAdapter.onCategoryClickListener = {category->
-            viewModel._videosList.observe(requireActivity()){videosList ->
+            viewModel._videosList.observe(viewLifecycleOwner){videosList ->
 
-                videoAdapter.modifyList(videosList.filter { videoBlog ->
-                    videoBlog.category.name == category.name
-                })
+//                videoAdapter.modifyList(videosList.filter { videoBlog ->
+//                    videoBlog.category.name == category.name
+//                })
             }
 
 

@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.girls4girls.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -39,5 +40,10 @@ class HomeFragment : Fragment() {
     private fun setEventRecycler() {
         val eventAdapter = EventAdapter()
         binding.eventRecyclerView.adapter = eventAdapter
+
+        viewModel.getUpcomingEvents()
+        viewModel._upcomingEvents.observe(viewLifecycleOwner){eventsList ->
+            eventAdapter.submitList(eventsList)
+        }
     }
 }

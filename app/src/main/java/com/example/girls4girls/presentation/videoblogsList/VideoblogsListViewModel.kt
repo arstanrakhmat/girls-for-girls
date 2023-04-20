@@ -5,16 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.girls4girls.R
-import com.example.girls4girls.data.Category
-import com.example.girls4girls.data.Mentor
-import com.example.girls4girls.data.VideoBlog
-import com.example.girls4girls.data.VideoBlogResponse
+import com.example.girls4girls.data.*
 import com.example.girls4girls.data.repository.CategoryRepository
 import com.example.girls4girls.data.repository.VideoBlogsRepository
 import com.example.girls4girls.presentation.videoblog.VideoblogFragment.Companion.TAG
 import com.example.girls4girls.utils.Constants.TOKEN
 import kotlinx.coroutines.launch
 import okhttp3.Request
+import org.koin.android.ext.android.inject
+import org.koin.java.KoinJavaComponent.inject
 
 class VideoblogsListViewModel(
     private val videoBlogsRepository: VideoBlogsRepository,
@@ -23,13 +22,21 @@ class VideoblogsListViewModel(
 
     val _videosList = MutableLiveData<List<VideoBlog>>()
     val _likedVideosList = MutableLiveData<List<VideoBlog>>()
+    val _watchedVideosList = MutableLiveData<List<VideoBlog>>()
     var _categories = MutableLiveData<List<Category>>()
+
 
     fun getVideos(){
         viewModelScope.launch {
             val response = videoBlogsRepository.getVideoBlogs()
-            Log.d(TAG, "getVideos: ${response.toString()}")
             if (response.isSuccessful){
+
+                for (videoBlog in response.body()!!.videosList) {
+                    if (_likedVideosList.value?.contains(videoBlog) == true){
+                        videoBlog.isLiked == true
+                    }
+                }
+
                 _videosList.postValue(response.body()!!.videosList)
             } else {
                 Log.d(TAG, "getVideos: ${response.errorBody().toString()}")
@@ -52,15 +59,7 @@ class VideoblogsListViewModel(
     fun getLikedVideos(token: String?){
         viewModelScope.launch {
             val response = videoBlogsRepository.getLikedVideos(token)
-            var request = Request.Builder()
-                .url("https://girls4girls.herokuapp.com/api/like")
-                .build()
 
-            request = request.newBuilder()
-                .header("Authorization", TOKEN)
-                .build()
-
-            Log.d(TAG, "getLikedVideos: ${request}")
             if (response.isSuccessful){
 
                 val likedVideos = mutableListOf<VideoBlog>()
@@ -75,6 +74,19 @@ class VideoblogsListViewModel(
             } else {
                 Log.d(TAG, "getLikedVideos: ${response.errorBody()?.string()}")
             }
+        }
+    }
+
+    fun getWatchedVideos(token: String?){
+        viewModelScope.launch{
+            val response = videoBlogsRepository.getWatchedVideos(token)
+
+            if (response.isSuccessful){
+                _watchedVideosList.postValue(response.body())
+            } else {
+                Log.d(TAG, "getLikedVideos: ${response.errorBody()?.string()}")
+            }
+
         }
     }
 
