@@ -7,13 +7,12 @@ import com.example.girls4girls.data.model.*
 import com.example.girls4girls.data.repository.UserRepository
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
 
     val user = MutableLiveData<User>()
-    val userAllData = MutableLiveData<UserAllData>()
-    val putPhoto = MutableLiveData<UserAllData>()
+    val userAllData = MutableLiveData<UserAllDataNewVersion>()
+    val putPhoto = MutableLiveData<UserAllDataNewVersion>()
     val updatedUser = MutableLiveData<UserRegistrationResponse>()
     val errorMessage = MutableLiveData<String>()
 

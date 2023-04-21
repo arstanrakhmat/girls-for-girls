@@ -55,7 +55,7 @@ interface Api {
     @GET("user/profile")
     suspend fun getAllUserInfo(
         @Header("Authorization") token: String?
-    ): Response<UserAllData>
+    ): Response<UserAllDataNewVersion>
 
     @FormUrlEncoded
     @PATCH("user/profile")
@@ -90,7 +90,7 @@ interface Api {
     suspend fun postPhoto(
         @Header("Authorization") token: String,
         @Part image: MultipartBody.Part
-    ): Response<UserAllData>
+    ): Response<UserAllDataNewVersion>
 
     @FormUrlEncoded
     @POST("auth/forgot-password/confirm")

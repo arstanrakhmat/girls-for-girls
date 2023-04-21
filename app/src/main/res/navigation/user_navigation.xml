@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/user_navigation"
-    app:startDestination="@id/userFragment">
+    app:startDestination="@id/mainUserPageFragment">
 
 
     <fragment
@@ -28,4 +28,13 @@
         android:name="com.example.girls4girls.presentation.account.MyApplicationsFragment"
         android:label="fragment_my_applications"
         tools:layout="@layout/fragment_my_applications" />
+    <fragment
+        android:id="@+id/mainUserPageFragment"
+        android:name="com.example.girls4girls.presentation.account.MainUserPageFragment"
+        android:label="@string/my_profile"
+        tools:layout="@layout/fragment_main_user_page">
+        <action
+            android:id="@+id/action_mainUserPageFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
 </navigation>

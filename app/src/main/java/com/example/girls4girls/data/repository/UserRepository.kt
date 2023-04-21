@@ -3,16 +3,14 @@ package com.example.girls4girls.data.repository
 import com.example.girls4girls.data.api.Api
 import com.example.girls4girls.data.model.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Part
 
 class UserRepository(private val api: Api) {
     suspend fun getUser(string: String?): Response<User> {
         return api.getUser(string)
     }
 
-    suspend fun getAllUserInfo(token: String): Response<UserAllData> {
+    suspend fun getAllUserInfo(token: String): Response<UserAllDataNewVersion> {
         return api.getAllUserInfo(token)
     }
 
@@ -42,7 +40,7 @@ class UserRepository(private val api: Api) {
     suspend fun postPhoto(
         token: String,
         image: MultipartBody.Part
-    ): Response<UserAllData> {
+    ): Response<UserAllDataNewVersion> {
         return api.postPhoto(
             token, image
         )

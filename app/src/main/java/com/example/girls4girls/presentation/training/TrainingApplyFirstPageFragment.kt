@@ -110,6 +110,7 @@ class TrainingApplyFirstPageFragment : Fragment() {
         messageBoxView.setOnClickListener {
             messageBoxInstance.dismiss()
         }
+
     }
 
     private fun showProgressBar() {
