@@ -28,25 +28,28 @@ class AnswerAdapter: ListAdapter<Answer, AnswerAdapter.AnswerViewHolder>(AnswerD
                 answerVariant1,
                 answerVariant2,
                 answerVariant3,
-                answerVariant4)
+//                answerVariant4
+            )
 
             val answerVariantCardsList = mutableListOf(
                 answerVariant1Card,
                 answerVariant2Card,
                 answerVariant3Card,
-                answerVariant4Card)
+//                answerVariant4Card
+            )
 
             val answerPunktsList = mutableListOf(
                 answerPunkt1,
                 answerPunkt2,
                 answerPunkt3,
-                answerPunkt4)
+//                answerPunkt4
+            )
 
             answerQuestion.text = answer.question.text
 
 
-            for (variantId in 0..3){
-                answerVariantsList[variantId].text = answer.question.answers[variantId]
+            for (variantId in 0..2){
+                answerVariantsList[variantId].text = answer.question.options[variantId]
 
                 if (variantId == answer.chosenId){
 

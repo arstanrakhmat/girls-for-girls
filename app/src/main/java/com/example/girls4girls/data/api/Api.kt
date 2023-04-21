@@ -117,10 +117,10 @@ interface Api {
     @GET("event/upcoming/events")
     suspend fun getUpcomingEvents(): Response<List<Event>>
 
-//    @GET("https://girls4girls.herokuapp.com/api/quiz/{id}")
-//    suspend fun getQuiz(
-//        @Path ("id") id: Long
-//    ): Response<Quiz>
+    @GET("https://girls4girls.herokuapp.com/api/quiz/{id}")
+    suspend fun getQuiz(
+        @Path ("id") id: Long
+    ): Response<Quiz>
 }
 
 

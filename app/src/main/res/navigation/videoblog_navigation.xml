@@ -57,6 +57,9 @@
             android:id="@+id/action_questionFragment_to_reviewFragment"
             app:destination="@id/reviewFragment"
             app:popUpTo="@id/quizFragment" />
+        <argument
+            android:name="quiz"
+            app:argType="com.example.girls4girls.data.Quiz" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
