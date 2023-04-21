@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_height="220dp"
+    android:layout_marginHorizontal="8dp"
+    android:background="@drawable/jeton_background"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageHolder"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="60dp">
+
+        <ImageView
+            android:id="@+id/jetonImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_descr"
+            android:scaleType="centerCrop"
+            android:src="@drawable/main_team_1" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/jetonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/jeton_name_background"
+        android:fontFamily="@font/mulish_bold"
+        android:text="Бюбюсара"
+        android:textAlignment="center"
+        android:textColor="#403A64"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        tools:targetApi="28" />
+
+    <TextView
+        android:id="@+id/jetonDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/mulish"
+        android:text="@string/jeton_description_example"
+        android:textAlignment="center"
+        android:textColor="#403A64"
+        android:textFontWeight="400"
+        android:textSize="14sp"
+        tools:targetApi="28" />
+
+</LinearLayout>

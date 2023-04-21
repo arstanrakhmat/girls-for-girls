@@ -149,7 +149,7 @@ class ResetPasswordFragment : Fragment() {
     }
 
     private fun setupToolbar() {
-        binding.toolbar.back.visibility = View.GONE
+//        binding.toolbar.back.visibility = View.GONE
         binding.toolbar.userAccount.visibility = View.GONE
         binding.toolbar.screenName.text = resources.getString(R.string.reset_password_toolbar)
     }

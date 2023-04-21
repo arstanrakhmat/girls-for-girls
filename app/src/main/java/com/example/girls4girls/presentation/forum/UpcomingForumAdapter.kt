@@ -3,29 +3,31 @@ package com.example.girls4girls.presentation.forum
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.girls4girls.R
-import com.example.girls4girls.data.model.Forum
+import com.example.girls4girls.data.model.Data
 import com.example.girls4girls.databinding.ItemUpcomingTrainingBinding
+import com.example.girls4girls.utils.toFormattedDate
 
 class UpcomingForumAdapter : RecyclerView.Adapter<UpcomingForumAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemUpcomingTrainingBinding
 
-    private val forumList = listOf(
-        Forum(
-            "Стрессоустойчивость",
-            "23.05.2023",
-            "Бишкек",
-            "17:00",
-            "26.04.2023",
-            R.drawable.main_team_2,
-            "Открываем новые возможности к становлению лучшей версией себя"
-        )
-    )
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    private val differCallback = object : DiffUtil.ItemCallback<Data>() {
+        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+            return oldItem.title == newItem.title
+        }
+
+        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemUpcomingTrainingBinding.inflate(
@@ -36,14 +38,17 @@ class UpcomingForumAdapter : RecyclerView.Adapter<UpcomingForumAdapter.ViewHolde
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val forum = forumList[position]
+        val forum = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(forum.image).centerCrop().into(binding.ivTrainingImage)
+            if (forum.images!!.isNotEmpty()) {
+                Glide.with(this).load(forum.images[0].url).centerCrop()
+                    .into(binding.ivTrainingImage)
+            }
             binding.tvTrainingTitle.text = forum.title
-            binding.tvDate.text = forum.date
+            binding.tvDate.text = forum.eventDate.toFormattedDate()
             binding.tvLocation.text = forum.location
             binding.tvTime.text = forum.time
-            binding.tvDeadline.text = forum.deadline
+            binding.tvDeadline.text = forum.deadlineDate.toFormattedDate()
             setOnClickListener {
                 onItemClickListener?.let { it(forum) }
             }
@@ -51,12 +56,12 @@ class UpcomingForumAdapter : RecyclerView.Adapter<UpcomingForumAdapter.ViewHolde
     }
 
     override fun getItemCount(): Int {
-        return forumList.size
+        return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Forum) -> Unit)? = null
+    private var onItemClickListener: ((Data) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Forum) -> Unit) {
+    fun setOnItemClickListener(listener: (Data) -> Unit) {
         onItemClickListener = listener
     }
 }

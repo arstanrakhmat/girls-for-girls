@@ -29,23 +29,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/user_image"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageHolder"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/circle_image_view"
-                android:contentDescription="@string/image_descr"
-                android:src="@drawable/user_image"
+                app:cardCornerRadius="85dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:contentDescription="@string/image_descr"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main_team_1" />
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:id="@+id/btnChangeUserImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/mulish_bold"
                 android:text="@string/change_user_image"
                 android:textColor="#662D91"
@@ -53,7 +64,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/user_image"
+                app:layout_constraintTop_toBottomOf="@id/imageHolder"
                 tools:targetApi="28" />
 
             <TextView

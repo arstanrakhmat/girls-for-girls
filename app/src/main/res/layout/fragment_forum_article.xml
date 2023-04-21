@@ -8,6 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
@@ -110,35 +119,6 @@
                     tools:targetApi="28" />
 
                 <TextView
-                    android:id="@+id/aboutTraining"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/mulish"
-                    android:text="@string/about_training"
-                    android:textColor="#403A64"
-                    android:textFontWeight="700"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/deadline"
-                    tools:targetApi="28" />
-
-                <TextView
-                    android:id="@+id/description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/mulish"
-                    android:textColor="#403A64"
-                    android:textFontWeight="400"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/aboutTraining"
-                    tools:targetApi="28" />
-
-                <TextView
                     android:id="@+id/aboutLectors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,7 +130,7 @@
                     android:textFontWeight="700"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/description"
+                    app:layout_constraintTop_toBottomOf="@id/deadline"
                     tools:targetApi="28" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -164,6 +144,37 @@
                     app:layout_constraintTop_toBottomOf="@id/aboutLectors"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_speaker" />
+
+                <TextView
+                    android:id="@+id/aboutTraining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/mulish"
+                    android:text="@string/about_training"
+                    android:textColor="#403A64"
+                    android:textFontWeight="700"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvSpeaker"
+                    tools:targetApi="28" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mulish"
+                    android:textColor="#403A64"
+                    android:textFontWeight="400"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/aboutTraining"
+                    tools:targetApi="28" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

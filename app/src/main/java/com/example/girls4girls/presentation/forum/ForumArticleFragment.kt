@@ -1,19 +1,25 @@
 package com.example.girls4girls.presentation.forum
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.girls4girls.databinding.FragmentForumArticleBinding
 import com.example.girls4girls.presentation.training.SpeakerAdapter
+import com.example.girls4girls.utils.toFormattedDate
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForumArticleFragment : Fragment() {
 
     private lateinit var binding: FragmentForumArticleBinding
     private lateinit var speakerAdapter: SpeakerAdapter
     private val args: ForumArticleFragmentArgs by navArgs()
+    private val forumViewModel by viewModel<ForumViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +34,32 @@ class ForumArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        setupTrainingArticle()
+        setupObservers()
+        forumViewModel.getForumById(args.forum.id)
+    }
+
+    private fun setupObservers() {
+        forumViewModel.forumById.observe(requireActivity()) {
+            if (it.images != null) {
+                Glide.with(this).load(it.images[0].url).into(binding.img)
+            }
+            with(binding) {
+                title.text = it.title
+                date.text = it.eventDate.toFormattedDate()
+                time.text = it.time
+                location.text = it.location
+                deadline.text = it.deadlineDate.toFormattedDate()
+                description.text = it.description
+            }
+            hideProgressBar()
+        }
+
+        forumViewModel.error.observe(requireActivity()) {
+            Toast.makeText(activity, "An error occurred: $it", Toast.LENGTH_LONG)
+                .show()
+            Log.d("training", it.toString())
+            hideProgressBar()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -38,15 +69,8 @@ class ForumArticleFragment : Fragment() {
         }
     }
 
-    private fun setupTrainingArticle() {
-        val training = args.forum
-        binding.img.setImageResource(training.image)
-        binding.title.text = training.title
-        binding.date.text = training.date
-        binding.time.text = training.time
-        binding.location.text = training.location
-        binding.deadline.text = training.deadline
-        binding.description.text = training.description
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 
 }
