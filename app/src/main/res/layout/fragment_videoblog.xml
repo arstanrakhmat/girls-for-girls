@@ -142,7 +142,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/speaker_card"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 app:layout_constraintEnd_toEndOf="@+id/test_button"
                 app:layout_constraintStart_toStartOf="@+id/video_title_txt"
@@ -170,12 +170,13 @@
 
                 <TextView
                     android:id="@+id/video_speaker_position"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Ментор, co-founder"
                     android:textColor="#AFAAD0"
                     android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
                     app:layout_constraintStart_toStartOf="@+id/video_speaker_name"
                     app:layout_constraintTop_toBottomOf="@+id/video_speaker_name" />
 
@@ -202,13 +203,14 @@
 
             <ImageView
                 android:id="@+id/videoLikeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="21dp"
                 android:src="@drawable/ic_heart"
-                app:tint="#9960C3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/video_title_txt" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#9960C3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

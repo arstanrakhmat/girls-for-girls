@@ -1,5 +1,6 @@
 package com.example.girls4girls.data.api
 
+import com.example.girls4girls.data.*
 import com.example.girls4girls.data.model.*
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -106,6 +107,57 @@ interface Api {
         @Field("newPassword") newPassword: String
     ): Response<Message>
 
+
+    @GET("video-blog")
+    suspend fun getVideos(): Response<VideosList>
+
+    @GET("categories")
+    suspend fun getCategories(): Response<CategoryList>
+
+    @GET("like")
+    suspend fun getLikedVideos(
+        @Header("Authorization") token: String?
+    ): Response<List<VideoBlogResponse>>
+
+    @FormUrlEncoded
+    @POST("like/{blogId}")
+    suspend fun likeVideo(
+        @Header("Authorization") token: String?,
+        @Field("blogId") blogId: Long,
+    ): Response<Long>
+
+    @DELETE("like/{blogId}")
+    suspend fun unlikeVideo(
+        @Header("Authorization") token: String?,
+        @Path("blogId") blogId: Long
+    ): Response<Long>
+
+//    @FormUrlEncoded
+    @PUT("like/toggle")
+    suspend fun toggleLikeVideo(
+        @Header("Authorization") token: String?,
+        @Query("blogId") blogId: Int,
+    ): Response<VideoBlogResponse>
+
+    @GET("video-blog/get/watched")
+    suspend fun getWatchedVideos(
+        @Header("Authorization") token: String?
+    ): Response<List<VideoBlog>>
+
+    @PUT("video-blog/add-to-watched")
+    suspend fun addToWatchedVideo(
+        @Header("Authorization") token: String?,
+        @Query("blogId") blogId: Int,
+    ): Response<VideoBlog>
+
+    @GET("event/upcoming/events")
+    suspend fun getUpcomingEvents(): Response<List<Event>>
+
+    @GET("https://girls4girls.herokuapp.com/api/quiz/{id}")
+    suspend fun getQuiz(
+        @Path ("id") id: Long
+    ): Response<Quiz>
+
     @GET("training/{id}")
     suspend fun getTrainingById(@Path("id") id: Int): Response<TrainingById>
 
@@ -186,3 +238,4 @@ interface Api {
     ): Response<TrainingApplyResponse>
 
 }
+

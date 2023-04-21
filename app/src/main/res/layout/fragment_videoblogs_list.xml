@@ -54,17 +54,17 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Все"/>
+            android:text="Все" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Избранное"/>
+            android:text="Избранное" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Недавнее"/>
+            android:text="Недавнее" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -79,5 +79,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/videos_tab_layout"
         tools:listitem="@layout/item_videoblog" />
+
+    <ProgressBar
+        android:id="@+id/videosListProgressBar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#8079768D"
+        style="?android:attr/progressBarStyle"
+        android:paddingStart="100dp"
+        android:paddingEnd="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videos_tab_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

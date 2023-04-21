@@ -54,21 +54,20 @@
         android:label="Тест"
         tools:layout="@layout/fragment_question" >
         <action
-            android:id="@+id/action_questionFragment_to_resultFragment"
-            app:destination="@id/resultFragment"
-            app:popUpTo="@id/questionFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_questionFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment"
+            app:popUpTo="@id/quizFragment" />
+        <argument
+            android:name="quiz"
+            app:argType="com.example.girls4girls.data.Quiz" />
     </fragment>
     <fragment
-        android:id="@+id/resultFragment"
-        android:name="com.example.girls4girls.presentation.question.ResultFragment"
+        android:id="@+id/reviewFragment"
+        android:name="com.example.girls4girls.presentation.question.ReviewFragment"
         android:label="Тест"
-        tools:layout="@layout/fragment_result" >
+        tools:layout="@layout/fragment_review">
         <argument
-            android:name="correctAnswers"
-            app:argType="integer" />
-        <argument
-            android:name="questionsNumber"
-            app:argType="integer" />
+            android:name="answers"
+            app:argType="com.example.girls4girls.data.Answer[]" />
     </fragment>
 </navigation>

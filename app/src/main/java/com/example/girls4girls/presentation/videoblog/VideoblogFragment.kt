@@ -8,9 +8,6 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.provider.MediaStore
-import android.support.v4.os.IResultReceiver
-import android.util.DisplayMetrics
 import android.util.Log
 import android.util.SparseArray
 import android.util.TypedValue
@@ -31,27 +28,31 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.girls4girls.R
+import com.example.girls4girls.data.CustomPreferences
+import com.example.girls4girls.data.model.User
 import com.example.girls4girls.databinding.FragmentVideoblogBinding
 import com.example.girls4girls.presentation.MainActivity
-import com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment.Companion.TAG
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
 
 class VideoblogFragment : Fragment() {
 
-    private val viewModel by viewModels<VideoblogViewModel>()
+    private val viewModel by viewModel<VideoblogViewModel>()
     private lateinit var binding: FragmentVideoblogBinding
 
     private lateinit var playerParams: ViewGroup.LayoutParams
 
     private val args: VideoblogFragmentArgs by navArgs()
     private val videoBlog by lazy { args.currentVideoBlog}
+    private val sharedPreferences by inject<CustomPreferences>()
+    private val isLikedLD by lazy { MutableLiveData(videoBlog.isLiked)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,19 +60,21 @@ class VideoblogFragment : Fragment() {
     ): View? {
         binding = FragmentVideoblogBinding.inflate(inflater, container, false)
 
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Get the width and height of the player
         playerParams = binding.player.layoutParams
 
-
+        // Set the vertical height
         if (viewModel.defaultHeight == null){
             viewModel.defaultHeight = playerParams.height
         }
+
+        addToWatched()
 
         setText()
 
@@ -84,49 +87,67 @@ class VideoblogFragment : Fragment() {
             binding.player.release()
         }
 
-        (activity as MainActivity).supportActionBar
-
-        val isLikedLD = MutableLiveData<Boolean>()
-        isLikedLD.value = videoBlog.isLiked
-
         binding.videoLikeButton.setOnClickListener {
-
-            videoBlog.isLiked = !videoBlog.isLiked
-            isLikedLD.value = videoBlog.isLiked
-
-            Log.d(TAG, "onViewCreated: ${videoBlog.isLiked}")
-
+            toggleLike()
         }
 
+        // Change like icon
         isLikedLD.observe(viewLifecycleOwner){isLiked ->
+
+
+
             if (isLiked){
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart_filled)
             } else {
                 binding.videoLikeButton.setImageResource(R.drawable.ic_heart)
             }
+
+            Log.d(TAG, "isLikedLD: ${isLiked}")
         }
 
+    }
 
+    private fun addToWatched() {
+        viewModel.addToWatched(
+            "Bearer ${sharedPreferences.fetchToken()}",
+            videoBlog.id
+        )
+    }
+
+    private fun toggleLike() {
+
+        videoBlog.isLiked = !videoBlog.isLiked
+        isLikedLD.value = videoBlog.isLiked
+
+        viewModel.toggleVideoLike(
+            "Bearer ${sharedPreferences.fetchToken()}",
+            videoBlog.id
+        )
     }
 
     private fun setText() {
         binding.videoTitleTxt.text = videoBlog.title
 
         binding.videoViewsTxt.text = videoBlog.views.toString()
-        binding.videoDateTxt.text = videoBlog.date
-        binding.videoCategory.text = videoBlog.category
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        val outputFormat = SimpleDateFormat("dd/MM/yyyy")
+        val inputDate = inputFormat.parse(videoBlog.date)
+        val outputDate = outputFormat.format(inputDate)
+        binding.videoDateTxt.text = outputDate
+        binding.videoCategory.text = videoBlog.category?.name ?: "No Category"
 
         binding.descriptionTxt.text = videoBlog.description
         Glide
             .with(binding.root)
-            .load(videoBlog.speaker.image)
+            .load(videoBlog.lecturerImage?.url ?: ERROR_IMAGE)
             .into(binding.videoSpeakerImage)
-        binding.videoSpeakerName.text = videoBlog.speaker.name
-
-        binding.speakerCard.setOnClickListener {
-            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.speaker)
-            findNavController().navigate(action)
-        }
+        binding.videoSpeakerName.text = videoBlog.lecturerName
+        binding.videoSpeakerPosition.text = videoBlog.lecturerInfo
+//
+//        binding.speakerCard.setOnClickListener {
+//            val action = VideoblogFragmentDirections.actionVideoblogFragmentToMentorFragment2(videoBlog.speaker)
+//            findNavController().navigate(action)
+//        }
 
     }
 
@@ -147,8 +168,12 @@ class VideoblogFragment : Fragment() {
 
 
                 val link = videoBlog.link
-                val videoID = link.substring(link.indexOf("=")+1)
-                youTubePlayer.loadVideo(videoID,0F)
+                val videoID = getYoutubeVideoId(link)
+                if (videoID != null){
+                    youTubePlayer.loadVideo(videoID,0F)
+                }
+                Log.d(TAG, "videoID: ${videoID}")
+
             }
 
             override fun onStateChange(
@@ -192,7 +217,6 @@ class VideoblogFragment : Fragment() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-//        isFullscreen = !isFullscreen
         toggleSystemUi()
 
     }
@@ -237,14 +261,29 @@ class VideoblogFragment : Fragment() {
         
     }
 
-    private fun toDP(pixel: Int): Int{
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-            pixel.toFloat(),
-            context?.resources?.displayMetrics).toInt()
+    fun getYoutubeVideoId(url: String): String? {
+        // Extract video ID from "https://www.youtube.com/watch?v=xxxxxx" format
+        val watchUrlRegex = ".*youtube\\.com\\/watch\\?v=([\\w-]+).*"
+        val watchUrlMatcher = Regex(watchUrlRegex).find(url)
+        if (watchUrlMatcher != null) {
+            return watchUrlMatcher.groupValues[1]
+        }
+
+        // Extract video ID from "https://youtu.be/xxxxxx" format
+        val shortUrlRegex = ".*youtu\\.be\\/([\\w-]+).*"
+        val shortUrlMatcher = Regex(shortUrlRegex).find(url)
+        if (shortUrlMatcher != null) {
+            return shortUrlMatcher.groupValues[1]
+        }
+
+        // URL is not a valid YouTube video URL
+        return null
     }
+
 
     companion object {
         val TAG = "Chura"
+        val ERROR_IMAGE = "https://developers.google.com/static/maps/documentation/maps-static/images/error-image-generic.png"
     }
 
 }

@@ -41,6 +41,7 @@
         android:textColor="#403A64"
         android:textFontWeight="600"
         android:textSize="24sp"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/quiz_title_txt"
         app:layout_constraintTop_toTopOf="@+id/quiz_title_txt" />
 

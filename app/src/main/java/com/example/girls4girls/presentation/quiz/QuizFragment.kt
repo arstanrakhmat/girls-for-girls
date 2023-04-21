@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.databinding.FragmentQuizBinding
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListFragment.Companion.TAG
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuizFragment : Fragment() {
 
     private lateinit var binding: FragmentQuizBinding
+    private val viewModel by viewModel<QuizViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +31,20 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.quizStartButton.setOnClickListener {
-            val action = QuizFragmentDirections.actionQuizFragmentToQuestionFragment()
-            findNavController().navigate(action)
+        viewModel.getQuiz(6)
+
+        viewModel.quiz.observe(viewLifecycleOwner){quiz ->
+            binding.quizTitleTxt.text = quiz.title
+            binding.quizQuestionsNumber.text = quiz.questions.size.toString()
+            binding.quizDescription.text = quiz.description
+
+            binding.quizStartButton.setOnClickListener {
+                val action = QuizFragmentDirections.actionQuizFragmentToQuestionFragment(quiz)
+                findNavController().navigate(action)
+            }
         }
+
+
     }
 
 
