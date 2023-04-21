@@ -17,6 +17,7 @@ class MainUserPageFragment : Fragment() {
 
     private lateinit var binding: FragmentMainUserPageBinding
     private lateinit var jetonAdapter: JetonAdapter
+    private lateinit var videoJetonAdapter: JetonVideoAdapter
     private val customPreferences by inject<CustomPreferences>()
     private val userViewModel by viewModel<UserViewModel>()
 
@@ -46,7 +47,15 @@ class MainUserPageFragment : Fragment() {
 
             if (!it.jetons.isNullOrEmpty()) {
 //                trainingAdapter.differ.submitList(it.data)
-                jetonAdapter.differ.submitList(it.jetons)
+//                jetonAdapter.differ.submitList(it.jetons)
+//                videoJetonAdapter.differ.submitList(it.jetons)
+                for (jeton in it.jetons) {
+                    if (jeton.type == "CARD") {
+                        jetonAdapter.differ.submitList(it.jetons)
+                    } else {
+                        videoJetonAdapter.differ.submitList(it.jetons)
+                    }
+                }
             }
         }
     }
@@ -71,6 +80,11 @@ class MainUserPageFragment : Fragment() {
         jetonAdapter = JetonAdapter()
         binding.rvMyCards.apply {
             adapter = jetonAdapter
+        }
+
+        videoJetonAdapter = JetonVideoAdapter()
+        binding.rvMyVideoCards.apply {
+            adapter = videoJetonAdapter
         }
     }
 
