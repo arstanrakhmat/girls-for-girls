@@ -7,4 +7,4 @@ data class CardInfo(
     val infoKG: String,
     val name: String,
     val updatedAt: String
-)
+): java.io.Serializable

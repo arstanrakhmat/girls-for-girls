@@ -55,6 +55,16 @@ class MainUserPageFragment : Fragment() {
         binding.btnGoToSettings.setOnClickListener {
             findNavController().navigate(R.id.action_mainUserPageFragment_to_userFragment)
         }
+
+        jetonAdapter.setOnJetonClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("cardInfo", it)
+            }
+
+            val dialogFragment = JetonDialogFragment()
+            dialogFragment.arguments = bundle
+            dialogFragment.show(parentFragmentManager, "myDialog")
+        }
     }
 
     private fun setupRecyclerView() {

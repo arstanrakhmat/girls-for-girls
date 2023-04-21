@@ -13,4 +13,4 @@ data class Jeton(
     val titleKG: String,
     val type: String,
     val updatedAt: String
-)
+): java.io.Serializable

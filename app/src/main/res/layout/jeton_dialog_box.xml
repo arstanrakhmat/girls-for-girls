@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    app:cardCornerRadius="26dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/jetonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/mulish_semibold"
+                android:gravity="center"
+                android:text="@string/user_name"
+                android:textColor="#662D91"
+                android:textFontWeight="700"
+                android:textSize="16sp"
+                tools:targetApi="28" />
+
+            <ImageView
+                android:id="@+id/jetonImage"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/issyk_kol"
+                android:src="@drawable/alert_dialog_icon" />
+
+            <TextView
+                android:id="@+id/jetonDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/mulish_semibold"
+                android:gravity="center"
+                android:text="@string/apply_success"
+                android:textColor="#662D91"
+                android:textFontWeight="700"
+                android:textSize="16sp"
+                tools:targetApi="28" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.cardview.widget.CardView>

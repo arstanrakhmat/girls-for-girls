@@ -47,6 +47,15 @@ class JetonAdapter : RecyclerView.Adapter<JetonAdapter.ViewHolder>() {
                 .into(binding.jetonImage)
             binding.jetonName.text = jeton.title
             binding.jetonDescription.text = jeton.description
+            setOnClickListener {
+                onItemClickListener?.let { it(jeton) }
+            }
         }
+    }
+
+    private var onItemClickListener: ((Jeton) -> Unit)? = null
+
+    fun setOnJetonClickListener(listener: (Jeton) -> Unit) {
+        onItemClickListener = listener
     }
 }
