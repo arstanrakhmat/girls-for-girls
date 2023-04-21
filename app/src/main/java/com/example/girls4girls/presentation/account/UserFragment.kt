@@ -1,5 +1,6 @@
 package com.example.girls4girls.presentation.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentUserBinding
+import com.example.girls4girls.presentation.auth.LoginActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,7 +26,7 @@ class UserFragment : Fragment() {
     ): View {
 
         binding = FragmentUserBinding.inflate(layoutInflater, container, false)
-        userViewModel.getUser("Bearer ${customPreferences.fetchToken()}")
+        userViewModel.getAllUserInfo("Bearer ${customPreferences.fetchToken()}")
         Log.d("authE", customPreferences.fetchToken().toString())
         return binding.root
     }
@@ -36,7 +38,7 @@ class UserFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        userViewModel.user.observe(requireActivity()) {
+        userViewModel.userAllData.observe(requireActivity()) {
             with(binding) {
 //                userName.text = resources.getString(R.string.hello_registered_user)
                 userName.text = "Привет, ${it.firstName}!"
@@ -57,6 +59,10 @@ class UserFragment : Fragment() {
         binding.llModifyAccount.setOnClickListener {
             findNavController().navigate(R.id.action_userFragment_to_myInfoFragment)
         }
-    }
 
+        binding.btnLogOut.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
+        }
+    }
 }

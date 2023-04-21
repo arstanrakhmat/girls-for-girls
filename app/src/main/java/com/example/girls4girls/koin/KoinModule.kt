@@ -10,6 +10,8 @@ import com.example.girls4girls.presentation.home.HomeViewModel
 import com.example.girls4girls.presentation.quiz.QuizViewModel
 import com.example.girls4girls.presentation.videoblog.VideoblogViewModel
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel
+import com.example.girls4girls.presentation.forum.ForumViewModel
+import com.example.girls4girls.presentation.training.TrainingViewModel
 import com.example.girls4girls.utils.Constants
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -28,6 +30,8 @@ val retrofitModule = module {
     single { CustomPreferences(androidApplication()) }
     factory { AuthRepository(api = get()) }
     factory { UserRepository(api = get()) }
+    factory { TrainingRepository(api = get()) }
+    factory { ForumRepository(api = get()) }
     factory { ResetPasswordRepository(api = get()) }
     factory { VideoBlogsRepository(api = get()) }
     factory { CategoryRepository(api = get()) }
@@ -43,6 +47,8 @@ val viewModules = module {
     viewModel { VideoblogsListViewModel(videoBlogsRepository = get(), categoryRepository = get()) }
     viewModel { HomeViewModel(eventRepository= get()) }
     viewModel { QuizViewModel(repository = get()) }
+    viewModel { TrainingViewModel(repository = get()) }
+    viewModel { ForumViewModel(repository = get()) }
 }
 
 fun getApiInstance(retrofit: Retrofit): Api {

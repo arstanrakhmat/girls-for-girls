@@ -3,7 +3,6 @@ package com.example.girls4girls.utils
 import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.EditText
-import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,4 +35,12 @@ fun EditText.transformIntoDatePicker(
             show()
         }
     }
+}
+
+fun String.toFormattedDate(): String {
+    val inputDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    val outputDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+    inputDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+    val date = inputDateFormat.parse(this)
+    return outputDateFormat.format(date)
 }

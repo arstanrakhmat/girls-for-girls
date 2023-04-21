@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".presentation.account.MainUserPageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/user_page_gradient_background"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/llCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/card_background"
+            android:elevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="55dp"
+                android:layout_marginTop="45dp"
+                android:fontFamily="@font/mulish_extrabold"
+                android:text="@string/user_name"
+                android:textAlignment="center"
+                android:textColor="#403A64"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="28" />
+
+            <LinearLayout
+                android:id="@+id/llStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="55dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userName">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/mulish"
+                    android:text="@string/user_status"
+                    android:textColor="#403A64"
+                    android:textFontWeight="500"
+                    android:textSize="14sp"
+                    tools:targetApi="28" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/mulish_extrabold"
+                    android:text="@string/user"
+                    android:textColor="#9960C3"
+                    android:textFontWeight="700"
+                    android:textSize="14sp"
+                    tools:targetApi="28" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/user_status"
+                    android:src="@drawable/message_question" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llShortInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llStatus">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/mulish_semibold"
+                        android:text="@string/gender"
+                        android:textAlignment="center"
+                        android:textColor="#403A64"
+                        android:textFontWeight="600"
+                        android:textSize="14sp"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/etGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/mulish_extrabold"
+                        android:text="@string/female"
+                        android:textAlignment="center"
+                        android:textColor="#9960C3"
+                        android:textFontWeight="800"
+                        android:textSize="14sp"
+                        tools:targetApi="28" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#F5E3FF" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/mulish_semibold"
+                        android:text="@string/age"
+                        android:textAlignment="center"
+                        android:textColor="#403A64"
+                        android:textFontWeight="600"
+                        android:textSize="14sp"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/etAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/mulish_extrabold"
+                        android:text="@string/chertochka"
+                        android:textAlignment="center"
+                        android:textColor="#9960C3"
+                        android:textFontWeight="800"
+                        android:textSize="14sp"
+                        tools:targetApi="28" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#F5E3FF" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/mulish_semibold"
+                        android:text="@string/region"
+                        android:textAlignment="center"
+                        android:textColor="#403A64"
+                        android:textFontWeight="600"
+                        android:textSize="14sp"
+                        tools:targetApi="28" />
+
+                    <TextView
+                        android:id="@+id/etRegion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/mulish_extrabold"
+                        android:text="@string/chertochka"
+                        android:textAlignment="center"
+                        android:textColor="#9960C3"
+                        android:textFontWeight="800"
+                        android:textSize="14sp"
+                        tools:targetApi="28" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGoToSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/user_page_button"
+                android:fontFamily="@font/mulish"
+                android:text="@string/go_to_settings"
+                android:textColor="#9960C3"
+                android:textFontWeight="600"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llShortInfo"
+                tools:targetApi="28" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageHolder"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="140dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="85dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image_descr"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_image" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/mulish_bold"
+            android:text="@string/my_cards_list"
+            android:textColor="#9960C3"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llCard"
+            tools:targetApi="28" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMyCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCards" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

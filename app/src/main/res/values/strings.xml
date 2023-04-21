@@ -161,8 +161,9 @@
     <string name="female">Женский</string>
     <string name="leave_as_guest">Остаться гостем</string>
     <string name="mentorship_slogan">Открываем новые возможности к становлению лучшей версией себя!</string>
-    <string name="some_mentorship_text">Открываем новые возможности к становлению лучшей версией себя!Открываем новые возможности к становлению лучшей версией себя!</string>
-    <string name="user">User</string>
+    <string name="some_mentorship_text">Открываем новые возможности к становлению лучшей версией себя!Открываем новые возможности к становлению лучшей версией себя!
+    Открываем новые возможности к становлению лучшей версией себя!</string>
+    <string name="user">Пользователь</string>
     <string name="my_profile">Мой профиль</string>
     <string name="title">Title</string>
     <string name="date_example">Date: 1st March 2023 year</string>
@@ -214,6 +215,7 @@
     <string name="data_for_login">Данные для входа</string>
     <string name="change_password">Изменить пароль</string>
     <string name="girls_for_girls_apply_description">Заявка на тренинг “Girls\n for Girls”</string>
+    <string name="jeton_description_example">Первая балерина Кыргызстана, педагог</string>
 
     <string name="girls_for_girls_apply_requirements">
         Дорогие девочки!
@@ -238,5 +240,11 @@
     <string name="answer_no">Нет</string>
     <string name="training_title">Тренинг</string>
     <string name="forum_title">Форум</string>
+    <string name="user_status">Статус:</string>
+    <string name="age">Возраст</string>
+    <string name="chertochka">-</string>
+    <string name="go_to_settings">Перейти в настройки</string>
+    <string name="my_achievements_cards">Мои достижени</string>
+    <string name="my_cards_list">Мои карточки</string>
 
 </resources>

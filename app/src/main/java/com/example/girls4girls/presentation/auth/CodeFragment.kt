@@ -11,7 +11,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.girls4girls.R
+import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentCodeBinding
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CodeFragment : Fragment() {
@@ -20,6 +22,7 @@ class CodeFragment : Fragment() {
 
     private val args by navArgs<CodeFragmentArgs>()
     private val authViewModel by viewModel<AuthViewModel>()
+    private val sharedPreferences by inject<CustomPreferences>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +42,9 @@ class CodeFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        authViewModel.registered.observe(requireActivity()) {
+        authViewModel.activated.observe(requireActivity()) {
             findNavController().navigate(R.id.action_codeFragment_to_registrationSuccessFragment)
+            sharedPreferences.saveToken(it.access_token)
         }
 
         authViewModel.resendOtp.observe(requireActivity()) {
@@ -79,6 +83,10 @@ class CodeFragment : Fragment() {
                 args.userResend.phoneNumber
             )
         }
+
+        binding.toolbar.back.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun startTimer() {
@@ -97,7 +105,7 @@ class CodeFragment : Fragment() {
 
     private fun setupToolbar() {
         binding.toolbar.userAccount.visibility = View.GONE
-        binding.toolbar.back.visibility = View.GONE
+//        binding.toolbar.back.visibility = View.GONE
         binding.toolbar.screenName.text = resources.getString(R.string.verification)
     }
 
