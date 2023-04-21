@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Girls4Girls</string>
+    <string name="bottom_nav_home">Главная</string>
+    <string name="bottom_nav_mentorship">Менторство</string>
+    <string name="bottom_nav_videoblogs">Видео блог</string>
+    <string name="bottom_nav_trainings">Программы</string>
+    <string name="bottom_nav_forums">Форумы</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="trainings_and_forums">Тренинги и Форумы</string>
+    <string name="trainings">Тренинги</string>
+    <string name="forums">Форумы</string>
+    <string name="useful_video_lessons">Полезные видео уроки</string>
+    <string name="happy_to_see_you_again">Рады видеть тебя снова!</string>
+    <string name="i_forgot_password">Забыли пароль?</string>
+    <string name="input_confirmation_code">Введите код подтверждения</string>
+    <string name="reset_password_toolbar">Сброс пароля</string>
+    <string name="create_new_password">Новый пароль</string>
+    <string name="reset_password_instructions">Введите эл. почту или номер телефона, чтобы получить код для сброса пароля</string>
+    <string name="phone_number_or_email">Номер телефона\n или \n электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="forgot_the_password">Забыли пароль?</string>
+    <string name="sign_in">Войти</string>
+    <string name="reset_button">Сбросить</string>
+    <string name="sign_in_using_account">Войти с помощью аккаунта</string>
+    <string name="new_user">Новый пользователь?</string>
+    <string name="register">Зарегистрируйся</string>
+    <string name="getting_started">Познакомимся поближе?</string>
+    <string name="name_and_surname">Фамилия и Имя</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="verification">Верификация</string>
+    <string name="region">Регион</string>
+    <string name="email_does_not_exist">Такой почты не существует</string>
+    <string name="login_is_empty">Введите логин или номер телефона</string>
+    <string name="password_is_empty">Введите пароль</string>
+    <string name="enter_last_name">Введите фамилию</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_gmail_address">Введите электронную почту</string>
+    <string name="enter_birthday">Введите дату рождения</string>
+    <string name="enter_phone_number">Введите номер телефона</string>
+    <string name="enter_your_location">Укажите ваш район, город, село</string>
+    <string name="continue_application">Далее</string>
+    <string name="go_back">Назад</string>
+    <string name="my_answer">Мой ответ</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="gmail_address">Адрес электронной почты</string>
+    <string name="password_length_incorrect">Длина пароля должна быть не менее 8 символов</string>
+    <string name="fill_out_the_blank">Заполните поле</string>
+    <string name="email">Электронная почта</string>
+    <string name="password_repeat">Повторите пароль</string>
+    <string name="password_does_not_match">Пароли не совпадают</string>
+    <string name="continue_registration">Продолжить</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="register_though_account">или зарегистрироваться через аккаунт:</string>
+    <string name="already_have_an_account">Уже есть аккаунт?</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="choose_the_region">Выберите регион</string>
+    <string name="choose_the_birthday">Заполните дату рождения</string>
+    <string name="gender">Пол</string>
+    <string name="choose_gender">Выберите пол</string>
+    <string name="finish">Завершить</string>
+    <string name="finish_later">Заполнить позже</string>
+
+    <string name="training_apply_rec1">На момент прохождения тренинга вам должно быть от\n 14 до 19 лет включительно.</string>
+    <string name="ability_to_participate">Будет ли у вас возможность приезжать и уезжать на место тренинга в дни его проведения?</string>
+    <string name="why_you_should_participate">Почему именно вы должны принять участие в этом тренинге?</string>
+    <string name="list_reasons">Перечислите 3 причины и объясните. Максимум 100 слов</string>
+    <string name="what_i_expect">Что вы ожидаете от нашего тренинга? Чему вы хотите научиться?</string>
+    <string name="message_length">50 -.100 слов</string>
+
+    <string name="what_are_you_interested">Какие из тем тренинга вас интересуют больше всего?</string>
+    <string name="career">Карьерная готовность</string>
+    <string name="time_management">Тайм-менеджмент</string>
+    <string name="digital_literacy">Цифровая грамотность</string>
+    <string name="health_care">Здоровый образ жизни</string>
+    <string name="booling">Школьное насилие</string>
+    <string name="reproductive_health">Репродуктивное здоровье</string>
+    <string name="mindfulness">Осознанность</string>
+    <string name="human_rights">Соблюдение прав человека</string>
+
+    <string name="what_else_would_you_like">Какие темы еще вас интересуют?</string>
+    <string name="we_want_to_know">Мы хотим узнать ваши предпочтения, чтобы сделать тренинг
+        как можно полезным именно для вас.</string>
+
+    <string name="how_do_you_know_about_us">Где вы узнали о тренинге?</string>
+    <string name="instagram">Инстаграм</string>
+    <string name="facebook">Фэйсбук</string>
+    <string name="from_friends">От друзей</string>
+    <string name="other">Другое:</string>
+    <string name="send">Отправить</string>
+
+    <string name="apply_success">Вы успешно отправили заявку на участие в тренинге “Girls for Girls”</string>
+    <string name="apply_success_description">Вы успешно отправили заявку на участие в тренинге “Girls for Girls”</string>
+
+
+    <string-array name="regions">
+        <item>Бишкек</item>
+        <item>Чуй</item>
+        <item>Иссык-Куль</item>
+        <item>Нарын</item>
+        <item>Талас</item>
+        <item>Жалал-Абад</item>
+        <item>Ош</item>
+        <item>Баткен</item>
+    </string-array>
+
+    <string-array name="genders">
+        <item>Женский</item>
+        <item>Мужской</item>
+    </string-array>
+
+    <string name="bishkek">Бишкек</string>
+    <string name="chuy">Чуй</string>
+    <string name="issyk_kol">Иссык-Куль</string>
+    <string name="naryn">Нарын</string>
+    <string name="talas">Талас</string>
+    <string name="zhalal_abad">Жалал-Абад</string>
+    <string name="osh">Ош</string>
+    <string name="batken">Баткен</string>
+    <string name="dash">-</string>
+    <string name="change_password_description">Для продолжения подтвердите, что вы\n являетесь владельцем аккаунта</string>
+
+
+    <string name="boy">Парень</string>
+    <string name="girl">Девушка</string>
+
+    <string name="temp_phone_number">0707 365151</string>
+    <string name="na_nomer">На номер</string>
+    <string name="was">был</string>
+    <string name="code_has_been_sent">оправлен 6-значный код</string>
+    <string name="verify_code">Подтвердите код</string>
+    <string name="incorrect_verification_code">Неправильный код. Повторите еще раз</string>
+    <string name="verify">Подтвердить</string>
+    <string name="send_code_again"><u>Отправить код еще раз</u></string>
+    <string name="incorrect_otp">Неправильный код. Повторите еще раз</string>
+    <string name="welcome">Добро Пожаловать!</string>
+    <string name="go_to_main_page"><u>Перейти на главную страницу</u></string>
+    <string name="registration">Регистрация</string>
+    <string name="_0771677010">0771677010</string>
+    <string name="_0771677010_example">Пример: 996#########</string>
+    <string name="hello_registered_user">Привет, ${it.firstName}!</string>
+
+    <string name="incorrect_type_number">Неправильный формат номера. Номер должен начинаться с 996</string>
+    <string name="incorrect_type_email">Почта должна быть с доменом @gmail.com</string>
+
+    <string name="upcoming_trainings">Предстоящие тренинги</string>
+    <string name="past_trainings">Прошедшие тренинги</string>
+    <string name="women_rights">Права женщин</string>
+
+    <string name="title_apply">Подача заявки</string>
+
+    <string name="upcoming_forums">Предстоящие форумы</string>
+    <string name="past_forums">Прошедшие форумы</string>
+
+
+    <string name="video_title_tv">Тема видео</string>
+    <string name="like_button">Кнопка нравиться</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="leave_as_guest">Остаться гостем</string>
+    <string name="mentorship_slogan">Открываем новые возможности к становлению лучшей версией себя!</string>
+    <string name="some_mentorship_text">Открываем новые возможности к становлению лучшей версией себя!Открываем новые возможности к становлению лучшей версией себя!
+    Открываем новые возможности к становлению лучшей версией себя!</string>
+    <string name="user">Пользователь</string>
+    <string name="my_profile">Мой профиль</string>
+    <string name="title">Title</string>
+    <string name="date_example">Date: 1st March 2023 year</string>
+    <string name="time_example">Time: 17:00</string>
+    <string name="location_example">Location: Bishkek</string>
+    <string name="deadline_example">Дедлайн: 4 февраля 2023 года</string>
+    <string name="training_text">Программа индивидуального\n наставничества поможет вам поставить\n личные и профессиональные цели\n достичь их</string>
+    <string name="post_trainings_all_list">Все</string>
+    <string name="apply">Подать заявку</string>
+    <string name="about_training">О тренинге</string>
+    <string name="lectors">Лекторы</string>
+    <string name="update_user">Обновить профиль</string>
+
+    <string name="training_description">
+        Открываем новые возможности к становлению лучшей версией себя\n
+        Открываем новые возможности к становлению лучшей версией себя!\n
+        Открываем новые возможности к становлению лучшей версией себя!\n
+        Открываем новые возможности к становлению лучшей версией себя!</string>
+
+    <string name="sydykova_aikanysh_name">Сыдыкова Айканыш</string>
+    <string name="sydykova_aikanysh_info">Айканыш - амбициозная девушка, которая научит вас любви к себе, дисциплине и уверенности\n\nВыпускница программ FLEX ‘13 и Global Village ‘22\n\nПрограммный координатор в Американских Советах по международному образовании\n\nПроектный менеджер в Neobis\n\nСо-основательница Girls for Girls</string>
+
+    <string name="your_score">Вы набрали %1$d из %2$d\nправильных ответов</string>
+    <string name="good_result">Ура!</string>
+    <string name="good_result_description">Отличный результат! Вы получили достижение “Отличник” за отлично пройденный тест по видеолекции.</string>
+    <string name="bad_result">О нет!</string>
+    <string name="bad_result_description">Ужасный результат! Вы получили достижение “Двоечник” за ужасно пройденный тест по видеолекции.</string>
+    <string name="review_answers">Проверить мои ответы</string>
+    <string name="check_achievements">Посмотреть мои достижения</string>
+    <string name="user_name">Привет, Имя!</string>
+    <string name="modify_account">Редактировать аккаунт</string>
+    <string name="saved_videos">Избранные видео</string>
+    <string name="watched_videos">Просмотренные видео</string>
+    <string name="my_applications">Мои заявки</string>
+    <string name="my_achievements">Мои достижения</string>
+    <string name="contact_us">Обратная связь</string>
+    <string name="language_change">Язык приложения</string>
+    <string name="or">или</string>
+
+    <string name="speaker_info">Ментор, co-founder</string>
+
+    <string name="register_from_user">Зарегистрироваться</string>
+    <string name="logout">Выйти из аккаунта</string>
+    <string name="image_descr">image</string>
+    <string name="change_user_image">Изменить фото</string>
+    <string name="personal_data">Личные данные</string>
+    <string name="input_birthday">Введите дату рождения</string>
+    <string name="choose_region">Выберите регион</string>
+    <string name="data_for_login">Данные для входа</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="girls_for_girls_apply_description">Заявка на тренинг “Girls\n for Girls”</string>
+    <string name="jeton_description_example">Первая балерина Кыргызстана, педагог</string>
+
+    <string name="girls_for_girls_apply_requirements">
+        Дорогие девочки!
+Приглашаем Вас принять участие на 2-дневном тренинге "Girls for Girls", который пройдет 7-8 Апреля, 2023г. в Канте. Целью тренинга является - мотивация девочек к саморазвитию, лидерству, защите своих прав, и участию в социальных проектах, которые внесут вклад в развитие нашего общества.
+Тренинг включает в себя:
+- Сессии от тренеров на темы личностного роста, ментального и репродуктивного здоровья, лидерства, здорового образа жизни и права
+- Сессии о программах по обмену, лидерских и менторских программах
+- Общество крутых девушек-менторов, которые помогут вам поверить в себя
+- Сессии арт-терапии, медитации
+- Питание на время тренингов и раздаточные материалы.
+Требования к участницам:
+- Девочки из Канта области в возрасте от 14 до 19 лет💁‍♀️
+- Быть заинтересованными в саморазвитии, изучении себя, своих прав и лидерства💡
+- Иметь возможность находиться в месте проведения тренингов в течение 2 дней.
+Место и даты проведения:
+7-8 апреля в г. Кант Американский уголок
+Участие бесплатное!❗Дедлайн для подачи заявок на тренинг:
+31 марта 23:59
+Проект финансируется в рамках программы SIDP грант и администрируется Центром Гражданской Активности АУЦА.
+    </string>
+    <string name="answer_yes">Да</string>
+    <string name="answer_no">Нет</string>
+    <string name="training_title">Тренинг</string>
+    <string name="forum_title">Форум</string>
+    <string name="user_status">Статус:</string>
+    <string name="age">Возраст</string>
+    <string name="chertochka">-</string>
+    <string name="go_to_settings">Перейти в настройки</string>
+    <string name="my_achievements_cards">Мои достижени</string>
+    <string name="my_cards_list">Мои карточки</string>
+</resources>
