@@ -20,9 +20,9 @@
             android:id="@+id/jetonImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/image_descr"
+            android:contentDescription="@string/jeton_description_example"
             android:scaleType="centerCrop"
-            android:src="@drawable/main_team_1" />
+            android:src="@drawable/jeton_achieve_icon" />
 
     </androidx.cardview.widget.CardView>
 
@@ -33,11 +33,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="14dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/jeton_name_background"
+        android:background="@drawable/jeton_video_text_background"
         android:fontFamily="@font/mulish_bold"
-        android:text="Бюбюсара"
+        android:text="Новичок"
         android:textAlignment="center"
-        android:textColor="#403A64"
+        android:textColor="#FFFFFF"
         android:textFontWeight="700"
         android:textSize="14sp"
         tools:targetApi="28" />
