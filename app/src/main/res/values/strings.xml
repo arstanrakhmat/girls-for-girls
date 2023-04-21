@@ -193,7 +193,8 @@
     <string name="bad_result_description">Ужасный результат! Вы получили достижение “Двоечник” за ужасно пройденный тест по видеолекции.</string>
     <string name="review_answers">Проверить мои ответы</string>
     <string name="check_achievements">Посмотреть мои достижения</string>
-    <string name="user_name">Привет, Имя!</string>
+    <string name="user_name">Привет, </string>
+    <string name="user_name_to_change">пользователь!</string>
     <string name="modify_account">Редактировать аккаунт</string>
     <string name="saved_videos">Избранные видео</string>
     <string name="watched_videos">Просмотренные видео</string>
@@ -246,5 +247,7 @@
     <string name="go_to_settings">Перейти в настройки</string>
     <string name="my_achievements_cards">Мои достижени</string>
     <string name="my_cards_list">Мои карточки</string>
+
+    <string name="greetings_to_user">"Привет, ${it.firstName}!"</string>
 
 </resources>

@@ -1,11 +1,13 @@
 package com.example.girls4girls.presentation.account
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.recreate
 import androidx.navigation.fragment.findNavController
 import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
@@ -13,6 +15,7 @@ import com.example.girls4girls.databinding.FragmentUserBinding
 import com.example.girls4girls.presentation.auth.LoginActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
 
 class UserFragment : Fragment() {
 
@@ -41,7 +44,7 @@ class UserFragment : Fragment() {
         userViewModel.userAllData.observe(requireActivity()) {
             with(binding) {
 //                userName.text = resources.getString(R.string.hello_registered_user)
-                userName.text = "Привет, ${it.firstName}!"
+                userNameChange.text = it.firstName
                 binding.btnLogOut.visibility = View.VISIBLE
                 binding.signInFromUser.visibility = View.GONE
                 binding.tvOr.visibility = View.GONE
@@ -64,5 +67,19 @@ class UserFragment : Fragment() {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity?.finish()
         }
+
+        binding.llLanguage.setOnClickListener {
+            setLocale("ky", requireContext())
+            recreate(requireActivity())
+        }
+    }
+
+    private fun setLocale(language: String, context: Context) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val configuration = context.resources.configuration
+        configuration.setLocale(locale)
+        context.createConfigurationContext(configuration)
+        context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
     }
 }
