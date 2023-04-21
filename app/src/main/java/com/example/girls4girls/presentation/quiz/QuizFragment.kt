@@ -34,7 +34,7 @@ class QuizFragment : Fragment() {
         viewModel.getQuiz(6)
 
         viewModel.quiz.observe(viewLifecycleOwner){quiz ->
-            binding.quizTitle.text = quiz.title
+            binding.quizTitleTxt.text = quiz.title
             binding.quizQuestionsNumber.text = quiz.questions.size.toString()
             binding.quizDescription.text = quiz.description
 

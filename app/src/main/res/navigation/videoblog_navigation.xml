@@ -62,22 +62,10 @@
             app:argType="com.example.girls4girls.data.Quiz" />
     </fragment>
     <fragment
-        android:id="@+id/resultFragment"
-        android:name="com.example.girls4girls.presentation.question.ResultFragment"
-        android:label="Тест"
-        tools:layout="@layout/fragment_result" >
-        <action
-            android:id="@+id/action_resultFragment_to_reviewFragment"
-            app:destination="@id/reviewFragment" />
-        <argument
-            android:name="answers"
-            app:argType="com.example.girls4girls.data.Answer[]" />
-    </fragment>
-    <fragment
         android:id="@+id/reviewFragment"
         android:name="com.example.girls4girls.presentation.question.ReviewFragment"
-        android:label="fragment_review"
-        tools:layout="@layout/fragment_review" >
+        android:label="Тест"
+        tools:layout="@layout/fragment_review">
         <argument
             android:name="answers"
             app:argType="com.example.girls4girls.data.Answer[]" />
