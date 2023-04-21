@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.recreate
@@ -13,6 +14,7 @@ import com.example.girls4girls.R
 import com.example.girls4girls.data.CustomPreferences
 import com.example.girls4girls.databinding.FragmentUserBinding
 import com.example.girls4girls.presentation.auth.LoginActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
@@ -43,7 +45,6 @@ class UserFragment : Fragment() {
     private fun setupObservers() {
         userViewModel.userAllData.observe(requireActivity()) {
             with(binding) {
-//                userName.text = resources.getString(R.string.hello_registered_user)
                 userNameChange.text = it.firstName
                 binding.btnLogOut.visibility = View.VISIBLE
                 binding.signInFromUser.visibility = View.GONE
@@ -69,8 +70,7 @@ class UserFragment : Fragment() {
         }
 
         binding.llLanguage.setOnClickListener {
-            setLocale("ky", requireContext())
-            recreate(requireActivity())
+            languageBottomSheet()
         }
     }
 
@@ -81,5 +81,37 @@ class UserFragment : Fragment() {
         configuration.setLocale(locale)
         context.createConfigurationContext(configuration)
         context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
+    }
+
+    private fun setDefaultLocale(context: Context) {
+        val locale = Locale.getDefault()
+        val configuration = context.resources.configuration
+        configuration.setLocale(locale)
+        context.createConfigurationContext(configuration)
+        context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
+    }
+
+    private fun languageBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(
+            requireContext(),
+            R.style.BottomSheetStyle
+        )
+
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_language, null)
+
+        view.findViewById<TextView>(R.id.russian).setOnClickListener {
+            setDefaultLocale(requireContext())
+            recreate(requireActivity())
+            bottomSheetDialog.dismiss()
+        }
+
+        view.findViewById<TextView>(R.id.kyrgyz).setOnClickListener {
+            setLocale("ky", requireContext())
+            recreate(requireActivity())
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.show()
     }
 }

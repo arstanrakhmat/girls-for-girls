@@ -249,5 +249,8 @@
     <string name="my_cards_list">Мои карточки</string>
 
     <string name="greetings_to_user">"Привет, ${it.firstName}!"</string>
+    <string name="russian_language_change">Русский</string>
+    <string name="kyrgyz_language_change">Кыргызча</string>
+    <string name="change_current_lanuage">Сменить язык приложения</string>
 
 </resources>
