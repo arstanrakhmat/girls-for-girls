@@ -110,6 +110,7 @@ class CodeFragment : Fragment() {
     }
 
     private fun setupPhoneNumber() {
-        binding.tv2.text = args.userResend.phoneNumber
+        binding.tv4.text = args.userResend.phoneNumber
+        binding.tv2.text = args.userResend.email
     }
 }

@@ -131,6 +131,7 @@
     <string name="was">был</string>
     <string name="code_has_been_sent">оправлен 6-значный код</string>
     <string name="verify_code">Подтвердите код</string>
+    <string name="verify_account_user">Подтвердите аккаунт</string>
     <string name="incorrect_verification_code">Неправильный код. Повторите еще раз</string>
     <string name="verify">Подтвердить</string>
     <string name="send_code_again"><u>Отправить код еще раз</u></string>
@@ -252,5 +253,11 @@
     <string name="russian_language_change">Русский</string>
     <string name="kyrgyz_language_change">Кыргызча</string>
     <string name="change_current_lanuage">Сменить язык приложения</string>
+
+    <string name="input_code">Введите 6-значный код,</string>
+    <string name="otp_na">отправленный на</string>
+    <string name="gmail_example">example@mail.com</string>
+    <string name="and_and">и номер</string>
+    <string name="valid_during_10_min">Код действителен в течение 10 минут</string>
 
 </resources>
