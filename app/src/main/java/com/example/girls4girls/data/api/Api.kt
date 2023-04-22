@@ -158,6 +158,11 @@ interface Api {
         @Path ("id") id: Long
     ): Response<Quiz>
 
+    @GET("https://girls4girls.herokuapp.com/api/quiz/get-jeton")
+    suspend fun getJeton(
+        @Header("Authorization") token: String?
+    ): Response<Jeton>
+
     @GET("training/{id}")
     suspend fun getTrainingById(@Path("id") id: Int): Response<TrainingById>
 

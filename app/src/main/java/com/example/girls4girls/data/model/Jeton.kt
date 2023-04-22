@@ -6,7 +6,7 @@ data class Jeton(
     val description: String,
     val descriptionKG: String,
     val id: Int,
-    val image: ImageX,
+    val image: Image,
     val isDeleted: Boolean,
     val quantityToGet: Int,
     val title: String,

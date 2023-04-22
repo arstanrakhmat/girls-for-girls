@@ -14,7 +14,12 @@ class MentorsAdapter(): RecyclerView.Adapter<MentorsAdapter.MentorsViewHolder>()
 
     var onMentorClickListener: ((Mentor) -> Unit)? = null
 
-    private val mentorsList = listOf<Mentor>()
+    private val mentorsList = listOf<Mentor>(
+        Mentor("Айканыш Сыдыкова", R.drawable.mentor_aikanysh_sydykova),
+        Mentor("Айсезим Арымбаева", R.drawable.mentor_aisezim_arymbaeva),
+        Mentor("Салкынай Эмилбекова", R.drawable.mentor_salkynai_emilbekova),
+        Mentor("Нурайым Нургазиева", R.drawable.mentor_nuraiym_nurgazieva),
+    )
 
     inner class MentorsViewHolder(
         item: View,
