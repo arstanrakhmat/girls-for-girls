@@ -54,14 +54,14 @@ class TrainingApplyFirstPageFragment : Fragment() {
         }
 
         trainingViewModel.error.observe(requireActivity()) {
-            Toast.makeText(activity, "An error occurred: $it", Toast.LENGTH_LONG)
-                .show()
+//            Toast.makeText(activity, "An error occurred: $it", Toast.LENGTH_LONG)
+//                .show()
             hideProgressBar()
             Log.d("questionnaire", "Error: $it.")
         }
 
         trainingViewModel.questionnaireApplySuccess.observe(requireActivity()) {
-            Toast.makeText(activity, "Questionnaire Saved", Toast.LENGTH_LONG).show()
+//            Toast.makeText(activity, "Questionnaire Saved", Toast.LENGTH_LONG).show()
             trainingViewModel.trainingApply(
                 "Bearer ${sharedPreferences.fetchToken()}",
                 args.trainingId,
