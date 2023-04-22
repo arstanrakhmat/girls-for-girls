@@ -74,7 +74,7 @@ dependencies {
     // Coil
 //    implementation "io.coil-kt:coil:2.2.2"
 
-    // Exoplayer
+    // YouTubePlayer
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 
     //ViewPager2

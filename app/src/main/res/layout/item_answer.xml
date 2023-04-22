@@ -47,7 +47,7 @@
 
             <TextView
                 android:id="@+id/answer_variant_1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:paddingTop="10dp"
@@ -56,6 +56,7 @@
                 android:textColor="#403A64"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/answer_punkt_1"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,7 +95,7 @@
 
             <TextView
                 android:id="@+id/answer_variant_2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:paddingTop="10dp"
@@ -103,6 +104,7 @@
                 android:textColor="#403A64"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/answer_punkt_2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -140,7 +142,7 @@
 
             <TextView
                 android:id="@+id/answer_variant_3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:paddingTop="10dp"
@@ -149,6 +151,7 @@
                 android:textColor="#403A64"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/answer_punkt_3"
                 app:layout_constraintTop_toTopOf="parent" />
 
