@@ -125,7 +125,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/mulish"
-                    android:text="@string/lectors"
+                    android:text="@string/speakers"
                     android:textColor="#403A64"
                     android:textFontWeight="700"
                     android:textSize="18sp"

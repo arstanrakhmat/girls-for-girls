@@ -259,5 +259,7 @@
     <string name="gmail_example">example@mail.com</string>
     <string name="and_and">и номер</string>
     <string name="valid_during_10_min">Код действителен в течение 10 минут</string>
+    <string name="for_the_firt_video_jeton">За 1 видеоурок</string>
+    <string name="speakers">Спикеры</string>
 
 </resources>

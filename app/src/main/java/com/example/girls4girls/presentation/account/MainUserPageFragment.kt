@@ -52,7 +52,7 @@ class MainUserPageFragment : Fragment() {
                 for (jeton in it.jetons) {
                     if (jeton.type == "CARD") {
                         jetonAdapter.differ.submitList(it.jetons)
-                    } else {
+                    } else if (jeton.type == "VIDEO") {
                         videoJetonAdapter.differ.submitList(it.jetons)
                     }
                 }
