@@ -11,6 +11,7 @@ import com.example.girls4girls.presentation.quiz.QuizViewModel
 import com.example.girls4girls.presentation.videoblog.VideoblogViewModel
 import com.example.girls4girls.presentation.videoblogsList.VideoblogsListViewModel
 import com.example.girls4girls.presentation.forum.ForumViewModel
+import com.example.girls4girls.presentation.question.ReviewViewModel
 import com.example.girls4girls.presentation.training.TrainingViewModel
 import com.example.girls4girls.utils.Constants
 import com.google.gson.GsonBuilder
@@ -49,6 +50,7 @@ val viewModules = module {
     viewModel { QuizViewModel(repository = get()) }
     viewModel { TrainingViewModel(repository = get()) }
     viewModel { ForumViewModel(repository = get()) }
+    viewModel { ReviewViewModel(quizRepository = get()) }
 }
 
 fun getApiInstance(retrofit: Retrofit): Api {
