@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.girls4girls.R
 import com.example.girls4girls.data.model.Jeton
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class JetonDialogFragment : DialogFragment() {
+class JetonDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

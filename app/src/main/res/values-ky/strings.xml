@@ -136,6 +136,7 @@
     <string name="was">был</string>
     <string name="code_has_been_sent">6 орундуу код жөнөтүлдү</string>
     <string name="verify_code">Кодду ырастаңыз</string>
+    <string name="verify_account_user">Аккаунту ырастаңыз</string>
     <string name="incorrect_verification_code">Туура эмес код. Дагы бир жолу кайталаңыз
 </string>
     <string name="verify">Туура эмес </string>
@@ -248,4 +249,13 @@
     <string name="my_cards_list">Менин карталарым</string>
 
     <string name="greetings_to_user">"Салам, ${it.firstName}!"</string>
+    <string name="russian_language_change">Русский</string>
+    <string name="kyrgyz_language_change">Кыргызча</string>
+    <string name="change_current_lanuage">Тилди алмаштыруу</string>
+
+    <string name="input_code">Введите 6-значный код,</string>
+    <string name="otp_na">отправленный на</string>
+    <string name="gmail_example">example@mail.com</string>
+    <string name="and_and">жана</string>
+    <string name="valid_during_10_min">Код действителен в течение 10 минут</string>
 </resources>

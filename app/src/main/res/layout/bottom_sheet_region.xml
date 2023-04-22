@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_shape"
-    android:orientation="vertical">
+    android:backgroundTint="@color/white"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:behavior_skipCollapsed="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
 
     <ImageView
         android:id="@+id/remove_sheet"
@@ -143,10 +147,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="70dp"
             android:fontFamily="@font/mulish"
             android:text="@string/batken"
             android:textColor="#403A64"
-            android:layout_marginBottom="70dp"
             android:textFontWeight="500"
             android:textSize="16sp"
             tools:targetApi="28" />

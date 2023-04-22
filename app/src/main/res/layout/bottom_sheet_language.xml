@@ -22,26 +22,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/btnClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/boy"
-        android:src="@drawable/close_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/remove_sheet" />
-
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/choose_gender"
         android:fontFamily="@font/mulish_bold"
         android:paddingTop="3dp"
-        android:text="@string/choose_gender"
+        android:text="@string/change_current_lanuage"
         android:textColor="#403A64"
         android:textFontWeight="700"
         android:textSize="16sp"
@@ -57,27 +46,27 @@
         android:layout_marginTop="40dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnClose">
+        app:layout_constraintTop_toBottomOf="@id/title">
 
         <TextView
-            android:id="@+id/boy"
+            android:id="@+id/russian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mulish"
-            android:text="@string/boy"
+            android:text="@string/russian_language_change"
             android:textColor="#403A64"
             android:textFontWeight="500"
             android:textSize="16sp"
             tools:targetApi="28" />
 
         <TextView
-            android:id="@+id/girl"
+            android:id="@+id/kyrgyz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="70dp"
             android:fontFamily="@font/mulish"
-            android:text="@string/girl"
+            android:text="@string/kyrgyz_language_change"
             android:textColor="#403A64"
             android:textFontWeight="500"
             android:textSize="16sp"
