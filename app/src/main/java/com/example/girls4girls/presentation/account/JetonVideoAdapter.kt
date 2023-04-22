@@ -46,10 +46,12 @@ class JetonVideoAdapter : RecyclerView.Adapter<JetonVideoAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val jeton = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(jeton.image.url).centerCrop()
-                .into(binding.jetonImage)
-            binding.jetonName.text = jeton.title
-            binding.jetonDescription.text = jeton.description
+            if (jeton.type == "VIDEO") {
+                Glide.with(this).load(jeton.image.url).centerCrop()
+                    .into(binding.jetonImage)
+                binding.jetonName.text = jeton.title
+                binding.jetonDescription.text = jeton.description
+            }
         }
     }
 
