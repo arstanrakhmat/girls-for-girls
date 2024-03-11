@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,27 +7,41 @@
     android:orientation="vertical"
     tools:context=".presentation.auth.LoginFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.046" />
+
     <TextView
+        android:id="@+id/tvGreetings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="31dp"
         android:fontFamily="@font/mulish_bold"
         android:gravity="center"
         android:text="@string/happy_to_see_you_again"
         android:textColor="#662D91"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineTop" />
 
     <TextView
+        android:id="@+id/tvPhoneOrEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="49dp"
         android:fontFamily="@font/mulish"
         android:gravity="center"
         android:text="@string/phone_number_or_email"
         android:textColor="#292D32"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGreetings" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_or_number_container"
@@ -35,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
@@ -44,7 +58,10 @@
         app:boxCornerRadiusTopEnd="40dp"
         app:boxCornerRadiusTopStart="40dp"
         app:boxStrokeColor="#CDB4DB"
-        app:helperTextEnabled="false">
+        app:helperTextEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPhoneOrEmail">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_login_or_number"
@@ -68,6 +85,7 @@
 
 
     <TextView
+        android:id="@+id/tvPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -75,7 +93,10 @@
         android:gravity="center"
         android:text="@string/password"
         android:textColor="#292D32"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_or_number_container" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_container"
@@ -83,7 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="35dp"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
@@ -93,6 +114,9 @@
         app:boxCornerRadiusTopStart="40dp"
         app:boxStrokeColor="#CDB4DB"
         app:helperTextEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPassword"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -123,12 +147,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:padding="8dp"
         android:layout_marginEnd="59dp"
         android:fontFamily="@font/mulish"
         android:gravity="end"
         android:text="@string/forgot_the_password"
         android:textColor="#292D32"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_container" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_in_welcome_page"
@@ -140,7 +168,10 @@
         android:fontFamily="@font/mulish_bold"
         android:text="@string/sign_in"
         android:textAllCaps="false"
-        android:textColor="#662D91" />
+        android:textColor="#662D91"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnForgotPassword" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -148,9 +179,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnForgotPassword" />
 
     <TextView
+        android:id="@+id/tvSignInUsingWhat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -158,14 +193,21 @@
         android:gravity="center"
         android:text="@string/sign_in_using_account"
         android:textColor="#292D32"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_in_welcome_page" />
 
     <LinearLayout
+        android:id="@+id/llFacebookAndGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSignInUsingWhat">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -183,11 +225,15 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvNewUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/mulish"
         android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llFacebookAndGoogle"
         android:text="@string/new_user"
         android:textColor="#292D32"
         android:textSize="18sp" />
@@ -198,9 +244,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/mulish_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvNewUser"
         android:gravity="center"
+        android:textFontWeight="700"
+        tools:targetApi="31"
+        android:textStyle="bold"
         android:text="@string/register"
         android:textColor="#662D91"
         android:textSize="16sp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
